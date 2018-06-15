@@ -1,6 +1,9 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 
+import CustomButton from 'components/CustomButton';
+import styles from './styles';
+
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     title: 'Home',
@@ -8,12 +11,13 @@ export default class HomeScreen extends React.Component {
 
   render() {
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={styles.container}>
         <Text>Home Screen</Text>
-        <Button
-          title="Go to Details"
+        <CustomButton
           onPress={() => this.props.navigation.navigate('details')}
-        />
+        >
+         <Text>Go to Details</Text>
+        </CustomButton>
       </View>
     );
   }

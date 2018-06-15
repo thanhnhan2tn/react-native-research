@@ -9,7 +9,7 @@ export default createStackNavigator({
   details: DetailsScreen,
 },{
   initialRouteName: 'home',
-  headerMode: 'float',
+  headerMode: 'none',
   navigationOptions: {
     headerStyle: {
       backgroundColor: '#f4511e',
