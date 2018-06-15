@@ -8,10 +8,6 @@ import {
 import styles from './styles';
 
 const CustomButton = (props) => {
-  // let stylesCustom = styles;
-  // if (props.styles) {
-  //   stylesCustom = Object.assign({}, styles, props.styles);
-  // }
   return (
     <View style={styles.wrapper}>
       <TouchableOpacity
