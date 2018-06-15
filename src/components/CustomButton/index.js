@@ -1,27 +1,26 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {
   View,
-  Image,
-  StyleSheet,
   TouchableOpacity,
 } from 'react-native';
 import styles from './styles';
 
-const CustomButton = (props) => {
-  // let stylesCustom = styles;
-  // if (props.styles) {
-  //   stylesCustom = Object.assign({}, styles, props.styles);
-  // }
-  return (
-    <View style={styles.wrapper}>
-      <TouchableOpacity
-        onPress={props.onPress}
-        style={[styles.btn, props.styles]}
-      >
-        {props.children}
-      </TouchableOpacity>
-    </View>
-  );
+const CustomButton = (props) => (
+  <View style={styles.wrapper}>
+    <TouchableOpacity
+      onPress={props.onPress}
+      style={[styles.btn, props.styles]}
+    >
+      {props.children}
+    </TouchableOpacity>
+  </View>
+);
+
+CustomButton.propTypes = {
+  onPress: PropTypes.func,
+  styles: PropTypes.object,
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
 };
 
 export default CustomButton;

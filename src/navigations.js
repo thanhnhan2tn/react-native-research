@@ -7,7 +7,7 @@ import DetailsScreen from './containers/Details';
 export default createStackNavigator({
   home: HomeScreen,
   details: DetailsScreen,
-},{
+}, {
   initialRouteName: 'home',
   headerMode: 'none',
   navigationOptions: {
@@ -26,7 +26,7 @@ export default createStackNavigator({
       timing: Animated.timing,
       useNativeDriver: true,
     },
-    screenInterpolator: sceneProps => {
+    screenInterpolator: (sceneProps) => {
       const { layout, position, scene } = sceneProps;
       const { index } = scene;
 

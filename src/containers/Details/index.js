@@ -1,13 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { View, Text, Button, StyleSheet } from 'react-native';
+
+import CustomButton from 'components/CustomButton';
 
 const styles = StyleSheet.create({
   btn: {
     backgroundColor: '#f44242',
-  }
+  },
 });
 
-import CustomButton from 'components/CustomButton';
 export default class Details extends React.Component {
   render() {
     return (
@@ -31,3 +33,7 @@ export default class Details extends React.Component {
     );
   }
 }
+
+Details.propTypes = {
+  navigation: PropTypes.object,
+};
