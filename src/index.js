@@ -5,7 +5,7 @@
  */
 
 import React, { Component } from 'react';
-import AppNavigator from './navigations';
+import AppNavigator from './config/navigations';
 
 export default class App extends Component {
   render() {

@@ -1,23 +1,21 @@
+import React from 'react';
 import { createStackNavigator } from 'react-navigation';
 import { Animated, Easing } from 'react-native';
 
-import HomeScreen from './containers/Home';
-import DetailsScreen from './containers/Details';
+import HomeScreen from 'containers/Home';
+import DetailsScreen from 'containers/Details';
+import Header from 'components/Header';
+
+import colors from 'styles/colors';
 
 export default createStackNavigator({
   home: HomeScreen,
   details: DetailsScreen,
 }, {
   initialRouteName: 'home',
-  headerMode: 'none',
+  headerMode: 'float',
   navigationOptions: {
-    headerStyle: {
-      backgroundColor: '#f4511e',
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
+    header: props => <Header {...props} />,
   },
   transitionConfig: () => ({
     transitionSpec: {
