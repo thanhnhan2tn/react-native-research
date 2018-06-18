@@ -19,6 +19,11 @@ export default class HomeScreen extends React.Component {
         >
           <Text>Go to Details</Text>
         </CustomButton>
+        <CustomButton
+          onPress={() => this.props.navigation.navigate('feedback')}
+        >
+          <Text>Go to Feedback</Text>
+        </CustomButton>
       </View>
     );
   }

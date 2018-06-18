@@ -3,10 +3,12 @@ import { Animated, Easing } from 'react-native';
 
 import HomeScreen from './containers/Home';
 import DetailsScreen from './containers/Details';
+import { FeedBack } from './containers/FeedBack';
 
 export default createStackNavigator({
   home: HomeScreen,
   details: DetailsScreen,
+  feedback: FeedBack,
 }, {
   initialRouteName: 'home',
   headerMode: 'none',
