@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { incrementAction, decrementAction } from "actions";
 import CustomButton from 'components/CustomButton';
 import styles from './styles';
+import { selectCount } from './selectors';
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -37,11 +38,9 @@ HomeScreen.propTypes = {
   navigation: PropTypes.object,
 };
 
-const mapStateToProps = ({ CounterReducer }) => {
-  return {
-    count: CounterReducer.counter,
-  };
-};
+const mapStateToProps = (state) => ({
+  count: selectCount(state),
+});
 
 const mapDispatchToProps = (dispatch) => {
   return {
