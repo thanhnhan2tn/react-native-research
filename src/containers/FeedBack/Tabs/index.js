@@ -10,7 +10,7 @@ export class Tabs extends React.Component {
       <View style={styles.container}>
         <Button title='Menu'/>
         <Button active={styles.active}
-          redColor={styles.redColor}
+          color={styles.color}
           title='Feedback'
         />
         <Button title='Infomation'/>
