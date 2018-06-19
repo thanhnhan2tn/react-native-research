@@ -1,23 +1,31 @@
+import React from 'react';
 import { createStackNavigator } from 'react-navigation';
+import {
+  reduxifyNavigator,
+  createReactNavigationReduxMiddleware,
+} from 'react-navigation-redux-helpers';
 import { Animated, Easing } from 'react-native';
+import { connect } from 'react-redux';
 
-import HomeScreen from './containers/Home';
-import DetailsScreen from './containers/Details';
+import HomeScreen from 'containers/Home';
+import DetailsScreen from 'containers/Details';
+import Header from 'components/Header';
 
-export default createStackNavigator({
+import colors from 'styles/colors';
+
+const middleware = createReactNavigationReduxMiddleware(
+  'root',
+  state => state.nav
+);
+
+const RootNavigator = createStackNavigator({
   home: HomeScreen,
   details: DetailsScreen,
 }, {
   initialRouteName: 'home',
-  headerMode: 'none',
+  headerMode: 'float',
   navigationOptions: {
-    headerStyle: {
-      backgroundColor: '#f4511e',
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
+    header: props => <Header {...props} />,
   },
   transitionConfig: () => ({
     transitionSpec: {
@@ -45,3 +53,14 @@ export default createStackNavigator({
     },
   }),
 });
+
+const AppWithNavigationState = reduxifyNavigator(RootNavigator, 'root');
+
+const mapStateToProps = state => ({
+  state: state.nav,
+});
+
+const AppNavigator = connect(mapStateToProps)(AppWithNavigationState);
+
+export { RootNavigator, middleware };
+export default AppNavigator;
