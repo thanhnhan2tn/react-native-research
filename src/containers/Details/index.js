@@ -17,11 +17,12 @@ export default class Details extends React.Component {
 
   static navigationOptions = {
     header: ({ navigation }) => {
-      const currentParams = getCurrentRoute(navigation.state);
       const { defaultProps } = Details;
       return (
         <Header
-          onPressLeft={() => {currentParams.handleBack();}}
+          onPressLeft={() => {
+            navigation.dispatch({ type: 'home' })
+          }}
           iconLeft={assets.backIcon}
           titleLeft={defaultProps.titleLeft}
           noTitle
@@ -30,33 +31,20 @@ export default class Details extends React.Component {
     }
   }
 
-  componentDidMount() {
-    const { navigation } = this.props;
-    navigation.setParams({ handleBack: this.handleBack });
-  }
-
   handleBack = () => {
     const { navigation } = this.props;
-    navigation.goBack();
+    navigation.dispatch({ type: 'home' });
   }
 
   render() {
+    const { navigation: { state } } = this.props;
+
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Details Screen</Text>
-        <CustomButton
-          styles={styles.btn}
-          onPress={() => this.props.navigation.push('Details')}
-        >
-          <Text>Go to Details... again</Text>
-        </CustomButton>
-        <Button
-          title="Go to Home"
-          onPress={() => this.props.navigation.navigate('Home')}
-        />
+        <Text>{state.params.text}</Text>
         <Button
           title="Go back"
-          onPress={() => this.props.navigation.goBack()}
+          onPress={this.handleBack}
         />
       </View>
     );
