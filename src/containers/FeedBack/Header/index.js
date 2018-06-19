@@ -7,21 +7,20 @@ import { styles } from './style';
 export class Header extends React.Component {
   render() {
     const { goBack } = this.props.navigation;
-    console.log('props', goBack);
     return (
       <View style={styles.container}>
         <View style={styles.wrap}>
           <Button
             source={require('./images/arrow-left.png')}
             onPress={() => goBack()}
+            title='Back'
           />
-          <Text style={styles.text}>Back</Text>
         </View>
         <View style={styles.container}>
-          <Text style={styles.text}>14.99 LT</Text>
           <Button
             source={require('./images/cart.png')}
-            onPress={() => console.log('go to cart')}
+            title='14.99 LT'
+            reverse={true}
           />
         </View>
       </View>

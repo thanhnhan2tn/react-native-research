@@ -5,8 +5,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: 'transparent',
     alignItems: 'center',
-    height: 20,
-    width: 20
+    height: 20
   },
   buttonText: {
     color: '#fff',
@@ -19,5 +18,8 @@ export const styles = StyleSheet.create({
   text: {
     padding: 5,
     color: '#fff'
+  },
+  reverse: {
+    flexDirection: 'row-reverse',
   }
 });

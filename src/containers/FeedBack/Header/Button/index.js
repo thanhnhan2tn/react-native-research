@@ -4,11 +4,12 @@ import { styles } from './style';
 
 export class Button extends Component {
   getAdditionalStyle = () => {
-    const { type } = this.props;
+    const { type, reverse } = this.props;
     if (type === 'success') return { backgroundColor: '#25C73A' };
     if (type === 'danger') return { backgroundColor: '#FF564E' };
     if (type === 'warning') return { backgroundColor: '#FFB827' };
     if (type === 'primary') return { backgroundColor: '#6AA3DA' };
+    if (reverse === true) return { flexDirection: 'row-reverse' };
     return { backgroundColor: 'transparent' };
   }
   render() {
