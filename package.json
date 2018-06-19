@@ -7,6 +7,9 @@
     "test": "jest",
     "lint": "eslint ./src/**/*.js index.js"
   },
+  "lint-staged": {
+    "*.js": "lint:eslint"
+  },
   "pre-commit": [
     "lint"
   ],
