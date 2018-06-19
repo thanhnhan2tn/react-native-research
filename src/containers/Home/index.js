@@ -4,6 +4,7 @@ import { View, Text } from 'react-native';
 
 import CustomButton from 'components/CustomButton';
 import FormSearch from './components/FormSearch';
+import ListFoods from './components/ListFoods';
 import styles from './styles';
 
 export default class HomeScreen extends React.Component {
@@ -15,12 +16,7 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <FormSearch />
-        <Text>Home Screen</Text>
-        <CustomButton
-          onPress={() => this.props.navigation.navigate('details')}
-        >
-          <Text>Go to Details</Text>
-        </CustomButton>
+        <ListFoods />
       </View>
     );
   }
