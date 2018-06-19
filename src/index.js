@@ -5,12 +5,17 @@
  */
 
 import React, { Component } from 'react';
-import AppNavigator from './navigations';
+import { Provider } from 'react-redux';
+
+import store from './store';
+import AppNavigator from './config/navigations';
 
 export default class App extends Component {
   render() {
     return (
-      <AppNavigator />
+      <Provider store={store}>
+        <AppNavigator />
+      </Provider>
     );
   }
 }
