@@ -14,7 +14,10 @@ export default class Item extends React.Component {
     const { item } = this.props;
     return (
       <View style={styles.products}>
-
+        <Image
+          style={styles.product_img}
+          source={item.img}
+        />
         <View style={styles.product_infor}>
           <View style={styles.wrap_title}>
             <Text style={styles.product_title}>{item.key}</Text>

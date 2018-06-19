@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import HomeScreen from 'containers/Home';
 import DetailsScreen from 'containers/Details';
 import Header from 'components/Header';
-import MainScreen from './containers/MainScreen';
+import MainScreen from 'containers/MainScreen';
 
 import colors from 'styles/colors';
 

@@ -7,7 +7,6 @@ import {
   Image
 } from 'react-native';
 
-import Header from './Header';
 import Location from './Location';
 import Item from './Item';
 import Footer from './Footer';
@@ -29,7 +28,6 @@ export default class MainScreen extends React.Component {
     ]
     return (
       <View style={styles.container}>
-        <Header/>
         <ScrollView>
           <Location/>
           {this.genList(list)}
