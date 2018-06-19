@@ -1,6 +1,10 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#ccc'
+  },
   header_location: {
     justifyContent: "space-between",
     padding: 20,
@@ -8,14 +12,14 @@ const styles = StyleSheet.create({
     backgroundColor: "yellow"
   },
   products: {
-    flex: 1, 
-    flexDirection: 'row', 
-    padding: 15, 
+    flex: 1,
+    flexDirection: 'row',
+    padding: 15,
     borderBottomWidth: 1,
     borderBottomColor: 'grey',
   },
   product_img: {
-    width: 80, 
+    width: 80,
     height: 80
   },
   product_infor: {

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
 
 import CustomButton from 'components/CustomButton';
-import MainScreen from 'components/MainScreen';
 import styles from './styles';
 
 export default class HomeScreen extends React.Component {
@@ -14,7 +13,22 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <MainScreen/>
+        <Text>Home Screen</Text>
+        <CustomButton
+          onPress={() => this.props.navigation.navigate('details')}
+        >
+          <Text>Go to Details</Text>
+        </CustomButton>
+
+
+
+
+
+        <CustomButton
+          onPress={() => this.props.navigation.navigate('mainscreen')}
+        >
+          <Text>Go to HomeScreen</Text>
+        </CustomButton>
       </View>
     );
   }
