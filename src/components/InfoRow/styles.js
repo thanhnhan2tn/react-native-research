@@ -12,7 +12,7 @@ export default StyleSheet.create({
   inforIcon: {
     width: 20,
     height: 20,
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
   inforDetail: {
     flex: 1,
@@ -29,5 +29,5 @@ export default StyleSheet.create({
     textAlign: 'right',
     color: '#000000',
     paddingRight: 10,
-  }
+  },
 });
