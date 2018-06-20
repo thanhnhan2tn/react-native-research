@@ -4,12 +4,17 @@ import colors from 'styles/colors';
 
 export default StyleSheet.create({
   wrapper: {
-    flex: 0.1,
     backgroundColor: colors.red,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 15,
+    paddingVertical: 15,
+    paddingHorizontal: 25,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 100,
   },
   menu: {
     width: 40,
@@ -21,6 +26,8 @@ export default StyleSheet.create({
   },
   title: {
     color: colors.white,
+    fontFamily: 'Montserrat',
+    fontSize: 20,
   },
   btnLeft: {
     flexDirection: 'row',

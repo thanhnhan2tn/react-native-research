@@ -5,12 +5,38 @@ import {
   Text,
   Image,
   TouchableOpacity,
+  Animated,
+  Easing,
+  Dimensions,
 } from 'react-native';
 
 import assets from 'config/assets';
 import styles from './styles';
 
 class CustomHeader extends React.Component {
+  constructor() {
+    super();
+    const { width } = Dimensions.get('window');
+    this.movingRight = new Animated.Value(-width / 4);
+    this.movingLeft = new Animated.Value(width / 4);
+  }
+
+  componentDidMount() {
+    this.animate(this.movingRight);
+    this.animate(this.movingLeft);
+  }
+
+  animate = (originValue) => {
+    Animated.timing(
+      originValue,
+      {
+        toValue: 0,
+        duration: 350,
+        easing: Easing.out(Easing.poly(4)),
+      },
+    ).start();
+  }
+
   handlePressLeft = () => {
     const { onPressLeft } = this.props;
 
@@ -37,28 +63,41 @@ class CustomHeader extends React.Component {
       titleLeft,
       titleRight,
     } = this.props;
+
     return (
       <View style={styles.wrapper}>
-        <TouchableOpacity
-          onPress={this.handlePressLeft}
-          style={styles.btnLeft}
+        <Animated.View
+          style={{
+            transform: [{ translateX: this.movingRight }],
+          }}
         >
-          <Image style={styles.menu} source={iconLeft || assets.menu} />
-          {
-            titleLeft ? <Text>{titleLeft}</Text> : null
-          }
-        </TouchableOpacity>
+          <TouchableOpacity
+            onPress={this.handlePressLeft}
+            style={styles.btnLeft}
+          >
+            <Image style={styles.menu} source={iconLeft || assets.menu} />
+            {
+              titleLeft ? <Text>{titleLeft}</Text> : null
+            }
+          </TouchableOpacity>
+        </Animated.View>
         {
-          !noTitle ? <Text style={styles.title}>FoodApp</Text> : null
+          !noTitle ? <Text style={styles.title}>foodapp</Text> : null
         }
-        <TouchableOpacity
-          onPress={this.handlePressRight}
+        <Animated.View
+          style={{
+            transform: [{ translateX: this.movingLeft }],
+          }}
         >
-          <Image style={styles.cartIcon} source={iconRight || assets.shoppingCart} />
-          {
-            titleRight ? <Text>{titleRight}</Text> : null
-          }
-        </TouchableOpacity>
+          <TouchableOpacity
+            onPress={this.handlePressRight}
+          >
+            <Image style={styles.cartIcon} source={iconRight || assets.shoppingCart} />
+            {
+              titleRight ? <Text>{titleRight}</Text> : null
+            }
+          </TouchableOpacity>
+        </Animated.View>
       </View>
     );
   }

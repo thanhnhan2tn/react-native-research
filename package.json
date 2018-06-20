@@ -13,6 +13,11 @@
   "pre-commit": [
     "lint"
   ],
+  "rnpm": {
+    "assets": [
+      "./src/assets/fonts/"
+    ]
+  },
   "dependencies": {
     "eslint-plugin-react-native": "^3.2.1",
     "immutable": "^3.8.2",
