@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native';
 
 import colors from 'styles/colors';
+import { rgba } from 'utils/helpers';
 
 export default StyleSheet.create({
   wrapper: {
-    backgroundColor: colors.red,
+    backgroundColor: rgba(colors.red, 0.85),
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
