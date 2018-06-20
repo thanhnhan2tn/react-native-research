@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import styles from './styles';
 
-const CustomButton = (props) => (
+const CustomButton = props => (
   <View style={styles.wrapper}>
     <TouchableOpacity
       onPress={props.onPress}
@@ -20,7 +20,12 @@ const CustomButton = (props) => (
 CustomButton.propTypes = {
   onPress: PropTypes.func,
   styles: PropTypes.object,
-  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
+};
+
+CustomButton.defaultProps = {
+  onPress: () => {},
+  styles: {},
 };
 
 export default CustomButton;

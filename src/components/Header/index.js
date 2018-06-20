@@ -1,38 +1,28 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   View,
   Text,
   Image,
   TouchableOpacity,
-  Alert,
 } from 'react-native';
 
 import assets from 'config/assets';
 import styles from './styles';
 
 class CustomHeader extends React.Component {
-
-  onPressLeft = () => {
+  handlePressLeft = () => {
     const { onPressLeft } = this.props;
 
     if (typeof onPressLeft === 'function') {
       onPressLeft();
     } else {
-      Alert.alert(
-        'Alert Title',
-        'My Alert Msg',
-        [
-          {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-          {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ],
-        { cancelable: false }
-      );
+      console.log('open drawer');
     }
   }
 
-  onPressRight = () => {
-    const { iconLeft, onPressLeft } = this.props;
+  handlePressRight = () => {
+    const { onPressRight } = this.props;
 
     if (typeof onPressRight === 'function') {
       onPressRight();
@@ -50,7 +40,7 @@ class CustomHeader extends React.Component {
     return (
       <View style={styles.wrapper}>
         <TouchableOpacity
-          onPress={this.onPressLeft}
+          onPress={this.handlePressLeft}
           style={styles.btnLeft}
         >
           <Image style={styles.menu} source={iconLeft || assets.menu} />
@@ -61,7 +51,9 @@ class CustomHeader extends React.Component {
         {
           !noTitle ? <Text style={styles.title}>FoodApp</Text> : null
         }
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={this.handlePressRight}
+        >
           <Image style={styles.cartIcon} source={iconRight || assets.shoppingCart} />
           {
             titleRight ? <Text>{titleRight}</Text> : null
@@ -71,5 +63,25 @@ class CustomHeader extends React.Component {
     );
   }
 }
+
+CustomHeader.propTypes = {
+  noTitle: PropTypes.bool,
+  iconRight: PropTypes.string,
+  iconLeft: PropTypes.string,
+  titleLeft: PropTypes.string,
+  titleRight: PropTypes.string,
+  onPressLeft: PropTypes.func,
+  onPressRight: PropTypes.func,
+};
+
+CustomHeader.defaultProps = {
+  noTitle: false,
+  iconRight: '',
+  iconLeft: '',
+  titleLeft: '',
+  titleRight: '',
+  onPressLeft: () => {},
+  onPressRight: () => {},
+};
 
 export default CustomHeader;

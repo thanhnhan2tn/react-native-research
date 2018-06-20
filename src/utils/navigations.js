@@ -1,3 +1,3 @@
-export const getCurrentRoute = ({ index, routes }) => {
-  return routes[index].params || {};
-};
+export const getCurrentRoute = ({ index, routes }) => routes[index].params || {};
+
+export default {};
