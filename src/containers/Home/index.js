@@ -19,8 +19,7 @@ class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <FormSearch />
-        <ListFoods />
-        <Text>Home Screen</Text>
+        {/* <Text>Home Screen</Text>
         <CustomButton
           onPress={() => navigation.dispatch({ type: 'detail', text: 'Hello from Home' })}
         >
@@ -31,7 +30,7 @@ class HomeScreen extends React.Component {
         >
           <Text>Increase counter</Text>
         </CustomButton>
-        <Text>{count}</Text>
+        <Text>{count}</Text> */}
       </View>
     );
   }
