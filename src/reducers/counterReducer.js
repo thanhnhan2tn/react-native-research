@@ -1,5 +1,5 @@
 import { fromJS } from 'immutable';
-import { incrementCounter, decrementCounter } from "actions/actionTypes";
+import { incrementCounter, decrementCounter } from 'actions/actionTypes';
 
 const initialState = fromJS({
   counter: 0,
@@ -8,10 +8,9 @@ const initialState = fromJS({
 const counterReducer = (state = initialState, action) => {
   switch (action.type) {
     case incrementCounter:
-      const prev = state.get('counter');
-      return state.set('counter', prev + 1);
+      return state.set('counter', state.get('counter') + 1);
     case decrementCounter:
-      return { ...state, counter: state.counter - 1 };
+      return state.set('counter', state.get('counter') - 1);
     default:
       return state;
   }

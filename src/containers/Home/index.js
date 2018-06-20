@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 
-import { incrementAction, decrementAction } from "actions";
+import { incrementAction } from 'actions';
 import CustomButton from 'components/CustomButton';
 import styles from './styles';
 import { selectCount } from './selectors';
@@ -36,16 +36,22 @@ class HomeScreen extends React.Component {
 
 HomeScreen.propTypes = {
   navigation: PropTypes.object,
+  incrementCounter: PropTypes.func,
+  count: PropTypes.number,
 };
 
-const mapStateToProps = (state) => ({
+HomeScreen.defaultProps = {
+  navigation: {},
+  incrementCounter: () => {},
+  count: 0,
+};
+
+const mapStateToProps = state => ({
   count: selectCount(state),
 });
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    incrementCounter: () => dispatch(incrementAction()),
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  incrementCounter: () => dispatch(incrementAction()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);

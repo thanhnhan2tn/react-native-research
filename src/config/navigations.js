@@ -11,11 +11,9 @@ import HomeScreen from 'containers/Home';
 import DetailsScreen from 'containers/Details';
 import Header from 'components/Header';
 
-import colors from 'styles/colors';
-
 const middleware = createReactNavigationReduxMiddleware(
   'root',
-  state => state.nav
+  state => state.nav,
 );
 
 const RootNavigator = createStackNavigator({
