@@ -1,20 +1,40 @@
-import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { View } from 'react-native';
 
-import { Button } from '../Button';
-import { styles } from './style';
+import Button from '../Button';
+import styles from './styles';
 
-export class Tabs extends React.Component {
+export default class Tabs extends React.Component {
+  constructor(props) {
+    super(props);
+    const { arrTabs } = this.props;
+    this.state = {
+      arrTabs,
+    };
+  }
+
   render() {
+    const { arrTabs } = this.state;
     return (
       <View style={styles.container}>
-        <Button title='Menu'/>
-        <Button active={styles.active}
-          color={styles.color}
-          title='Feedback'
-        />
-        <Button title='Infomation'/>
+        { arrTabs.map(tab =>
+          (<Button
+            key={tab.id}
+            title={tab.title}
+            active={tab.active ? styles.active : ''}
+            color={tab.active ? styles.color : ''}
+          />))
+        }
       </View>
     );
   }
 }
+
+Tabs.propTypes = {
+  arrTabs: PropTypes.array,
+};
+
+Tabs.defaultProps = {
+  arrTabs: [],
+};

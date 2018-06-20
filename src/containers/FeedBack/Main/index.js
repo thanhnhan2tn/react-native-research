@@ -1,31 +1,64 @@
-import React, { Component } from 'react';
-import { ScrollView, View, Text } from 'react-native';
+import React from 'react';
+import {
+  ScrollView,
+  View,
+} from 'react-native';
 
-import { Tabs } from '../Tabs';
-import { Feed } from '../Feed';
-import { styles } from './style';
+import Tabs from '../Tabs';
+import Feed from '../Feed';
+import styles from './styles';
 
-export class Main extends React.Component {
+export default class Main extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      list: [
+        {
+          id: 1, name: 'Nefitari Menphusor', body: 'Lorem is not recognized as an internal or external command, lorem is not recognized as an internal or external command', stars: { ratings: 3 },
+        },
+        {
+          id: 2, name: 'Nefitari Menphusor', body: 'Lorem is not recognized as an internal or external command', stars: { ratings: 2 },
+        },
+        {
+          id: 3, name: 'Nefitari Menphusor', body: 'Lorem is not recognized as an internal or external command, lorem is not recognized as an internal or external command', stars: { ratings: 3 },
+        },
+        {
+          id: 4, name: 'Nefitari Menphusor', body: 'Lorem is not recognized as an internal or external command', stars: { ratings: 2 },
+        },
+        {
+          id: 5, name: 'Nefitari Menphusor', body: 'Lorem is not recognized as an internal or external command, lorem is not recognized as an internal or external command', stars: { ratings: 3 },
+        },
+        {
+          id: 6, name: 'Nefitari Menphusor', body: 'Lorem is not recognized as an internal or external command', stars: { ratings: 2 },
+        },
+      ],
+      tabs: [
+        {
+          id: 1, title: 'Menu',
+        },
+        {
+          id: 2, title: 'Feedback', active: true,
+        },
+        {
+          id: 3, title: 'Infomation',
+        },
+      ],
+    };
+  }
   render() {
-    const list = [
-      {name: 'Nefitari Menphusor', body: 'Lorem is not recognized as an internal or external command, lorem is not recognized as an internal or external command', stars: 3},
-      {name: 'Nefitari Menphusor', body: 'Lorem is not recognized as an internal or external command', stars: 2},
-      {name: 'Nefitari Menphusor', body: 'Lorem is not recognized as an internal or external command, lorem is not recognized as an internal or external command', stars: 3},
-      {name: 'Nefitari Menphusor', body: 'Lorem is not recognized as an internal or external command', stars: 2},
-      {name: 'Nefitari Menphusor', body: 'Lorem is not recognized as an internal or external command, lorem is not recognized as an internal or external command', stars: 3},
-      {name: 'Nefitari Menphusor', body: 'Lorem is not recognized as an internal or external command', stars: 2}
-    ]
+    const { list, tabs } = this.state;
     return (
       <View style={styles.container}>
-        <Tabs/>
+        <Tabs arrTabs={tabs} />
         <ScrollView style={styles.listFeed}>
-          {list.map((feed, i) =>
-            <Feed key={i}
+          { list.map(feed =>
+            (<Feed
+              key={feed.id}
               name={feed.name}
               body={feed.body}
               stars={feed.stars}
-            />
-          )}
+            />))
+          }
         </ScrollView>
       </View>
     );

@@ -17,7 +17,7 @@ class CustomHeader extends React.Component {
     if (typeof onPressLeft === 'function') {
       onPressLeft();
     } else {
-      console.log('open drawer');
+      // console.log('open drawer');
     }
   }
 
@@ -67,7 +67,7 @@ class CustomHeader extends React.Component {
 CustomHeader.propTypes = {
   noTitle: PropTypes.bool,
   iconRight: PropTypes.string,
-  iconLeft: PropTypes.string,
+  iconLeft: PropTypes.any,
   titleLeft: PropTypes.string,
   titleRight: PropTypes.string,
   onPressLeft: PropTypes.func,

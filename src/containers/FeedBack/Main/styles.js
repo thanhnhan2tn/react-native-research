@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
 
-export const styles = StyleSheet.create({
+export default StyleSheet.create({
   container: {
     flex: 3,
-    backgroundColor: '#ccc'
+    backgroundColor: '#ccc',
   },
   listFeed: {
-    padding: 10
-  }
+    padding: 10,
+  },
 });

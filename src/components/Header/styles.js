@@ -27,6 +27,6 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   color: {
-    color: '#fff'
-  }
+    color: '#fff',
+  },
 });

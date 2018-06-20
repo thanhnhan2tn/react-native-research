@@ -1,30 +1,39 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {
-  StyleSheet,
   Image,
-	View
+  View,
 } from 'react-native';
 
-import { styles } from './style';
+import assets from 'config/assets';
+import styles from './styles';
 
-export class Rating extends React.Component {
+export default class Rating extends React.Component {
   genStar = (stars) => {
-    let arrStarts = [];
-    for (var i = 1; i <= 5; i++) {
-			let path = require('./images/star-filled.png');
-			if (i > stars.ratings) {
-				path = require('./images/star-unfilled.png');
-			}
-			arrStarts.push(<Image key={i} style={styles.image} source={path} />);
-    }
-    return arrStarts;
+    const arrStarts = [1, 2, 3, 4, 5];
+    return arrStarts.map((ele) => {
+      if (ele > stars.ratings) {
+        return <Image key={ele} style={styles.image} source={assets.starUnfilled} />;
+      }
+      return <Image key={ele} style={styles.image} source={assets.starFilled} />;
+    });
   }
-	render() {
+  render() {
     const { stars, style } = this.props;
-		return (
-      <View style={[ styles.container, style ]}>
+    return (
+      <View style={[styles.container, style]}>
         { this.genStar(stars) }
       </View>
-		);
-	}
+    );
+  }
 }
+
+Rating.propTypes = {
+  stars: PropTypes.object,
+  style: PropTypes.any,
+};
+
+Rating.defaultProps = {
+  stars: {},
+  style: '',
+};

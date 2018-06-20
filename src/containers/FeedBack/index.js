@@ -1,48 +1,40 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { View, Text } from 'react-native';
+import React from 'react';
+import { View } from 'react-native';
 
-// import { Header } from './Header';
-import Header from 'components/Header';
-import { Banner } from './Banner';
-import { Main } from './Main';
 import assets from 'config/assets';
-import { styles } from './style';
+import Header from 'components/Header';
+import Banner from './Banner';
+import Main from './Main';
+import styles from './styles';
 
-export class FeedBack extends React.Component {
-
+export default class FeedBack extends React.Component {
   static navigationOptions = {
     header: ({ navigation }) => {
       const { defaultProps } = FeedBack;
       return (
         <Header
           onPressLeft={() => {
-            navigation.dispatch({ type: 'home' })
+            navigation.dispatch({ type: 'home' });
           }}
           iconLeft={assets.backIcon}
           titleLeft={defaultProps.titleLeft}
-          noTitle
+          noTitle={true}
         />
       );
-    }
+    },
   }
 
   render() {
-    const { navigation } = this.props;
-    const { navigation: { state } } = this.props;
+    const bannerInfo = {
+      id: 1, img: assets.banner, title: 'FIT FOOD', adress: 'Adressas, Vlinlus', stars: { ratings: 3 },
+    };
     return (
       <View style={styles.container}>
-        {/*<Header navigation={navigation}/>*/}
-        <Banner/>
-        <Main/>
+        <Banner info={bannerInfo} />
+        <Main />
       </View>
     );
   }
-}
-
-FeedBack.propTypes = {
-  navigation: PropTypes.object,
-  titleLeft: PropTypes.string,
 }
 
 FeedBack.defaultProps = {
