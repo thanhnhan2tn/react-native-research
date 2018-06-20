@@ -55,7 +55,7 @@ class CustomHeader extends React.Component {
         >
           <Image style={styles.menu} source={iconLeft || assets.menu} />
           {
-            titleLeft ? <Text>{titleLeft}</Text> : null
+            titleLeft ? <Text style={styles.color}>{titleLeft}</Text> : null
           }
         </TouchableOpacity>
         {

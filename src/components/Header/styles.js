@@ -26,4 +26,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  color: {
+    color: '#fff'
+  }
 });

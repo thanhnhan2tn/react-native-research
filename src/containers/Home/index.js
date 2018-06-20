@@ -27,11 +27,12 @@ class HomeScreen extends React.Component {
         >
           <Text>Go to Feedback</Text>
         </CustomButton>
+        <CustomButton
           onPress={() => incrementCounter()}
         >
           <Text>Increase counter</Text>
+          <Text>{count}</Text>
         </CustomButton>
-        <Text>{count}</Text>
       </View>
     );
   }
