@@ -1,5 +1,5 @@
 # The demo food app
-Build: ![](https://build.appcenter.ms/v0.1/apps/6cbe185f-7374-4398-9f09-5049317f5b6f/branches/food-app/badge)
+![Build status](https://build.appcenter.ms/v0.1/apps/6cbe185f-7374-4398-9f09-5049317f5b6f/branches/food-app/badge)
 ## Template
 - [Mobile Food Ordering App concept](https://www.behance.net/gallery/18180215/Mobile-Food-Ordering-App-concept)
 
