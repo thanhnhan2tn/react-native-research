@@ -27,7 +27,7 @@ const stackNavigator = createStackNavigator({
 }, {
   headerMode: 'float',
   navigationOptions: {
-    header: props => <Header {...props} />,
+    header: props => <Header {...props} isIconMenu={true} />,
   },
   transitionConfig: () => ({
     transitionSpec: {
