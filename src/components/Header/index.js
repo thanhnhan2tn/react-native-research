@@ -13,6 +13,7 @@ import {
 import assets from 'config/assets';
 import styles from './styles';
 
+/* eslint react/require-default-props: "off" */
 class CustomHeader extends React.Component {
   constructor() {
     super();
@@ -38,12 +39,12 @@ class CustomHeader extends React.Component {
   }
 
   handlePressLeft = () => {
-    const { onPressLeft } = this.props;
+    const { onPressLeft, navigation } = this.props;
 
     if (typeof onPressLeft === 'function') {
       onPressLeft();
     } else {
-      console.log('open drawer');
+      navigation.openDrawer();
     }
   }
 
@@ -104,6 +105,7 @@ class CustomHeader extends React.Component {
 }
 
 CustomHeader.propTypes = {
+  navigation: PropTypes.object,
   noTitle: PropTypes.bool,
   iconRight: PropTypes.string,
   iconLeft: PropTypes.string,
@@ -114,13 +116,12 @@ CustomHeader.propTypes = {
 };
 
 CustomHeader.defaultProps = {
+  navigation: {},
   noTitle: false,
   iconRight: '',
   iconLeft: '',
   titleLeft: '',
   titleRight: '',
-  onPressLeft: () => {},
-  onPressRight: () => {},
 };
 
 export default CustomHeader;
