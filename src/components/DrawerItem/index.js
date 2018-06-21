@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 
 import assets from 'config/assets';
+import { redirectTo } from 'actions/navigationActions';
 import styles from './styles';
 
 const listItems = [
@@ -16,11 +17,21 @@ const listItems = [
     icon: assets.home,
     route: 'home',
   },
+  {
+    title: 'TabView Demo',
+    icon: assets.home,
+    route: 'tabview',
+  },
+  {
+    title: 'Restaurant Info',
+    icon: assets.home,
+    route: 'restaurantInfo',
+  },
 ];
 
 class DrawerItem extends Component {
   finishcurrent = (screen) => {
-    this.props.navigation.dispatch({ type: screen });
+    this.props.navigation.dispatch(redirectTo(screen));
   }
 
   render() {
