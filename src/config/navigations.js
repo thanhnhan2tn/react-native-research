@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 import {
   reduxifyNavigator,
   createReactNavigationReduxMiddleware,
@@ -10,19 +10,17 @@ import { connect } from 'react-redux';
 import HomeScreen from 'containers/Home';
 import DetailsScreen from 'containers/Details';
 import Header from 'components/Header';
-
-import colors from 'styles/colors';
+import DrawerItem from 'components/DrawerItem';
 
 const middleware = createReactNavigationReduxMiddleware(
   'root',
-  state => state.nav
+  state => state.nav,
 );
 
-const RootNavigator = createStackNavigator({
+const stackNavigator = createStackNavigator({
   home: HomeScreen,
   details: DetailsScreen,
 }, {
-  initialRouteName: 'home',
   headerMode: 'float',
   navigationOptions: {
     header: props => <Header {...props} />,
@@ -52,6 +50,12 @@ const RootNavigator = createStackNavigator({
       return { opacity, transform: [{ translateX }] };
     },
   }),
+});
+
+const RootNavigator = createDrawerNavigator({
+  home: stackNavigator,
+}, {
+  contentComponent: DrawerItem,
 });
 
 const AppWithNavigationState = reduxifyNavigator(RootNavigator, 'root');

@@ -4,18 +4,16 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React from 'react';
 import { Provider } from 'react-redux';
 
 import store from './store';
 import AppNavigator from './config/navigations';
 
-export default class App extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <AppNavigator />
-      </Provider>
-    );
-  }
-}
+const App = () => (
+  <Provider store={store}>
+    <AppNavigator />
+  </Provider>
+);
+
+export default App;
