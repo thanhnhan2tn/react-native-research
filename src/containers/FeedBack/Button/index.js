@@ -6,7 +6,6 @@ import styles from './styles';
 const Button = ({ title, active, color }) =>
   (
     <TouchableOpacity
-      {...this.props}
       style={[styles.buttonContainer, active]}
     >
       <Text style={[styles.buttonText, color]}>{title}</Text>
@@ -15,14 +14,12 @@ const Button = ({ title, active, color }) =>
 
 Button.propTypes = {
   title: PropTypes.string,
-  type: PropTypes.any,
   active: PropTypes.any,
   color: PropTypes.any,
 };
 
 Button.defaultProps = {
   title: '',
-  type: '',
   active: '',
   color: '',
 };
