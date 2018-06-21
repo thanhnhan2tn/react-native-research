@@ -24,13 +24,20 @@ export default class FeedBack extends React.Component {
     },
   }
 
-  render() {
-    const bannerInfo = {
-      id: 1, img: assets.banner, title: 'FIT FOOD', adress: 'Adressas, Vlinlus', stars: { ratings: 3 },
+  constructor(props) {
+    super(props);
+    this.state = {
+      info: {
+        id: 1, img: assets.banner, title: 'FIT FOOD', adress: 'Adressas, Vlinlus', stars: { ratings: 3 },
+      },
     };
+  }
+
+  render() {
+    const { info } = this.state;
     return (
       <View style={styles.container}>
-        <Banner info={bannerInfo} />
+        <Banner info={info} />
         <Main />
       </View>
     );

@@ -51,12 +51,14 @@ export default class Main extends React.Component {
       <View style={styles.container}>
         <Tabs arrTabs={tabs} />
         <ScrollView style={styles.listFeed}>
-          { list.map(feed =>
+          { list.map(({
+             id, name, body, stars,
+            }) =>
             (<Feed
-              key={feed.id}
-              name={feed.name}
-              body={feed.body}
-              stars={feed.stars}
+              key={id}
+              name={name}
+              body={body}
+              stars={stars}
             />))
           }
         </ScrollView>

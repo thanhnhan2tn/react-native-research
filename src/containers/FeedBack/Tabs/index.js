@@ -18,12 +18,12 @@ export default class Tabs extends React.Component {
     const { arrTabs } = this.state;
     return (
       <View style={styles.container}>
-        { arrTabs.map(tab =>
+        { arrTabs.map(({ id, title, active }) =>
           (<Button
-            key={tab.id}
-            title={tab.title}
-            active={tab.active ? styles.active : ''}
-            color={tab.active ? styles.color : ''}
+            key={id}
+            title={title}
+            active={active ? styles.active : ''}
+            color={active ? styles.color : ''}
           />))
         }
       </View>
