@@ -20,7 +20,6 @@ import counTry from 'data/homeCountry.js';
 import listFoods from 'data/homeListFoods.js';
 import listMenuSearch from 'data/homeMenuSearch.js';
 
-
 class FormSearch extends Component {
   constructor (props) {
     super(props);
@@ -34,6 +33,10 @@ class FormSearch extends Component {
         fadeAnim: new Animated.Value(0),
         moveLeft: new Animated.Value(width),
         paddingBox: new Animated.Value(100),
+        left: {
+          leftTextBox: new Animated.Value(width),
+          leftListItems: new Animated.Value(width),
+        },
         flex: {
           flexForm: new Animated.Value(0.7),
           flexList: new Animated.Value(0.3),
@@ -47,7 +50,7 @@ class FormSearch extends Component {
         countryAnim: {
           height: new Animated.Value(50),
           borderWidth: new Animated.Value(1),
-        }
+        },
       }
     }
   }
@@ -61,8 +64,7 @@ class FormSearch extends Component {
   }
 
   componentDidMount() {
-    this.moveButtonSearch();
-    this.moveBoxText();
+    this.animationFirst();
   }
 
   // ======================================== animation =====================================
@@ -196,31 +198,36 @@ class FormSearch extends Component {
     ]).start();
   }
 
-  moveButtonSearch() {
-    Animated.timing(
-      this.state.animation.btnSearchAnim.left,
-      {
-        toValue: 0,
-        duration: 300,
-        delay: 30,
-      }
-    ).start();
+  animationFirst() {
+    Animated.parallel([
+      Animated.timing(
+        this.state.animation.left.leftTextBox,
+        {
+          toValue: 0,
+          duration: 300,
+          easing: Easing.linear,
+        },
+      ),
+      Animated.timing(
+        this.state.animation.btnSearchAnim.left,
+        {
+          toValue: 0,
+          duration: 300,
+          delay: 30,
+          easing: Easing.linear,
+        },
+      ),
+      Animated.timing(
+        this.state.animation.left.leftListItems,
+        {
+          toValue: 0,
+          duration: 300,
+          delay: 80,
+          easing: Easing.linear,
+        },
+      ),
+    ]).start();
   }
-
-  moveBoxText() {
-    // this.state.animation.moveContainText.setValue(this.state.width);
-    Animated.timing(
-      this.state.animation.moveLeft,
-      {
-        toValue: 0,
-        duration: 300,
-        easing: Easing.linear
-      }
-    ).start(
-      // () => this.moveBoxText()
-    )
-  }
-
   // ======================================== end animation =====================================
 
   render() {
@@ -228,10 +235,6 @@ class FormSearch extends Component {
       animation,
       country,
     } = this.state;
-
-    let ITEM_HEIGHT = 100;
-    const resizeMode = 'center';
-    // console.warn(listMenuSearch);
     return (
       <View style={{
         flex: 1,
@@ -243,8 +246,6 @@ class FormSearch extends Component {
             styles.container,
             {
               flex: animation.flex.flexForm
-              // paddingTop: animation.paddingBox,
-              // paddingBottom: animation.paddingBox,
             }
           ]}
           onLayout={this.onLayout}
@@ -259,7 +260,7 @@ class FormSearch extends Component {
               style={[
                 ...styles.containerTextInput,
                 {
-                  left: animation.moveLeft
+                  left: animation.left.leftTextBox
                 }
               ]}
             >
@@ -307,7 +308,7 @@ class FormSearch extends Component {
               }}
             >
               <TouchableHighlight>
-                <Text style={styles.btnSearch}>Search Food2</Text>
+                <Text style={styles.btnSearch}>Search Food</Text>
               </TouchableHighlight>
             </Animated.View>
           </View>
@@ -320,6 +321,7 @@ class FormSearch extends Component {
                 backgroundColor: '#f5f0eb',
                 width: '100%',
                 flex: animation.flex.flexList,
+                left: animation.left.leftListItems,
               }
             ]}
           >
@@ -330,7 +332,6 @@ class FormSearch extends Component {
                 }
               ]}
             >
-            
               <FlatList
                 data={listMenuSearch.listMenu}
                 keyExtractor={(item, index) => index.toString()}
@@ -362,7 +363,7 @@ class FormSearch extends Component {
               <Text style={styles.titleList}>We recommend</Text>
               <FlatList
                 style={styles.containerFlatList}
-                horizontal={true}
+                horizontal
                 data={listFoods}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({item, index}) =>
@@ -417,17 +418,18 @@ const styles = StyleSheet.create({
   containerMenuFlatList: {
     flex: 1,
     width: '100%',
+    backgroundColor: 'green',
     flexDirection: 'column',
   },
   itemMenuFlatlist: {
-    height: 50,
+    flex: 1,
     paddingLeft: 10,
     paddingRight: 10,
     paddingTop: 11,
     paddingBottom: 10,
     backgroundColor: '#ffffff',
-    borderBottomWidth: 1,
     borderBottomColor: '#cdcdcd',
+    borderBottomWidth: 1,
   },
   titleList: {
     fontSize: 18,
