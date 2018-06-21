@@ -16,7 +16,7 @@ function navigationReducer(state = initialNavState, action) {
       break;
     case 'home':
       nextState = RootNavigator.router.getStateForAction(
-        NavigationActions.back(),
+        NavigationActions.navigate({ routeName: 'home' }),
         state,
       );
       break;
