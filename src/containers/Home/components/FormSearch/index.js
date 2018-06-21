@@ -1,92 +1,72 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   View,
   TextInput,
   Text,
-  Image ,
-  Button,
   Picker,
-  StyleSheet,
   Animated,
-  Alert,
   TouchableHighlight,
   Dimensions,
-  FlatList,
-  Easing
+  Easing,
+  Image,
 } from 'react-native';
-
 import MyBgImage from 'components/MyBgImage';
 import counTry from 'data/homeCountry.js';
-import listFoods from 'data/homeListFoods.js';
-import listMenuSearch from 'data/homeMenuSearch.js';
+import bgPizza from 'assets/bg/bg_pizza.png';
+import iconMaker from 'assets/icons/icon-maker-white.png';
+import styles from './styles';
 
 class FormSearch extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     const { width, height } = Dimensions.get('window');
     this.state = {
-      showMenu: false,
-      widthScreen: width,
       heightScreen: height,
       country: '',
       animation: {
-        fadeAnim: new Animated.Value(0),
-        moveLeft: new Animated.Value(width),
-        paddingBox: new Animated.Value(100),
+        topIcon: new Animated.Value(15),
         left: {
           leftTextBox: new Animated.Value(width),
           leftListItems: new Animated.Value(width),
-        },
-        flex: {
-          flexForm: new Animated.Value(0.7),
-          flexList: new Animated.Value(0.3),
         },
         btnSearchAnim: {
           left: new Animated.Value(width),
           top: new Animated.Value(0),
           position: 'relative',
-          height: new Animated.Value(50),
+          height: new Animated.Value(40),
         },
         countryAnim: {
-          height: new Animated.Value(50),
+          height: new Animated.Value(40),
           borderWidth: new Animated.Value(1),
         },
-      }
-    }
-  }
-
-  focusTextInput() {
-    this.minifyPadding();
-  }
-
-  blurTextInput() {
-    this.resetAnimation();
+      },
+    };
   }
 
   componentDidMount() {
     this.animationFirst();
   }
 
+  focusTextInput() {
+    this.minifyPadding();
+    this.props.changeFlexBox();
+  }
+
+  blurTextInput() {
+    this.resetAnimation();
+    this.props.resetFlexBox();
+  }
+
   // ======================================== animation =====================================
 
   resetAnimation() {
-    this.setState({
-      showMenu: false,
-    });
     // show select country
     Animated.parallel([
       Animated.timing(
-        this.state.animation.paddingBox,
-        {
-          toValue: 100,
-          duration: 300,
-          easing: Easing.linear,
-        },
-      ),
-      Animated.timing(
         this.state.animation.countryAnim.height,
         {
-          toValue: 50,
+          toValue: 40,
           duration: 300,
           easing: Easing.linear,
         },
@@ -110,24 +90,17 @@ class FormSearch extends Component {
       Animated.timing(
         this.state.animation.btnSearchAnim.height,
         {
-          toValue: 50,
+          toValue: 40,
           duration: 300,
           easing: Easing.linear,
         },
       ),
       Animated.timing(
-        this.state.animation.flex.flexForm,
+        this.state.animation.topIcon,
         {
-          toValue: 0.7,
+          toValue: 15,
           duration: 300,
-          easing: Easing.linear,
-        },
-      ),
-      Animated.timing(
-        this.state.animation.flex.flexList,
-        {
-          toValue: 0.3,
-          duration: 300,
+          delay: 80,
           easing: Easing.linear,
         },
       ),
@@ -135,66 +108,48 @@ class FormSearch extends Component {
   }
 
   minifyPadding() {
-    this.setState({
-      showMenu: true,
-    });
     Animated.parallel([
-      Animated.timing(
-        this.state.animation.paddingBox,
-        {
-          toValue: 30,
-          duration: 300,
-          easing: Easing.linear
-        }
-      ),
       Animated.timing(
         this.state.animation.countryAnim.height,
         {
           toValue: 0,
           duration: 300,
-          easing: Easing.linear
-        }
+          easing: Easing.linear,
+        },
       ),
       Animated.timing(
         this.state.animation.countryAnim.borderWidth,
         {
           toValue: 0,
           duration: 0,
-          easing: Easing.linear
-        }
+          easing: Easing.linear,
+        },
       ),
       Animated.timing(
         this.state.animation.btnSearchAnim.top,
         {
           toValue: this.state.heightScreen,
-          duration: 1000,
-          easing: Easing.linear
-        }
+          duration: 300,
+          easing: Easing.linear,
+        },
       ),
       Animated.timing(
         this.state.animation.btnSearchAnim.height,
         {
           toValue: 0,
           duration: 300,
-          easing: Easing.linear
-        }
+          easing: Easing.linear,
+        },
       ),
       Animated.timing(
-        this.state.animation.flex.flexForm,
+        this.state.animation.topIcon,
         {
-          toValue: 0.3,
+          toValue: -this.state.heightScreen,
           duration: 300,
-          easing: Easing.linear
-        }
+          delay: 80,
+          easing: Easing.linear,
+        },
       ),
-      Animated.timing(
-        this.state.animation.flex.flexList,
-        {
-          toValue: 0.7,
-          duration: 300,
-          easing: Easing.linear
-        }
-      )
     ]).start();
   }
 
@@ -236,231 +191,112 @@ class FormSearch extends Component {
       country,
     } = this.state;
     return (
-      <View style={{
-        flex: 1,
-        width: '100%',
-        alignItems: 'center',
-      }}>
-        {/* container form search */}
-        <Animated.View style={[
-            styles.container,
-            {
-              flex: animation.flex.flexForm
-            }
-          ]}
-          onLayout={this.onLayout}
-        >
-          <MyBgImage
-            source={require('assets/bg/bg_pizza.png')}
-            resizeMode='cover'
-          />
-          {/* container text input */}
-          <View style={styles.containerForm}>
-            <Animated.View
-              style={[
-                ...styles.containerTextInput,
-                {
-                  left: animation.left.leftTextBox
-                }
-              ]}
-            >
-              <Animated.View style={
-                [
-                  styles.textInput, styles.textInputBorder,
-                  {
-                    height: animation.countryAnim.height,
-                    borderBottomWidth: animation.countryAnim.borderWidth,
-                  },
-                ]
-              }>
-                <Picker
-                  selectedValue={country ? country : counTry[0].title}
-                  onValueChange={(itemValue, itemIndex) => {
-                    this.setState({
-                      country: itemValue
-                    }
-                  )}}
-                >
-                  {counTry.map((item) =>
-                    <Picker.Item
-                      key={item.title}
-                      label={item.title}
-                      value={item.title}
-                    />
-                  )}
-                </Picker>
-              </Animated.View>
-              
-              <TextInput
-                style={styles.textInput}
-                underlineColorAndroid='transparent'
-                onFocus={() => { this.focusTextInput() }}
-                onBlur={() => { this.blurTextInput() }}
-                placeholder="Your address"
-              />
-            </Animated.View>
-
-            <Animated.View
-              style={{
-                left: animation.btnSearchAnim.left,
-                top: animation.btnSearchAnim.top,
-                height: animation.btnSearchAnim.height,
-              }}
-            >
-              <TouchableHighlight>
-                <Text style={styles.btnSearch}>Search Food</Text>
-              </TouchableHighlight>
-            </Animated.View>
-          </View>
-        </Animated.View>
-
-        {/* container List Foods*/}
-        <Animated.View
+      <Animated.View
+        style={[
+          styles.container,
+          this.props.style,
+          {
+            justifyContent: this.state.showMenu ? 'flex-end' : 'center',
+            alignItems: this.state.showMenu ? 'flex-end' : 'center',
+          },
+        ]}
+        onLayout={this.onLayout}
+      >
+        <MyBgImage
+          source={bgPizza}
+          resizeMode="cover"
+        />
+        {/* container text input */}
+        <View style={styles.containerForm}>
+          <Animated.View
             style={[
+              ...styles.containerTextInput,
               {
-                backgroundColor: '#f5f0eb',
-                width: '100%',
-                flex: animation.flex.flexList,
-                left: animation.left.leftListItems,
-              }
+                left: animation.left.leftTextBox,
+              },
             ]}
           >
-            <View style={[
-                styles.containerMenuFlatList,
+            <Animated.View
+              style={[
+                styles.containerIconMap,
                 {
-                  display: this.state.showMenu ? 'flex' : 'none',
-                }
+                  top: animation.topIcon,
+                },
               ]}
             >
-              <FlatList
-                data={listMenuSearch.listMenu}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={({item, index}) =>
-                  <View style={styles.itemMenuFlatlist}>
-                    <Text style={styles.titleItem}>{item.title}</Text>
-                  </View>
-                }
+              <Image
+                source={iconMaker}
+                style={styles.iconMap}
               />
-
-              <FlatList
-                data={listMenuSearch.listResult}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={({item, index}) =>
-                  <View style={styles.itemMenuFlatlist}>
-                    <Text style={styles.titleItem}>{item.title}</Text>
-                  </View>
-                }
-              />
-            </View>
-            
-            <View style={[
-              styles.containerList,
-              {
-                display: this.state.showMenu ? 'none' : 'flex',
-              }
-            ]}>
-              
-              <Text style={styles.titleList}>We recommend</Text>
-              <FlatList
-                style={styles.containerFlatList}
-                horizontal
-                data={listFoods}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={({item, index}) =>
-                  <View style={styles.itemFlatlist}>
-                    <Image
-                      source={{uri: item.image}}
-                      style={{
-                        flex: 1,
-                        width: 150,
-                      }}
-                    />
-                    <Text style={styles.titleItem}>{item.title}</Text>
-                  </View>
-                }
-              />
-            </View>
+            </Animated.View>
+            <Animated.View
+              style={[
+                styles.textInput,
+                styles.textInputBorder,
+                {
+                  height: animation.countryAnim.height,
+                  borderBottomWidth: animation.countryAnim.borderWidth,
+                },
+              ]}
+            >
+              <Picker
+                selectedValue={country && counTry[0].title}
+                onValueChange={(itemValue) => {
+                  this.setState({
+                    country: itemValue,
+                  });
+                }}
+                style={{ height: 40 }}
+                itemStyle={{
+                  height: 40,
+                  lineHeight: 40,
+                }}
+              >
+                {counTry.map(item => (
+                  <Picker.Item
+                    key={item.title}
+                    label={item.title}
+                    value={item.title}
+                  />
+                ))}
+              </Picker>
+            </Animated.View>
+            <TextInput
+              style={styles.textInput}
+              underlineColorAndroid="transparent"
+              onFocus={() => this.focusTextInput()}
+              onBlur={() => this.blurTextInput()}
+              placeholder="Your address"
+            />
           </Animated.View>
-      </View>
+          <Animated.View
+            style={{
+              left: animation.btnSearchAnim.left,
+              top: animation.btnSearchAnim.top,
+              height: animation.btnSearchAnim.height,
+            }}
+          >
+            <TouchableHighlight>
+              <Text style={styles.btnSearch}>Search Food</Text>
+            </TouchableHighlight>
+          </Animated.View>
+        </View>
+      </Animated.View>
     );
   }
+}
+
+FormSearch.propTypes = {
+  changeFlexBox: PropTypes.func,
+  resetFlexBox: PropTypes.func,
+  style: PropTypes.object,
 };
 
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    width: '100%',
-  },
-  containerForm: {
-    paddingLeft: 30,
-    paddingRight: 30,
-    paddingTop: 20,
-    paddingBottom: 20,
-  },
-  containerList: {
-    flex: 1,
-    width: '100%',
-    paddingLeft: 30,
-    paddingRight: 30,
-    paddingTop: 15,
-    paddingBottom: 15,
-  },
-  containerMenuList: {
-    flex: 1,
-  },
-  containerFlatList: {
-    width: '100%',
-    marginTop: 10,
-  },
-  itemFlatlist: {
-    marginRight: 15,
-  },
-  containerMenuFlatList: {
-    flex: 1,
-    width: '100%',
-    backgroundColor: 'green',
-    flexDirection: 'column',
-  },
-  itemMenuFlatlist: {
-    flex: 1,
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingTop: 11,
-    paddingBottom: 10,
-    backgroundColor: '#ffffff',
-    borderBottomColor: '#cdcdcd',
-    borderBottomWidth: 1,
-  },
-  titleList: {
-    fontSize: 18,
-  },
-  titleItem: {
-    fontSize: 15,
-  },
-  containerTextInput: {
-    paddingLeft: 10,
-    paddingRight: 10,
-    backgroundColor: '#ffffff',
-  },
-  textInputBorder: {
-    borderBottomWidth: 1,
-    borderStyle: 'solid',
-    borderBottomColor: '#cdcdcd',
-  },
-  textInput: {
-    backgroundColor: '#ffffff',
-    borderWidth: 1,
-    borderColor: '#ffffff',
-    borderStyle: 'solid',
-  },
-  btnSearch: {
-    backgroundColor: '#FBBE00',
-    marginTop: 10,
-    height: 50,
-    lineHeight: 50,
-    textAlign: 'center',
-    color: '#ffffff',
-  }
-})
+
+FormSearch.defaultProps = {
+  changeFlexBox: () => {},
+  resetFlexBox: () => {},
+  style: {},
+};
 
 export default FormSearch;

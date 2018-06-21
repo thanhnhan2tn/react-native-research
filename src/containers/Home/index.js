@@ -1,11 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { View, Text, Animated, Easing } from 'react-native';
+// import PropTypes from 'prop-types';
+import {
+  View,
+  // Text,
+  Animated,
+  Easing,
+} from 'react-native';
 import { connect } from 'react-redux';
 
 import { incrementAction } from 'actions';
 import Header from 'components/Header';
-import CustomButton from 'components/CustomButton';
+// import CustomButton from 'components/CustomButton';
 import FormSearch from './components/FormSearch';
 import ListFoods from './components/ListFoods';
 import styles from './styles';
@@ -25,10 +30,67 @@ class HomeScreen extends React.Component {
   constructor() {
     super();
     this.posLeft = new Animated.Value(-300);
+    this.state = {
+      showMenu: false,
+      animation: {
+        flex: {
+          flexForm: new Animated.Value(0.7),
+          flexList: new Animated.Value(0.3),
+        },
+      },
+    };
   }
 
   componentDidMount() {
     this.animateLeft();
+  }
+
+  changeFlexBox = () => {
+    this.setState({
+      showMenu: true,
+    });
+    Animated.parallel([
+      Animated.timing(
+        this.state.animation.flex.flexForm,
+        {
+          toValue: 0.4,
+          duration: 300,
+          easing: Easing.linear,
+        },
+      ),
+      Animated.timing(
+        this.state.animation.flex.flexList,
+        {
+          toValue: 0.6,
+          duration: 300,
+          easing: Easing.linear,
+        },
+      ),
+    ]).start();
+  }
+
+  resetFlexBox = () => {
+    this.setState({
+      showMenu: false,
+    });
+    Animated.parallel([
+      Animated.timing(
+        this.state.animation.flex.flexForm,
+        {
+          toValue: 0.7,
+          duration: 300,
+          easing: Easing.linear,
+        },
+      ),
+      Animated.timing(
+        this.state.animation.flex.flexList,
+        {
+          toValue: 0.3,
+          duration: 300,
+          easing: Easing.linear,
+        },
+      ),
+    ]).start();
   }
 
   animateLeft = () => {
@@ -43,10 +105,26 @@ class HomeScreen extends React.Component {
   }
 
   render() {
-    const { navigation, incrementCounter, count } = this.props;
+    // const {
+    //   navigation,
+    //   incrementCounter,
+    //   count,
+    // } = this.props;
     return (
       <View style={styles.container}>
-        <FormSearch />
+        <FormSearch
+          style={{
+            flex: this.state.animation.flex.flexForm,
+          }}
+          changeFlexBox={this.changeFlexBox}
+          resetFlexBox={this.resetFlexBox}
+        />
+        <ListFoods
+          style={{
+            flex: this.state.animation.flex.flexList,
+          }}
+          showMenu={this.state.showMenu}
+        />
         {/* <Text>Home Screen</Text>
         <Animated.View
           style={{
@@ -71,17 +149,17 @@ class HomeScreen extends React.Component {
   }
 }
 
-HomeScreen.propTypes = {
-  navigation: PropTypes.object,
-  incrementCounter: PropTypes.func,
-  count: PropTypes.number,
-};
+// HomeScreen.propTypes = {
+//   navigation: PropTypes.object,
+//   incrementCounter: PropTypes.func,
+//   count: PropTypes.number,
+// };
 
-HomeScreen.defaultProps = {
-  navigation: {},
-  incrementCounter: () => {},
-  count: 0,
-};
+// HomeScreen.defaultProps = {
+//   navigation: {},
+//   incrementCounter: () => {},
+//   count: 0,
+// };
 
 const mapStateToProps = state => ({
   count: selectCount(state),

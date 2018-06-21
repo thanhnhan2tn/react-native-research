@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import styles from './styles';
 
-const InfoRow = (props) => (
+const InfoRow = props => (
   <View style={styles.row}>
     <View style={styles.inforDetail}>
       <Image style={styles.inforIcon} source={{ uri: props.uri }} />
@@ -21,6 +21,12 @@ InfoRow.propTypes = {
   uri: PropTypes.string,
   infoAttr: PropTypes.string,
   infoVal: PropTypes.string,
+};
+
+InfoRow.defaultProps = {
+  uri: '',
+  infoAttr: '',
+  infoVal: '',
 };
 
 export default InfoRow;

@@ -3,6 +3,6 @@ export default [
     title: 'London',
   },
   {
-    title: 'Viet Nam'
-  }
+    title: 'Viet Nam',
+  },
 ];
