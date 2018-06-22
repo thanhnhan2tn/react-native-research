@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 
 import Header from 'components/Header';
 import DrawerItem from 'components/DrawerItem';
+import FeedBack from 'containers/FeedBack';
 import HomeScreen from 'containers/Home';
 import DetailsScreen from 'containers/Details';
 import TabViewDemo from 'containers/TabViewDemo';
@@ -22,6 +23,7 @@ const middleware = createReactNavigationReduxMiddleware(
 const stackNavigator = createStackNavigator({
   home: HomeScreen,
   details: DetailsScreen,
+  feedback: FeedBack,
   tabview: TabViewDemo,
   restaurantInfo: RestaurantInfo,
 }, {
