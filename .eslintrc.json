@@ -29,6 +29,7 @@
     "no-restricted-properties": "off", //'Math.pow' is restricted from being used. Use the exponentiation operator (**) instead
     "react/forbid-prop-types": "off", // allow use Proptype.object, Proptype.array, Proptype.any
     "react/no-multi-comp": ["off", { "ignoreStateless": true }], // allow 2 or more components in 1 file
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "max-len": ["error", { "code": 150 }]
   }
 }

@@ -11,7 +11,7 @@ const InfoRow = props => (
   <View style={styles.row}>
     <View style={styles.inforDetail}>
       {
-        props.uri ? <Image style={styles.inforIcon} source={{ uri: props.uri }} /> : ''
+        props.uri ? <Image style={styles.inforIcon} source={props.imgUrl} /> : ''
       }
       <Text style={styles.inforAttr}>{props.infoAttr ? props.infoAttr : ''}</Text>
     </View>
@@ -20,13 +20,14 @@ const InfoRow = props => (
 );
 
 InfoRow.propTypes = {
-  uri: PropTypes.string,
+  imgUrl: PropTypes.string,
   infoAttr: PropTypes.string,
   infoVal: PropTypes.string,
 };
 
 InfoRow.defaultProps = {
   uri: '',
+  imgUrl: '',
   infoAttr: '',
   infoVal: '',
 };

@@ -4,22 +4,12 @@ import { View, Text, Animated, Easing } from 'react-native';
 import { connect } from 'react-redux';
 
 import { incrementAction } from 'actions';
-import Header from 'components/Header';
+import { redirectTo } from 'actions/navigationActions';
 import CustomButton from 'components/CustomButton';
 import styles from './styles';
 import { selectCount } from './selectors';
 
 class HomeScreen extends React.Component {
-  static navigationOptions = {
-    header: ({ navigation }) => (
-      <Header
-        onPressLeft={() => {
-          navigation.openDrawer();
-        }}
-      />
-    ),
-  }
-
   constructor() {
     super();
     this.posLeft = new Animated.Value(-300);
@@ -52,7 +42,7 @@ class HomeScreen extends React.Component {
           <Text>Home Screen</Text>
         </Animated.View>
         <CustomButton
-          onPress={() => navigation.dispatch({ type: 'detail', text: 'Hello from Home' })}
+          onPress={() => navigation.dispatch(redirectTo('details', { text: 'Hello from Home' }))}
         >
           <Text>Go to Details</Text>
         </CustomButton>

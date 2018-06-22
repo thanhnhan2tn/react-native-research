@@ -38,21 +38,19 @@ class CustomHeader extends React.Component {
   }
 
   handlePressLeft = () => {
-    const { onPressLeft } = this.props;
+    const { isIconMenu, onPressLeft, navigation } = this.props;
 
-    if (typeof onPressLeft === 'function') {
+    if (!isIconMenu) {
       onPressLeft();
     } else {
-      // console.log('open drawer');
+      navigation.openDrawer();
     }
   }
 
   handlePressRight = () => {
     const { onPressRight } = this.props;
 
-    if (typeof onPressRight === 'function') {
-      onPressRight();
-    }
+    onPressRight();
   }
 
   render() {
@@ -104,6 +102,8 @@ class CustomHeader extends React.Component {
 }
 
 CustomHeader.propTypes = {
+  navigation: PropTypes.object,
+  isIconMenu: PropTypes.bool,
   noTitle: PropTypes.bool,
   iconRight: PropTypes.string,
   iconLeft: PropTypes.any,
@@ -114,7 +114,9 @@ CustomHeader.propTypes = {
 };
 
 CustomHeader.defaultProps = {
+  navigation: {},
   noTitle: false,
+  isIconMenu: false,
   iconRight: '',
   iconLeft: '',
   titleLeft: '',
