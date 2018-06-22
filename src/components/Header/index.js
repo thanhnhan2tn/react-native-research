@@ -106,7 +106,7 @@ CustomHeader.propTypes = {
   isIconMenu: PropTypes.bool,
   noTitle: PropTypes.bool,
   iconRight: PropTypes.string,
-  iconLeft: PropTypes.string,
+  iconLeft: PropTypes.any,
   titleLeft: PropTypes.string,
   titleRight: PropTypes.string,
   onPressLeft: PropTypes.func,
