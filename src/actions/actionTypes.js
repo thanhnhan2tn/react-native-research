@@ -1,2 +1,3 @@
-export const incrementCounter = 'INCREMENT_COUNTER';
-export const decrementCounter = 'DECREMENT_COUNTER';
+export const INCRE_COUNTER = 'INCREMENT_COUNTER';
+export const DECRE_COUNTER = 'DECREMENT_COUNTER';
+export const REDIRECT = 'REDIRECT';
