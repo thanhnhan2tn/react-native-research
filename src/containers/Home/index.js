@@ -1,8 +1,6 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import {
   View,
-  // Text,
   Animated,
   Easing,
 } from 'react-native';
@@ -10,7 +8,6 @@ import { connect } from 'react-redux';
 
 import { incrementAction } from 'actions';
 import Header from 'components/Header';
-// import CustomButton from 'components/CustomButton';
 import FormSearch from './components/FormSearch';
 import ListFoods from './components/ListFoods';
 import styles from './styles';
@@ -105,11 +102,6 @@ class HomeScreen extends React.Component {
   }
 
   render() {
-    // const {
-    //   navigation,
-    //   incrementCounter,
-    //   count,
-    // } = this.props;
     return (
       <View style={styles.container}>
         <FormSearch
@@ -126,41 +118,10 @@ class HomeScreen extends React.Component {
           }}
           showMenu={this.state.showMenu}
         />
-        {/* <Text>Home Screen</Text>
-        <Animated.View
-          style={{
-            marginLeft: this.posLeft,
-          }}
-        >
-          <Text>Home Screen</Text>
-        </Animated.View>
-        <CustomButton
-          onPress={() => navigation.dispatch({ type: 'detail', text: 'Hello from Home' })}
-        >
-          <Text>Go to Details</Text>
-        </CustomButton>
-        <CustomButton
-          onPress={() => incrementCounter()}
-        >
-          <Text>Increase counter</Text>
-        </CustomButton>
-        <Text>{count}</Text> */}
       </View>
     );
   }
 }
-
-// HomeScreen.propTypes = {
-//   navigation: PropTypes.object,
-//   incrementCounter: PropTypes.func,
-//   count: PropTypes.number,
-// };
-
-// HomeScreen.defaultProps = {
-//   navigation: {},
-//   incrementCounter: () => {},
-//   count: 0,
-// };
 
 const mapStateToProps = state => ({
   count: selectCount(state),
