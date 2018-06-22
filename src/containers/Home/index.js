@@ -7,23 +7,12 @@ import {
 import { connect } from 'react-redux';
 
 import { incrementAction } from 'actions';
-import Header from 'components/Header';
 import FormSearch from './components/FormSearch';
 import ListFoods from './components/ListFoods';
 import styles from './styles';
 import { selectCount } from './selectors';
 
 class HomeScreen extends React.Component {
-  static navigationOptions = {
-    header: ({ navigation }) => (
-      <Header
-        onPressLeft={() => {
-          navigation.openDrawer();
-        }}
-      />
-    ),
-  }
-
   constructor() {
     super();
     this.posLeft = new Animated.Value(-300);
