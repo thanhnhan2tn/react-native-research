@@ -10,7 +10,7 @@ export default class Details extends React.Component {
     header: ({ navigation }) => (
       <Header
         onPressLeft={() => {
-          navigation.dispatch({ type: 'home' });
+          navigation.goBack();
         }}
         iconLeft={assets.backIcon}
         titleLeft="Back"
@@ -21,7 +21,7 @@ export default class Details extends React.Component {
 
   handleBack = () => {
     const { navigation } = this.props;
-    navigation.dispatch({ type: 'home' });
+    navigation.goBack();
   }
 
   render() {
