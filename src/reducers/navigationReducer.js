@@ -20,6 +20,12 @@ function navigationReducer(state = initialNavState, action) {
         state,
       );
       break;
+    case 'listRes':
+      nextState = RootNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'listRes' }),
+        state,
+      );
+      break;
     default:
       nextState = RootNavigator.router.getStateForAction(action, state);
       break;

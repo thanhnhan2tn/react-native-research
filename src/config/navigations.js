@@ -11,6 +11,7 @@ import HomeScreen from 'containers/Home';
 import DetailsScreen from 'containers/Details';
 import Header from 'components/Header';
 import DrawerItem from 'components/DrawerItem';
+import ListRestaurants from 'containers/ListRestaurants';
 
 const middleware = createReactNavigationReduxMiddleware(
   'root',
@@ -20,6 +21,7 @@ const middleware = createReactNavigationReduxMiddleware(
 const stackNavigator = createStackNavigator({
   home: HomeScreen,
   details: DetailsScreen,
+  listRes: ListRestaurants,
 }, {
   headerMode: 'float',
   navigationOptions: {

@@ -16,6 +16,11 @@ const listItems = [
     icon: assets.home,
     route: 'home',
   },
+  {
+    title: 'List Restaurants',
+    icon: assets.home,
+    route: 'listRes',
+  },
 ];
 
 class DrawerItem extends Component {
