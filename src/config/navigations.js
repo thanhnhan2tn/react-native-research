@@ -7,10 +7,13 @@ import {
 import { Animated, Easing } from 'react-native';
 import { connect } from 'react-redux';
 
-import HomeScreen from 'containers/Home';
-import DetailsScreen from 'containers/Details';
 import Header from 'components/Header';
 import DrawerItem from 'components/DrawerItem';
+import FeedBack from 'containers/FeedBack';
+import HomeScreen from 'containers/Home';
+import DetailsScreen from 'containers/Details';
+import TabViewDemo from 'containers/TabViewDemo';
+import RestaurantInfo from 'containers/RestaurantInfo';
 
 const middleware = createReactNavigationReduxMiddleware(
   'root',
@@ -20,10 +23,13 @@ const middleware = createReactNavigationReduxMiddleware(
 const stackNavigator = createStackNavigator({
   home: HomeScreen,
   details: DetailsScreen,
+  feedback: FeedBack,
+  tabview: TabViewDemo,
+  restaurantInfo: RestaurantInfo,
 }, {
   headerMode: 'float',
   navigationOptions: {
-    header: props => <Header {...props} />,
+    header: props => <Header {...props} isIconMenu={true} />,
   },
   transitionConfig: () => ({
     transitionSpec: {
