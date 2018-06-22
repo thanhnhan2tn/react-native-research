@@ -5,6 +5,7 @@ import {
   Text,
   Animated,
   FlatList,
+  Dimensions,
 } from 'react-native';
 import listFoods from 'data/homeListFoods.js';
 import listMenuSearch from 'data/homeMenuSearch.js';
@@ -12,46 +13,70 @@ import ItemFood from './ItemFood/';
 import ItemMenu from './ItemMenu/';
 import styles from './styles';
 
-function ListFoods(props) {
-  return (
-    <Animated.View
-      style={[
-        props.style,
-        styles.contaier,
-      ]}
-    >
-      <View style={[
-          styles.containerMenuFlatList,
+class ListFoods extends React.Component {
+  constructor() {
+    super();
+    const { width } = Dimensions.get('window');
+    this.state = {
+      leftBox: new Animated.Value(width),
+    };
+  }
+
+  componentDidMount() {
+    Animated.timing(
+      this.state.leftBox,
+      {
+        toValue: 0,
+        delay: 100,
+        duration: 300,
+      },
+    ).start();
+  }
+
+  render() {
+    return (
+      <Animated.View
+        style={[
+          this.props.style,
+          styles.contaier,
           {
-            width: '100%',
-            display: props.showMenu ? 'flex' : 'none',
+            left: this.state.leftBox,
           },
         ]}
       >
-        <FlatList
-          data={listMenuSearch.listMenu}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => <ItemMenu item={item} />}
-        />
-      </View>
-      <View style={[
-          styles.containerList,
-          {
-            display: props.showMenu ? 'none' : 'flex',
-          },
-        ]}
-      >
-        <Text style={styles.titleList}>We recommend</Text>
-        <FlatList
-          style={styles.containerFlatList}
-          horizontal={true}
-          data={listFoods}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => <ItemFood item={item} />}
-        />
-      </View>
-    </Animated.View>
-  );
+        <View style={[
+            styles.containerMenuFlatList,
+            {
+              width: '100%',
+              display: this.props.showMenu ? 'flex' : 'none',
+            },
+          ]}
+        >
+          <FlatList
+            data={listMenuSearch.listMenu}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item }) => <ItemMenu item={item} />}
+          />
+        </View>
+        <View style={[
+            styles.containerList,
+            {
+              display: this.props.showMenu ? 'none' : 'flex',
+            },
+          ]}
+        >
+          <Text style={styles.titleList}>We recommend</Text>
+          <FlatList
+            style={styles.containerFlatList}
+            horizontal={true}
+            data={listFoods}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item }) => <ItemFood item={item} />}
+          />
+        </View>
+      </Animated.View>
+    );
+  }
 }
 
 ListFoods.propTypes = {

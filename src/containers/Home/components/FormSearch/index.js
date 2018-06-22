@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  View,
+  // View,
   TextInput,
   Text,
   Picker,
@@ -21,11 +21,15 @@ class FormSearch extends Component {
   constructor(props) {
     super(props);
     const { width, height } = Dimensions.get('window');
+    const { _value: flexProps } = props.style.flex;
+    const paddingFrm = ((height / 2) * flexProps) - 120; // 120 is height two textbox and button
     this.state = {
       heightScreen: height,
       country: '',
+      paddingFrm,
       animation: {
-        topIcon: new Animated.Value(15),
+        topIcon: new Animated.Value(-20),
+        paddingForm: new Animated.Value(paddingFrm),
         left: {
           leftTextBox: new Animated.Value(width),
           leftListItems: new Animated.Value(width),
@@ -34,10 +38,10 @@ class FormSearch extends Component {
           left: new Animated.Value(width),
           top: new Animated.Value(0),
           position: 'relative',
-          height: new Animated.Value(40),
+          height: new Animated.Value(45),
         },
         countryAnim: {
-          height: new Animated.Value(40),
+          height: new Animated.Value(45),
           borderWidth: new Animated.Value(1),
         },
       },
@@ -66,7 +70,7 @@ class FormSearch extends Component {
       Animated.timing(
         this.state.animation.countryAnim.height,
         {
-          toValue: 40,
+          toValue: 45,
           duration: 300,
           easing: Easing.linear,
         },
@@ -90,7 +94,7 @@ class FormSearch extends Component {
       Animated.timing(
         this.state.animation.btnSearchAnim.height,
         {
-          toValue: 40,
+          toValue: 45,
           duration: 300,
           easing: Easing.linear,
         },
@@ -98,7 +102,16 @@ class FormSearch extends Component {
       Animated.timing(
         this.state.animation.topIcon,
         {
-          toValue: 15,
+          toValue: -20,
+          duration: 300,
+          delay: 80,
+          easing: Easing.linear,
+        },
+      ),
+      Animated.timing(
+        this.state.animation.paddingForm,
+        {
+          toValue: this.state.paddingFrm,
           duration: 300,
           delay: 80,
           easing: Easing.linear,
@@ -146,7 +159,16 @@ class FormSearch extends Component {
         {
           toValue: -this.state.heightScreen,
           duration: 300,
-          delay: 80,
+          delay: 0,
+          easing: Easing.linear,
+        },
+      ),
+      Animated.timing(
+        this.state.animation.paddingForm,
+        {
+          toValue: 20,
+          duration: 300,
+          delay: 0,
           easing: Easing.linear,
         },
       ),
@@ -186,28 +208,26 @@ class FormSearch extends Component {
   // ======================================== end animation =====================================
 
   render() {
-    const {
-      animation,
-      country,
-    } = this.state;
+    const { animation } = this.state;
     return (
       <Animated.View
         style={[
           styles.container,
           this.props.style,
-          {
-            justifyContent: this.state.showMenu ? 'flex-end' : 'center',
-            alignItems: this.state.showMenu ? 'flex-end' : 'center',
-          },
         ]}
-        onLayout={this.onLayout}
       >
         <MyBgImage
           source={bgPizza}
           resizeMode="cover"
         />
         {/* container text input */}
-        <View style={styles.containerForm}>
+        <Animated.View style={[
+            styles.containerForm,
+            {
+              paddingBottom: animation.paddingForm,
+            },
+          ]}
+        >
           <Animated.View
             style={[
               ...styles.containerTextInput,
@@ -240,17 +260,14 @@ class FormSearch extends Component {
               ]}
             >
               <Picker
-                selectedValue={country && counTry[0].title}
+                selectedValue={this.state.country ? this.state.country : counTry[0].title}
                 onValueChange={(itemValue) => {
                   this.setState({
                     country: itemValue,
                   });
                 }}
-                style={{ height: 40 }}
-                itemStyle={{
-                  height: 40,
-                  lineHeight: 40,
-                }}
+                style={styles.picker}
+                itemStyle={styles.itemPicker} // only on on ios
               >
                 {counTry.map(item => (
                   <Picker.Item
@@ -280,7 +297,7 @@ class FormSearch extends Component {
               <Text style={styles.btnSearch}>Search Food</Text>
             </TouchableHighlight>
           </Animated.View>
-        </View>
+        </Animated.View>
       </Animated.View>
     );
   }

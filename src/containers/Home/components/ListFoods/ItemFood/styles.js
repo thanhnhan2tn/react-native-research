@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   titleItem: {
-    fontSize: 15,
+    fontSize: 14,
     marginTop: 5,
   },
 });

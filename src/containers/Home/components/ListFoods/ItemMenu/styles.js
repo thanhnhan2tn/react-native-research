@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   titleItemMenu: {
-    color: 'red',
+    color: colors.red,
   },
 });
 

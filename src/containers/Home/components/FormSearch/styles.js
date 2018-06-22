@@ -4,6 +4,8 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   container: {
     width: '100%',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
   },
   containerForm: {
     paddingHorizontal: 15,
@@ -27,7 +29,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   btnSearch: {
-    backgroundColor: '#FBBE00',
+    backgroundColor: colors.yellow,
     marginTop: 10,
     height: 40,
     lineHeight: 40,
@@ -37,11 +39,13 @@ const styles = StyleSheet.create({
     borderRadius: 3,
   },
   iconMap: {
-    width: 25,
-    height: 25,
+    width: 20,
+    height: 20,
   },
   containerIconMap: {
-    backgroundColor: 'red',
+    position: 'absolute',
+    left: '50%',
+    backgroundColor: colors.red2,
     zIndex: 10,
     borderRadius: 30,
     overflow: 'hidden',
@@ -49,8 +53,14 @@ const styles = StyleSheet.create({
     height: 30,
     alignItems: 'center',
     justifyContent: 'center',
-    left: '50%',
-    position: 'absolute',
+    transform: [{ translateX: -15 }],
+  },
+  picker: {
+    height: 45,
+  },
+  itemPicker: { // only run on ios
+    height: 45,
+    lineHeight: 45,
   },
 });
 

@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   titleList: {
-    fontSize: 18,
+    fontSize: 17,
   },
 });
 

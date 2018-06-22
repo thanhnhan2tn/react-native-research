@@ -53,7 +53,7 @@ class HomeScreen extends React.Component {
       Animated.timing(
         this.state.animation.flex.flexForm,
         {
-          toValue: 0.4,
+          toValue: 0.35,
           duration: 300,
           easing: Easing.linear,
         },
@@ -61,7 +61,7 @@ class HomeScreen extends React.Component {
       Animated.timing(
         this.state.animation.flex.flexList,
         {
-          toValue: 0.6,
+          toValue: 0.65,
           duration: 300,
           easing: Easing.linear,
         },
@@ -116,6 +116,7 @@ class HomeScreen extends React.Component {
           style={{
             flex: this.state.animation.flex.flexForm,
           }}
+          flex={this.state.animation.flex}
           changeFlexBox={this.changeFlexBox}
           resetFlexBox={this.resetFlexBox}
         />
