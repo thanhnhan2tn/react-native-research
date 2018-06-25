@@ -7,17 +7,25 @@ import {
 } from 'react-native';
 import styles from './styles';
 
-const InfoRow = ({ uri, infoAttr, infoVal }) => (
-  <View style={styles.row}>
-    <View style={styles.inforDetail}>
-      {
-        uri ? <Image style={styles.inforIcon} source={uri} /> : ''
-      }
-      <Text style={styles.inforAttr}>{infoAttr}</Text>
+const InfoRow = (props) => {
+  const {
+    uri,
+    infoAttr,
+    infoVal,
+  } = props;
+
+  return (
+    <View style={styles.row}>
+      <View style={styles.inforDetail}>
+        {
+          uri ? <Image style={styles.inforIcon} source={uri} /> : ''
+        }
+        <Text style={styles.inforAttr}>{infoAttr}</Text>
+      </View>
+      <Text style={styles.inforValue}>{infoVal}</Text>
     </View>
-    <Text style={styles.inforValue}>{infoVal}</Text>
-  </View>
-);
+  );
+};
 
 InfoRow.propTypes = {
   uri: PropTypes.any,
