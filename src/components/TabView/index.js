@@ -37,10 +37,6 @@ const FeedbackTab = () => (
   <View style={[styles.scene, { backgroundColor: '#673ab7' }]} />
 );
 
-const InfoTab = () => (
-  <RestaurantInfo />
-);
-
 /* eslint react/no-unused-state: "off" */
 export default class RNTabView extends React.Component {
   state = {
@@ -98,7 +94,7 @@ export default class RNTabView extends React.Component {
       case 'feedback':
         return <FeedbackTab />;
       case 'info':
-        return <InfoTab />;
+        return <RestaurantInfo />;
       default:
         return null;
     }
