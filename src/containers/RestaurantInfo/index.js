@@ -5,25 +5,12 @@ import {
   Text,
 } from 'react-native';
 
+import PropTypes from 'prop-types';
 import InfoRow from 'components/InfoRow';
 import assets from 'config/assets';
 import styles from './styles';
 
-const restaurantInfo = {
-  country: 'VietNam',
-  address: 'HCM city',
-  starRating: '5',
-  openingHours: '7:00AM',
-  phoneNumber: '32151005451',
-};
-
-export default class RestaurantInfo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      restaurantInfo,
-    };
-  }
+export default class RestaurantInfo extends React.PureComponent {
   render() {
     const {
       country,
@@ -31,7 +18,7 @@ export default class RestaurantInfo extends React.Component {
       starRating,
       openingHours,
       phoneNumber,
-    } = this.state.restaurantInfo;
+    } = this.props.restaurantInfo;
 
     return (
       <Animated.View style={{ flex: 1 }}>
@@ -56,3 +43,17 @@ export default class RestaurantInfo extends React.Component {
     );
   }
 }
+
+RestaurantInfo.propTypes = {
+  restaurantInfo: PropTypes.object,
+};
+
+RestaurantInfo.defaultProps = {
+  restaurantInfo: {
+    country: 'VietNam',
+    address: 'HCM city',
+    starRating: '5',
+    openingHours: '7:00AM',
+    phoneNumber: '32151005451',
+  },
+};
