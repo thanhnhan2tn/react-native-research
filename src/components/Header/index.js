@@ -1,42 +1,56 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   View,
   Text,
   Image,
   TouchableOpacity,
-  Alert,
+  Animated,
+  Easing,
+  Dimensions,
 } from 'react-native';
 
 import assets from 'config/assets';
 import styles from './styles';
 
 class CustomHeader extends React.Component {
+  constructor() {
+    super();
+    const { width } = Dimensions.get('window');
+    this.movingRight = new Animated.Value(-width / 4);
+    this.movingLeft = new Animated.Value(width / 4);
+  }
 
-  onPressLeft = () => {
-    const { onPressLeft } = this.props;
+  componentDidMount() {
+    this.animate(this.movingRight);
+    this.animate(this.movingLeft);
+  }
 
-    if (typeof onPressLeft === 'function') {
+  animate = (originValue) => {
+    Animated.timing(
+      originValue,
+      {
+        toValue: 0,
+        duration: 350,
+        easing: Easing.out(Easing.poly(4)),
+      },
+    ).start();
+  }
+
+  handlePressLeft = () => {
+    const { isIconMenu, onPressLeft, navigation } = this.props;
+
+    if (!isIconMenu) {
       onPressLeft();
     } else {
-      Alert.alert(
-        'Alert Title',
-        'My Alert Msg',
-        [
-          {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-          {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ],
-        { cancelable: false }
-      );
+      navigation.openDrawer();
     }
   }
 
-  onPressRight = () => {
-    const { iconLeft, onPressLeft } = this.props;
+  handlePressRight = () => {
+    const { onPressRight } = this.props;
 
-    if (typeof onPressRight === 'function') {
-      onPressRight();
-    }
+    onPressRight();
   }
 
   render() {
@@ -47,29 +61,68 @@ class CustomHeader extends React.Component {
       titleLeft,
       titleRight,
     } = this.props;
+
     return (
       <View style={styles.wrapper}>
-        <TouchableOpacity
-          onPress={this.onPressLeft}
-          style={styles.btnLeft}
+        <Animated.View
+          style={{
+            transform: [{ translateX: this.movingRight }],
+          }}
         >
-          <Image style={styles.menu} source={iconLeft || assets.menu} />
-          {
-            titleLeft ? <Text>{titleLeft}</Text> : null
-          }
-        </TouchableOpacity>
+          <TouchableOpacity
+            onPress={this.handlePressLeft}
+            style={styles.btnLeft}
+          >
+            <Image style={styles.menu} source={iconLeft || assets.menu} />
+            {
+              titleLeft ? <Text>{titleLeft}</Text> : null
+            }
+          </TouchableOpacity>
+        </Animated.View>
         {
-          !noTitle ? <Text style={styles.title}>FoodApp</Text> : null
+          !noTitle ? <Text style={styles.title}>foodapp</Text> : null
         }
-        <TouchableOpacity>
-          <Image style={styles.cartIcon} source={iconRight || assets.shoppingCart} />
-          {
-            titleRight ? <Text>{titleRight}</Text> : null
-          }
-        </TouchableOpacity>
+        <Animated.View
+          style={{
+            transform: [{ translateX: this.movingLeft }],
+          }}
+        >
+          <TouchableOpacity
+            onPress={this.handlePressRight}
+          >
+            <Image style={styles.cartIcon} source={iconRight || assets.shoppingCart} />
+            {
+              titleRight ? <Text>{titleRight}</Text> : null
+            }
+          </TouchableOpacity>
+        </Animated.View>
       </View>
     );
   }
 }
+
+CustomHeader.propTypes = {
+  navigation: PropTypes.object,
+  isIconMenu: PropTypes.bool,
+  noTitle: PropTypes.bool,
+  iconRight: PropTypes.string,
+  iconLeft: PropTypes.any,
+  titleLeft: PropTypes.string,
+  titleRight: PropTypes.string,
+  onPressLeft: PropTypes.func,
+  onPressRight: PropTypes.func,
+};
+
+CustomHeader.defaultProps = {
+  navigation: {},
+  noTitle: false,
+  isIconMenu: false,
+  iconRight: '',
+  iconLeft: '',
+  titleLeft: '',
+  titleRight: '',
+  onPressLeft: () => {},
+  onPressRight: () => {},
+};
 
 export default CustomHeader;

@@ -1,43 +1,67 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Text } from 'react-native';
+import { View, Text, Animated, Easing } from 'react-native';
 import { connect } from 'react-redux';
 
-import { incrementAction, decrementAction } from "actions";
+import { incrementAction } from 'actions';
+import { redirectTo } from 'actions/navigationActions';
 import CustomButton from 'components/CustomButton';
 import styles from './styles';
+import { selectCount } from './selectors';
 
 class HomeScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Home Screen',
-  };
+  constructor() {
+    super();
+    this.posLeft = new Animated.Value(-300);
+  }
+
+  componentDidMount() {
+    this.animateLeft();
+  }
+
+  animateLeft = () => {
+    Animated.timing(
+      this.posLeft,
+      {
+        toValue: 0,
+        duration: 1000,
+        easing: Easing.linear,
+      },
+    ).start();
+  }
 
   render() {
     const { navigation, incrementCounter, count } = this.props;
     return (
       <View style={styles.container}>
-        <Text>Home Screen</Text>
+        <Animated.View
+          style={{
+            marginLeft: this.posLeft,
+          }}
+        >
+          <Text>Home Screen</Text>
+        </Animated.View>
         <CustomButton
-          onPress={() => navigation.dispatch({ type: 'detail', text: 'Hello from Home' })}
+          onPress={() => navigation.dispatch(redirectTo('details', { text: 'Hello from Home' }))}
         >
           <Text>Go to Details</Text>
         </CustomButton>
-
-
-
-
-
         <CustomButton
           onPress={() => this.props.navigation.navigate('mainscreen')}
         >
-          <Text>Go to HomeScreen</Text>
+          <Text>Go to MainScreen</Text>
         </CustomButton>
         <CustomButton
-          onPress={() => incrementCounter()}
+          onPress={() => this.props.navigation.navigate('feedback')}
+        >
+          <Text>Go to Feedback</Text>
+        </CustomButton>
+        <CustomButton
+          onPress={incrementCounter}
         >
           <Text>Increase counter</Text>
+          <Text>{count}</Text>
         </CustomButton>
-        <Text>{count}</Text>
       </View>
     );
   }
@@ -45,18 +69,22 @@ class HomeScreen extends React.Component {
 
 HomeScreen.propTypes = {
   navigation: PropTypes.object,
+  incrementCounter: PropTypes.func,
+  count: PropTypes.number,
 };
 
-const mapStateToProps = ({ CounterReducer }) => {
-  return {
-    count: CounterReducer.counter,
-  };
+HomeScreen.defaultProps = {
+  navigation: {},
+  incrementCounter: () => {},
+  count: 0,
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    incrementCounter: () => dispatch(incrementAction()),
-  };
-};
+const mapStateToProps = state => ({
+  count: selectCount(state),
+});
+
+const mapDispatchToProps = dispatch => ({
+  incrementCounter: () => dispatch(incrementAction()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);

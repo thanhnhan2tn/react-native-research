@@ -1,43 +1,53 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Text,
   View,
-  FlatList,
-  StyleSheet,
-  Image
+  Image,
 } from 'react-native';
-import { Rating } from '../Rating';
+
+import Rating from 'components/Rating';
 import styles from './style';
 
-export default class Item extends React.Component {
-  render() {
-    const { item } = this.props;
-    return (
-      <View style={styles.products}>
-        <Image
-          style={styles.product_img}
-          source={item.img}
-        />
-        <View style={styles.product_infor}>
-          <View style={styles.wrap_title}>
-            <Text style={styles.product_title}>{item.key}</Text>
-            <Rating style={styles.rating} stars={item.stars}/>
+const Item = ({ item }) => {
+  const {
+    img, key, stars, providers, price, min,
+  } = item;
+  return (
+    <View style={styles.products}>
+      <Image
+        style={styles.product_img}
+        source={img}
+      />
+      <View style={styles.product_infor}>
+        <View style={styles.wrap_title}>
+          <Text style={styles.product_title}>{key}</Text>
+          <Rating style={styles.rating} stars={stars} />
+        </View>
+        <View>
+          <Text>{providers}</Text>
+        </View>
+        <View style={styles.product_transport}>
+          <View style={styles.item_transpot}>
+            <Text>Price discount: </Text>
+            <Text style={styles.text_bold}>{price} LT</Text>
           </View>
-          <View>
-            <Text>{item.providers}</Text>
-          </View>
-          <View style={styles.product_transport}>
-            <View style={styles.item_transpot}>
-              <Text>Price discount: </Text>
-              <Text style={styles.text_bold}>{item.price} LT</Text>
-            </View>
-            <View style={styles.item_transpot}>
-              <Text>Min: </Text>
-              <Text style={styles.text_bold}>{item.min} LT</Text>
-            </View>
+          <View style={styles.item_transpot}>
+            <Text>Min: </Text>
+            <Text style={styles.text_bold}>{min} LT</Text>
           </View>
         </View>
       </View>
-    );
-  }
-}
+    </View>
+  );
+};
+
+export default Item;
+
+Item.propTypes = {
+  item: PropTypes.object,
+};
+
+Item.defaultProps = {
+  item: {},
+};

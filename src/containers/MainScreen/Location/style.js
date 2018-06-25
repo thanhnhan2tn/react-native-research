@@ -1,29 +1,26 @@
 import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
+export default StyleSheet.create({
   container: {
     flexDirection: 'row',
     backgroundColor: '#ccc',
     padding: 5,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   wrap: {
     flex: 1,
-    // justifyContent: 'center'
   },
   textCenter: {
-    textAlign: 'center'
+    textAlign: 'center',
   },
   image: {
     width: 30,
-    height: 30
+    height: 30,
   },
   colorRed: {
-    color: '#c91000'
+    color: '#c91000',
   },
   text_bold: {
     fontWeight: 'bold',
-  }
-  })
-
-export default styles;
+  },
+});

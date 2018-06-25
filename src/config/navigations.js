@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 import {
   reduxifyNavigator,
   createReactNavigationReduxMiddleware,
@@ -7,27 +7,32 @@ import {
 import { Animated, Easing } from 'react-native';
 import { connect } from 'react-redux';
 
+import Header from 'components/Header';
+import DrawerItem from 'components/DrawerItem';
+import FeedBack from 'containers/FeedBack';
 import HomeScreen from 'containers/Home';
 import DetailsScreen from 'containers/Details';
-import Header from 'components/Header';
+import TabViewDemo from 'containers/TabViewDemo';
+import RestaurantInfo from 'containers/RestaurantInfo';
 import MainScreen from 'containers/MainScreen';
-
-import colors from 'styles/colors';
+// import colors from 'styles/colors';
 
 const middleware = createReactNavigationReduxMiddleware(
   'root',
-  state => state.nav
+  state => state.nav,
 );
 
-const RootNavigator = createStackNavigator({
+const stackNavigator = createStackNavigator({
   home: HomeScreen,
   details: DetailsScreen,
+  feedback: FeedBack,
+  tabview: TabViewDemo,
+  restaurantInfo: RestaurantInfo,
   mainscreen: MainScreen,
 }, {
-  initialRouteName: 'home',
   headerMode: 'float',
   navigationOptions: {
-    header: props => <Header {...props} />,
+    header: props => <Header {...props} isIconMenu={true} />,
   },
   transitionConfig: () => ({
     transitionSpec: {
@@ -54,6 +59,12 @@ const RootNavigator = createStackNavigator({
       return { opacity, transform: [{ translateX }] };
     },
   }),
+});
+
+const RootNavigator = createDrawerNavigator({
+  home: stackNavigator,
+}, {
+  contentComponent: DrawerItem,
 });
 
 const AppWithNavigationState = reduxifyNavigator(RootNavigator, 'root');
