@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Image } from 'react-native';
 
 function MyBgImage(props) {
-  const resizeMode = props.resizeMode ? props.resizeMode : 'center';
   return (
     <Image
       style={{
@@ -13,7 +12,7 @@ function MyBgImage(props) {
         left: 0,
         width: '100%',
         height: '100%',
-        resizeMode,
+        resizeMode: props.resizeMode,
       }}
       source={props.source}
     />
@@ -27,7 +26,7 @@ MyBgImage.propTypes = {
 
 
 MyBgImage.defaultProps = {
-  resizeMode: '',
+  resizeMode: 'center',
   source: '',
 };
 

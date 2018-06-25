@@ -7,7 +7,6 @@ import {
   Picker,
   Animated,
   TouchableHighlight,
-  Dimensions,
   Easing,
   Image,
 } from 'react-native';
@@ -16,36 +15,50 @@ import counTry from 'data/homeCountry.js';
 import bgPizza from 'assets/bg/bg_pizza.png';
 import iconMaker from 'assets/icons/icon-maker-white.png';
 import styles from './styles';
+import {
+  ORIGIN_TOP_ICON,
+  ORIGIN_HEIGHT_TEXT,
+  ORIGIN_HEIGHT_FORM,
+  TRANSFORM_PADDING_FORM,
+  DELAY_TOP_ICON,
+  TIME_DEFAULT,
+  WIDTH_BORDER_SELECT,
+  DELAY_ANMATION_FIRST,
+  HEIGHT_WINDOW,
+  WIDTH_WINDOW,
+} from './constants.js';
 
 class FormSearch extends Component {
   constructor(props) {
     super(props);
-    const { width, height } = Dimensions.get('window');
     const { _value: flexProps } = props.style.flex;
-    const paddingFrm = ((height / 2) * flexProps) - 120; // 120 is height two textbox and button
+    const paddingFrm = ((HEIGHT_WINDOW / 2) * flexProps) - ORIGIN_HEIGHT_FORM;
     this.state = {
-      heightScreen: height,
+      heightScreen: HEIGHT_WINDOW,
       country: '',
       paddingFrm,
       animation: {
-        topIcon: new Animated.Value(-20),
+        topIcon: new Animated.Value(ORIGIN_TOP_ICON),
         paddingForm: new Animated.Value(paddingFrm),
         left: {
-          leftTextBox: new Animated.Value(width),
-          leftListItems: new Animated.Value(width),
+          leftTextBox: new Animated.Value(WIDTH_WINDOW),
+          leftListItems: new Animated.Value(WIDTH_WINDOW),
         },
         btnSearchAnim: {
-          left: new Animated.Value(width),
+          left: new Animated.Value(WIDTH_WINDOW),
           top: new Animated.Value(0),
           position: 'relative',
-          height: new Animated.Value(45),
+          height: new Animated.Value(ORIGIN_HEIGHT_TEXT),
         },
         countryAnim: {
-          height: new Animated.Value(45),
-          borderWidth: new Animated.Value(1),
+          height: new Animated.Value(ORIGIN_HEIGHT_TEXT),
+          borderWidth: new Animated.Value(WIDTH_BORDER_SELECT),
         },
       },
     };
+
+    this.focusTextInput = this.focusTextInput.bind(this);
+    this.blurTextInput = this.blurTextInput.bind(this);
   }
 
   componentDidMount() {
@@ -70,15 +83,15 @@ class FormSearch extends Component {
       Animated.timing(
         this.state.animation.countryAnim.height,
         {
-          toValue: 45,
-          duration: 300,
+          toValue: ORIGIN_HEIGHT_TEXT,
+          duration: TIME_DEFAULT,
           easing: Easing.linear,
         },
       ),
       Animated.timing(
         this.state.animation.countryAnim.borderWidth,
         {
-          toValue: 1,
+          toValue: WIDTH_BORDER_SELECT,
           duration: 0,
           easing: Easing.linear,
         },
@@ -87,24 +100,24 @@ class FormSearch extends Component {
         this.state.animation.btnSearchAnim.top,
         {
           toValue: 0,
-          duration: 300,
+          duration: TIME_DEFAULT,
           easing: Easing.linear,
         },
       ),
       Animated.timing(
         this.state.animation.btnSearchAnim.height,
         {
-          toValue: 45,
-          duration: 300,
+          toValue: ORIGIN_HEIGHT_TEXT,
+          duration: TIME_DEFAULT,
           easing: Easing.linear,
         },
       ),
       Animated.timing(
         this.state.animation.topIcon,
         {
-          toValue: -20,
-          duration: 300,
-          delay: 80,
+          toValue: ORIGIN_TOP_ICON,
+          duration: TIME_DEFAULT,
+          delay: DELAY_TOP_ICON,
           easing: Easing.linear,
         },
       ),
@@ -112,8 +125,8 @@ class FormSearch extends Component {
         this.state.animation.paddingForm,
         {
           toValue: this.state.paddingFrm,
-          duration: 300,
-          delay: 80,
+          duration: TIME_DEFAULT,
+          delay: DELAY_TOP_ICON,
           easing: Easing.linear,
         },
       ),
@@ -126,7 +139,7 @@ class FormSearch extends Component {
         this.state.animation.countryAnim.height,
         {
           toValue: 0,
-          duration: 300,
+          duration: TIME_DEFAULT,
           easing: Easing.linear,
         },
       ),
@@ -142,7 +155,7 @@ class FormSearch extends Component {
         this.state.animation.btnSearchAnim.top,
         {
           toValue: this.state.heightScreen,
-          duration: 300,
+          duration: TIME_DEFAULT,
           easing: Easing.linear,
         },
       ),
@@ -150,7 +163,7 @@ class FormSearch extends Component {
         this.state.animation.btnSearchAnim.height,
         {
           toValue: 0,
-          duration: 300,
+          duration: TIME_DEFAULT,
           easing: Easing.linear,
         },
       ),
@@ -158,17 +171,15 @@ class FormSearch extends Component {
         this.state.animation.topIcon,
         {
           toValue: -this.state.heightScreen,
-          duration: 300,
-          delay: 0,
+          duration: TIME_DEFAULT,
           easing: Easing.linear,
         },
       ),
       Animated.timing(
         this.state.animation.paddingForm,
         {
-          toValue: 20,
-          duration: 300,
-          delay: 0,
+          toValue: TRANSFORM_PADDING_FORM,
+          duration: TIME_DEFAULT,
           easing: Easing.linear,
         },
       ),
@@ -176,12 +187,12 @@ class FormSearch extends Component {
   }
 
   animationFirst() {
-    Animated.parallel([
+    Animated.stagger(DELAY_ANMATION_FIRST, [
       Animated.timing(
         this.state.animation.left.leftTextBox,
         {
           toValue: 0,
-          duration: 300,
+          duration: TIME_DEFAULT,
           easing: Easing.linear,
         },
       ),
@@ -189,8 +200,7 @@ class FormSearch extends Component {
         this.state.animation.btnSearchAnim.left,
         {
           toValue: 0,
-          duration: 300,
-          delay: 30,
+          duration: TIME_DEFAULT,
           easing: Easing.linear,
         },
       ),
@@ -198,8 +208,7 @@ class FormSearch extends Component {
         this.state.animation.left.leftListItems,
         {
           toValue: 0,
-          duration: 300,
-          delay: 80,
+          duration: TIME_DEFAULT,
           easing: Easing.linear,
         },
       ),
@@ -281,8 +290,8 @@ class FormSearch extends Component {
             <TextInput
               style={styles.textInput}
               underlineColorAndroid="transparent"
-              onFocus={() => this.focusTextInput()}
-              onBlur={() => this.blurTextInput()}
+              onFocus={this.focusTextInput}
+              onBlur={this.blurTextInput}
               placeholder="Your address"
             />
           </Animated.View>
