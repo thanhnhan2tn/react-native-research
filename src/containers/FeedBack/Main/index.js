@@ -3,13 +3,12 @@ import {
   ScrollView,
   View,
 } from 'react-native';
-import listMainFeedBack from 'data/listMainFeedBack';
+import PropTypes from 'prop-types';
 import Tabs from '../Tabs';
 import Feed from '../Feed';
 import styles from './styles';
 
-
-function Main() {
+function Main({ listMainFeedBack }) {
   const { list, tabs } = listMainFeedBack;
   return (
     <View style={styles.container}>
@@ -29,5 +28,13 @@ function Main() {
     </View>
   );
 }
+
+Main.propTypes = {
+  listMainFeedBack: PropTypes.object,
+};
+
+Main.defaultProps = {
+  listMainFeedBack: {},
+};
 
 export default Main;

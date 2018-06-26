@@ -32,14 +32,13 @@ class FormSearch extends Component {
   constructor(props) {
     super(props);
     const { _value: flexProps } = props.style.flex;
-    const paddingFrm = ((HEIGHT_WINDOW / 2) * flexProps) - ORIGIN_HEIGHT_FORM;
+    this.paddingFrm = ((HEIGHT_WINDOW / 2) * flexProps) - ORIGIN_HEIGHT_FORM;
+    this.heightScreen = HEIGHT_WINDOW;
     this.state = {
-      heightScreen: HEIGHT_WINDOW,
       country: '',
-      paddingFrm,
       animation: {
         topIcon: new Animated.Value(ORIGIN_TOP_ICON),
-        paddingForm: new Animated.Value(paddingFrm),
+        paddingForm: new Animated.Value(this.paddingFrm),
         left: {
           leftTextBox: new Animated.Value(WIDTH_WINDOW),
           leftListItems: new Animated.Value(WIDTH_WINDOW),
@@ -124,7 +123,7 @@ class FormSearch extends Component {
       Animated.timing(
         this.state.animation.paddingForm,
         {
-          toValue: this.state.paddingFrm,
+          toValue: this.paddingFrm,
           duration: TIME_DEFAULT,
           delay: DELAY_TOP_ICON,
           easing: Easing.linear,
@@ -154,7 +153,7 @@ class FormSearch extends Component {
       Animated.timing(
         this.state.animation.btnSearchAnim.top,
         {
-          toValue: this.state.heightScreen,
+          toValue: this.heightScreen,
           duration: TIME_DEFAULT,
           easing: Easing.linear,
         },
@@ -170,7 +169,7 @@ class FormSearch extends Component {
       Animated.timing(
         this.state.animation.topIcon,
         {
-          toValue: -this.state.heightScreen,
+          toValue: -this.heightScreen,
           duration: TIME_DEFAULT,
           easing: Easing.linear,
         },
