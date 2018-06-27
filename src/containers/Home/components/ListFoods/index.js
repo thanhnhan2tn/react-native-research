@@ -5,30 +5,31 @@ import {
   Text,
   Animated,
   FlatList,
-  Dimensions,
 } from 'react-native';
 import listFoods from 'data/homeListFoods.js';
 import listMenuSearch from 'data/homeMenuSearch.js';
 import ItemFood from './ItemFood/';
 import ItemMenu from './ItemMenu/';
 import styles from './styles';
+import {
+  WIDTH_SCREEN,
+  TIME_DURATION,
+  TIME_DELAY,
+} from './constants';
 
 class ListFoods extends React.Component {
   constructor() {
     super();
-    const { width } = Dimensions.get('window');
-    this.state = {
-      leftBox: new Animated.Value(width),
-    };
+    this.leftBox = new Animated.Value(WIDTH_SCREEN);
   }
 
   componentDidMount() {
     Animated.timing(
-      this.state.leftBox,
+      this.leftBox,
       {
         toValue: 0,
-        delay: 100,
-        duration: 300,
+        delay: TIME_DELAY,
+        duration: TIME_DURATION,
       },
     ).start();
   }
@@ -40,7 +41,7 @@ class ListFoods extends React.Component {
           this.props.style,
           styles.contaier,
           {
-            left: this.state.leftBox,
+            left: this.leftBox,
           },
         ]}
       >

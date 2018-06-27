@@ -34,26 +34,26 @@ class FormSearch extends Component {
     const { _value: flexProps } = props.style.flex;
     this.paddingFrm = ((HEIGHT_WINDOW / 2) * flexProps) - ORIGIN_HEIGHT_FORM;
     this.heightScreen = HEIGHT_WINDOW;
+    this.animation = {
+      topIcon: new Animated.Value(ORIGIN_TOP_ICON),
+      paddingForm: new Animated.Value(this.paddingFrm),
+      left: {
+        leftTextBox: new Animated.Value(WIDTH_WINDOW),
+        leftListItems: new Animated.Value(WIDTH_WINDOW),
+      },
+      btnSearchAnim: {
+        left: new Animated.Value(WIDTH_WINDOW),
+        top: new Animated.Value(0),
+        position: 'relative',
+        height: new Animated.Value(ORIGIN_HEIGHT_TEXT),
+      },
+      countryAnim: {
+        height: new Animated.Value(ORIGIN_HEIGHT_TEXT),
+        borderWidth: new Animated.Value(WIDTH_BORDER_SELECT),
+      },
+    };
     this.state = {
       country: '',
-      animation: {
-        topIcon: new Animated.Value(ORIGIN_TOP_ICON),
-        paddingForm: new Animated.Value(this.paddingFrm),
-        left: {
-          leftTextBox: new Animated.Value(WIDTH_WINDOW),
-          leftListItems: new Animated.Value(WIDTH_WINDOW),
-        },
-        btnSearchAnim: {
-          left: new Animated.Value(WIDTH_WINDOW),
-          top: new Animated.Value(0),
-          position: 'relative',
-          height: new Animated.Value(ORIGIN_HEIGHT_TEXT),
-        },
-        countryAnim: {
-          height: new Animated.Value(ORIGIN_HEIGHT_TEXT),
-          borderWidth: new Animated.Value(WIDTH_BORDER_SELECT),
-        },
-      },
     };
 
     this.focusTextInput = this.focusTextInput.bind(this);
@@ -80,7 +80,7 @@ class FormSearch extends Component {
     // show select country
     Animated.parallel([
       Animated.timing(
-        this.state.animation.countryAnim.height,
+        this.animation.countryAnim.height,
         {
           toValue: ORIGIN_HEIGHT_TEXT,
           duration: TIME_DEFAULT,
@@ -88,7 +88,7 @@ class FormSearch extends Component {
         },
       ),
       Animated.timing(
-        this.state.animation.countryAnim.borderWidth,
+        this.animation.countryAnim.borderWidth,
         {
           toValue: WIDTH_BORDER_SELECT,
           duration: 0,
@@ -96,7 +96,7 @@ class FormSearch extends Component {
         },
       ),
       Animated.timing(
-        this.state.animation.btnSearchAnim.top,
+        this.animation.btnSearchAnim.top,
         {
           toValue: 0,
           duration: TIME_DEFAULT,
@@ -104,7 +104,7 @@ class FormSearch extends Component {
         },
       ),
       Animated.timing(
-        this.state.animation.btnSearchAnim.height,
+        this.animation.btnSearchAnim.height,
         {
           toValue: ORIGIN_HEIGHT_TEXT,
           duration: TIME_DEFAULT,
@@ -112,7 +112,7 @@ class FormSearch extends Component {
         },
       ),
       Animated.timing(
-        this.state.animation.topIcon,
+        this.animation.topIcon,
         {
           toValue: ORIGIN_TOP_ICON,
           duration: TIME_DEFAULT,
@@ -121,7 +121,7 @@ class FormSearch extends Component {
         },
       ),
       Animated.timing(
-        this.state.animation.paddingForm,
+        this.animation.paddingForm,
         {
           toValue: this.paddingFrm,
           duration: TIME_DEFAULT,
@@ -135,7 +135,7 @@ class FormSearch extends Component {
   minifyPadding() {
     Animated.parallel([
       Animated.timing(
-        this.state.animation.countryAnim.height,
+        this.animation.countryAnim.height,
         {
           toValue: 0,
           duration: TIME_DEFAULT,
@@ -143,7 +143,7 @@ class FormSearch extends Component {
         },
       ),
       Animated.timing(
-        this.state.animation.countryAnim.borderWidth,
+        this.animation.countryAnim.borderWidth,
         {
           toValue: 0,
           duration: 0,
@@ -151,7 +151,7 @@ class FormSearch extends Component {
         },
       ),
       Animated.timing(
-        this.state.animation.btnSearchAnim.top,
+        this.animation.btnSearchAnim.top,
         {
           toValue: this.heightScreen,
           duration: TIME_DEFAULT,
@@ -159,7 +159,7 @@ class FormSearch extends Component {
         },
       ),
       Animated.timing(
-        this.state.animation.btnSearchAnim.height,
+        this.animation.btnSearchAnim.height,
         {
           toValue: 0,
           duration: TIME_DEFAULT,
@@ -167,7 +167,7 @@ class FormSearch extends Component {
         },
       ),
       Animated.timing(
-        this.state.animation.topIcon,
+        this.animation.topIcon,
         {
           toValue: -this.heightScreen,
           duration: TIME_DEFAULT,
@@ -175,7 +175,7 @@ class FormSearch extends Component {
         },
       ),
       Animated.timing(
-        this.state.animation.paddingForm,
+        this.animation.paddingForm,
         {
           toValue: TRANSFORM_PADDING_FORM,
           duration: TIME_DEFAULT,
@@ -188,7 +188,7 @@ class FormSearch extends Component {
   animationFirst() {
     Animated.stagger(DELAY_ANMATION_FIRST, [
       Animated.timing(
-        this.state.animation.left.leftTextBox,
+        this.animation.left.leftTextBox,
         {
           toValue: 0,
           duration: TIME_DEFAULT,
@@ -196,7 +196,7 @@ class FormSearch extends Component {
         },
       ),
       Animated.timing(
-        this.state.animation.btnSearchAnim.left,
+        this.animation.btnSearchAnim.left,
         {
           toValue: 0,
           duration: TIME_DEFAULT,
@@ -204,7 +204,7 @@ class FormSearch extends Component {
         },
       ),
       Animated.timing(
-        this.state.animation.left.leftListItems,
+        this.animation.left.leftListItems,
         {
           toValue: 0,
           duration: TIME_DEFAULT,
@@ -216,7 +216,6 @@ class FormSearch extends Component {
   // ======================================== end animation =====================================
 
   render() {
-    const { animation } = this.state;
     return (
       <Animated.View
         style={[
@@ -232,7 +231,7 @@ class FormSearch extends Component {
         <Animated.View style={[
             styles.containerForm,
             {
-              paddingBottom: animation.paddingForm,
+              paddingBottom: this.animation.paddingForm,
             },
           ]}
         >
@@ -240,7 +239,7 @@ class FormSearch extends Component {
             style={[
               ...styles.containerTextInput,
               {
-                left: animation.left.leftTextBox,
+                left: this.animation.left.leftTextBox,
               },
             ]}
           >
@@ -248,7 +247,7 @@ class FormSearch extends Component {
               style={[
                 styles.containerIconMap,
                 {
-                  top: animation.topIcon,
+                  top: this.animation.topIcon,
                 },
               ]}
             >
@@ -262,8 +261,8 @@ class FormSearch extends Component {
                 styles.textInput,
                 styles.textInputBorder,
                 {
-                  height: animation.countryAnim.height,
-                  borderBottomWidth: animation.countryAnim.borderWidth,
+                  height: this.animation.countryAnim.height,
+                  borderBottomWidth: this.animation.countryAnim.borderWidth,
                 },
               ]}
             >
@@ -296,9 +295,9 @@ class FormSearch extends Component {
           </Animated.View>
           <Animated.View
             style={{
-              left: animation.btnSearchAnim.left,
-              top: animation.btnSearchAnim.top,
-              height: animation.btnSearchAnim.height,
+              left: this.animation.btnSearchAnim.left,
+              top: this.animation.btnSearchAnim.top,
+              height: this.animation.btnSearchAnim.height,
             }}
           >
             <TouchableHighlight>
