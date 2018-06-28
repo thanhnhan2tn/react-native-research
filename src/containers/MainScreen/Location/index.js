@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 
 import assets from 'config/assets';
-import styles from './style';
+import styles from './styles';
 
 const Location = ({ title, adress }) => (
   <View style={styles.container}>

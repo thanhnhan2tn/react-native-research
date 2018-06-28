@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet, Dimensions, TouchableOpacity, Animated } from 'react-native';
 import { TabView } from 'react-native-tab-view';
+import RestaurantInfo from 'containers/RestaurantInfo';
 
 import colors from 'styles/colors';
 
@@ -10,7 +11,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   tabBarWrapper: {
-    height: 400,
+    height: 300,
     justifyContent: 'flex-end',
   },
   tabBar: {
@@ -34,10 +35,6 @@ const MenuTab = () => (
 
 const FeedbackTab = () => (
   <View style={[styles.scene, { backgroundColor: '#673ab7' }]} />
-);
-
-const InfoTab = () => (
-  <View style={[styles.scene, { backgroundColor: '#D54D24' }]} />
 );
 
 /* eslint react/no-unused-state: "off" */
@@ -97,7 +94,7 @@ export default class RNTabView extends React.Component {
       case 'feedback':
         return <FeedbackTab />;
       case 'info':
-        return <InfoTab />;
+        return <RestaurantInfo />;
       default:
         return null;
     }

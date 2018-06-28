@@ -3,11 +3,12 @@ import { View } from 'react-native';
 
 import assets from 'config/assets';
 import Header from 'components/Header';
+import listMainFeedBack from 'data/listMainFeedBack';
 import Banner from './Banner';
 import Main from './Main';
 import styles from './styles';
 
-export default class FeedBack extends React.Component {
+export default class FeedBack extends React.PureComponent {
   static navigationOptions = {
     header: ({ navigation }) => {
       const { defaultProps } = FeedBack;
@@ -24,21 +25,11 @@ export default class FeedBack extends React.Component {
     },
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      info: {
-        id: 1, img: assets.banner, title: 'FIT FOOD', adress: 'Adressas, Vlinlus', stars: { ratings: 3 },
-      },
-    };
-  }
-
   render() {
-    const { info } = this.state;
     return (
       <View style={styles.container}>
-        <Banner info={info} />
-        <Main />
+        <Banner />
+        <Main listMainFeedBack={listMainFeedBack} />
       </View>
     );
   }

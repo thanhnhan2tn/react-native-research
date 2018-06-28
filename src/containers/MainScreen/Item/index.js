@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 
 import Rating from 'components/Rating';
-import styles from './style';
+import styles from './styles';
 
 const Item = ({ item }) => {
   const {

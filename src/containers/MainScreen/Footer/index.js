@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 
 import assets from 'config/assets';
-import styles from './style';
+import styles from './styles';
 
 const Footer = () => (
   <View style={styles.container}>

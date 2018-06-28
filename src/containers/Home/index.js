@@ -1,83 +1,108 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { View, Text, Animated, Easing } from 'react-native';
+import {
+  View,
+  Animated,
+  Easing,
+} from 'react-native';
 import { connect } from 'react-redux';
 
 import { incrementAction } from 'actions';
-import { redirectTo } from 'actions/navigationActions';
-import CustomButton from 'components/CustomButton';
+import FormSearch from './components/FormSearch';
+import ListFoods from './components/ListFoods';
 import styles from './styles';
 import { selectCount } from './selectors';
+import {
+  FLEX_ORIGIN_FORM,
+  FLEX_ORIGIN_LIST,
+  FLEX_TRANSFORM_FORM,
+  FLEX_TRANSFORM_LIST,
+  TIME_DURATION_FLEX,
+} from './constants';
 
 class HomeScreen extends React.Component {
   constructor() {
     super();
-    this.posLeft = new Animated.Value(-300);
-  }
-
-  componentDidMount() {
-    this.animateLeft();
-  }
-
-  animateLeft = () => {
-    Animated.timing(
-      this.posLeft,
-      {
-        toValue: 0,
-        duration: 1000,
-        easing: Easing.linear,
+    this.animation = {
+      flex: {
+        flexForm: new Animated.Value(FLEX_ORIGIN_FORM),
+        flexList: new Animated.Value(FLEX_ORIGIN_LIST),
       },
-    ).start();
+    };
+
+    this.state = {
+      showMenu: false,
+    };
+  }
+
+  changeFlexBox = () => {
+    this.setState({
+      showMenu: true,
+    });
+    Animated.parallel([
+      Animated.timing(
+        this.animation.flex.flexForm,
+        {
+          toValue: FLEX_TRANSFORM_FORM,
+          duration: TIME_DURATION_FLEX,
+          easing: Easing.linear,
+        },
+      ),
+      Animated.timing(
+        this.animation.flex.flexList,
+        {
+          toValue: FLEX_TRANSFORM_LIST,
+          duration: TIME_DURATION_FLEX,
+          easing: Easing.linear,
+        },
+      ),
+    ]).start();
+  }
+
+  resetFlexBox = () => {
+    this.setState({
+      showMenu: false,
+    });
+    Animated.parallel([
+      Animated.timing(
+        this.animation.flex.flexForm,
+        {
+          toValue: FLEX_ORIGIN_FORM,
+          duration: TIME_DURATION_FLEX,
+          easing: Easing.linear,
+        },
+      ),
+      Animated.timing(
+        this.animation.flex.flexList,
+        {
+          toValue: FLEX_ORIGIN_LIST,
+          duration: TIME_DURATION_FLEX,
+          easing: Easing.linear,
+        },
+      ),
+    ]).start();
   }
 
   render() {
-    const { navigation, incrementCounter, count } = this.props;
     return (
       <View style={styles.container}>
-        <Animated.View
+        <FormSearch
           style={{
-            marginLeft: this.posLeft,
+            flex: this.animation.flex.flexForm,
           }}
-        >
-          <Text>Home Screen</Text>
-        </Animated.View>
-        <CustomButton
-          onPress={() => navigation.dispatch(redirectTo('details', { text: 'Hello from Home' }))}
-        >
-          <Text>Go to Details</Text>
-        </CustomButton>
-        <CustomButton
-          onPress={() => this.props.navigation.navigate('mainscreen')}
-        >
-          <Text>Go to MainScreen</Text>
-        </CustomButton>
-        <CustomButton
-          onPress={() => this.props.navigation.navigate('feedback')}
-        >
-          <Text>Go to Feedback</Text>
-        </CustomButton>
-        <CustomButton
-          onPress={incrementCounter}
-        >
-          <Text>Increase counter</Text>
-          <Text>{count}</Text>
-        </CustomButton>
+          flex={this.animation.flex}
+          changeFlexBox={this.changeFlexBox}
+          resetFlexBox={this.resetFlexBox}
+        />
+        <ListFoods
+          style={{
+            flex: this.animation.flex.flexList,
+          }}
+          showMenu={this.state.showMenu}
+        />
       </View>
     );
   }
 }
-
-HomeScreen.propTypes = {
-  navigation: PropTypes.object,
-  incrementCounter: PropTypes.func,
-  count: PropTypes.number,
-};
-
-HomeScreen.defaultProps = {
-  navigation: {},
-  incrementCounter: () => {},
-  count: 0,
-};
 
 const mapStateToProps = state => ({
   count: selectCount(state),
