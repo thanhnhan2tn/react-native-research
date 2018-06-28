@@ -3,6 +3,7 @@ import { View } from 'react-native';
 
 import assets from 'config/assets';
 import Header from 'components/Header';
+import listMainFeedBack from 'data/listMainFeedBack';
 import Banner from './Banner';
 import Main from './Main';
 import styles from './styles';
@@ -38,7 +39,7 @@ export default class FeedBack extends React.Component {
     return (
       <View style={styles.container}>
         <Banner info={info} />
-        <Main />
+        <Main listMainFeedBack={listMainFeedBack} />
       </View>
     );
   }
