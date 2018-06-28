@@ -9,11 +9,11 @@ import {
 import assets from 'config/assets';
 import styles from './styles';
 
-const Location = ({ title, adress }) => (
+const Location = ({ title, address }) => (
   <View style={styles.container}>
     <View style={styles.wrap}>
       <Text style={[styles.textCenter, styles.colorRed]}>{title}</Text>
-      <Text style={[styles.textCenter, styles.text_bold]}>{adress}</Text>
+      <Text style={[styles.textCenter, styles.textBold]}>{address}</Text>
     </View>
     <Image
       style={styles.image}
@@ -26,10 +26,10 @@ export default Location;
 
 Location.propTypes = {
   title: PropTypes.string,
-  adress: PropTypes.string,
+  address: PropTypes.string,
 };
 
 Location.defaultProps = {
   title: 'Title screen',
-  adress: 'Adress, HCM City, Vn',
+  address: 'Address, HCM City, Vn',
 };

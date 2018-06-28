@@ -23,12 +23,12 @@ const middleware = createReactNavigationReduxMiddleware(
 );
 
 const stackNavigator = createStackNavigator({
+  mainscreen: MainScreen,
   home: HomeScreen,
   details: DetailsScreen,
   feedback: FeedBack,
   tabview: TabViewDemo,
   restaurantInfo: RestaurantInfo,
-  mainscreen: MainScreen,
 }, {
   headerMode: 'float',
   navigationOptions: {

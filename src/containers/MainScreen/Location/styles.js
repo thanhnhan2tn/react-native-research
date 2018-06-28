@@ -1,10 +1,13 @@
 import { StyleSheet } from 'react-native';
 
+import colors from 'styles/colors';
+
 export default StyleSheet.create({
   container: {
     flexDirection: 'row',
-    backgroundColor: '#ccc',
-    padding: 5,
+    backgroundColor: colors.grey1,
+    paddingVertical: 5,
+    paddingHorizontal: 25,
     alignItems: 'center',
   },
   wrap: {
@@ -14,13 +17,13 @@ export default StyleSheet.create({
     textAlign: 'center',
   },
   image: {
-    width: 30,
-    height: 30,
+    width: 40,
+    height: 40,
   },
   colorRed: {
-    color: '#c91000',
+    color: colors.red,
   },
-  text_bold: {
+  textBold: {
     fontWeight: 'bold',
   },
 });

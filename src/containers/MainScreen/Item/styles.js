@@ -7,41 +7,38 @@ export default StyleSheet.create({
     backgroundColor: '#fff',
     marginVertical: 3,
   },
-  product_img: {
+  productImg: {
     width: 80,
     height: 80,
   },
-  wrap_title: {
+  wrapTitle: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   rating: {
     alignItems: 'flex-end',
   },
-  product_infor: {
+  productInfo: {
     flex: 1,
     paddingLeft: 15,
   },
-  product_title: {
+  productTitle: {
     flex: 1,
     fontWeight: 'bold',
     fontSize: 18,
     justifyContent: 'center',
   },
-  product_transport: {
+  productTransport: {
     flex: 1,
     flexDirection: 'row',
     marginTop: 10,
   },
-  item_transpot: {
+  itemTranspot: {
     paddingRight: 15,
     paddingLeft: 0,
     flexDirection: 'row',
   },
-  text_italic: {
-    fontStyle: 'italic',
-  },
-  text_bold: {
+  textBold: {
     fontWeight: 'bold',
   },
 });

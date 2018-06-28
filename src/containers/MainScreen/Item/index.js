@@ -11,30 +11,35 @@ import styles from './styles';
 
 const Item = ({ item }) => {
   const {
-    img, key, stars, providers, price, min,
+    img,
+    key,
+    stars,
+    providers,
+    price,
+    min,
   } = item;
   return (
     <View style={styles.products}>
       <Image
-        style={styles.product_img}
+        style={styles.productImg}
         source={img}
       />
-      <View style={styles.product_infor}>
-        <View style={styles.wrap_title}>
-          <Text style={styles.product_title}>{key}</Text>
+      <View style={styles.productInfo}>
+        <View style={styles.wrapTitle}>
+          <Text style={styles.productTitle}>{key}</Text>
           <Rating style={styles.rating} stars={stars} />
         </View>
         <View>
           <Text>{providers}</Text>
         </View>
-        <View style={styles.product_transport}>
-          <View style={styles.item_transpot}>
+        <View style={styles.productTransport}>
+          <View style={styles.itemTranspot}>
             <Text>Price discount: </Text>
-            <Text style={styles.text_bold}>{price} LT</Text>
+            <Text style={styles.textBold}>{price} LT</Text>
           </View>
-          <View style={styles.item_transpot}>
+          <View style={styles.itemTranspot}>
             <Text>Min: </Text>
-            <Text style={styles.text_bold}>{min} LT</Text>
+            <Text style={styles.textBold}>{min} LT</Text>
           </View>
         </View>
       </View>

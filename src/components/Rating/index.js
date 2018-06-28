@@ -10,12 +10,10 @@ import styles from './styles';
 
 export default class Rating extends React.Component {
   genStar = (stars) => {
-    const arrStarts = [1, 2, 3, 4, 5];
-    return arrStarts.map((ele) => {
-      if (ele > stars.ratings) {
-        return <Image key={ele} style={styles.image} source={assets.starUnfilled} />;
-      }
-      return <Image key={ele} style={styles.image} source={assets.starFilled} />;
+    const arrStars = [1, 2, 3, 4, 5];
+    return arrStars.map((ele) => {
+      const url = (ele > stars.ratings) ? assets.starUnfilled : assets.starFilled;
+      return <Image key={ele} style={styles.image} source={url} />;
     });
   }
   render() {
