@@ -54,30 +54,6 @@ ModalBody.defaultProps = {
       quantity: 2,
       price: 100,
     },
-    // {
-    //   id: 4,
-    //   name: 'Food A',
-    //   quantity: 2,
-    //   price: 100,
-    // },
-    // {
-    //   id: 5,
-    //   name: 'Food A',
-    //   quantity: 2,
-    //   price: 100,
-    // },
-    // {
-    //   id: 6,
-    //   name: 'Food A',
-    //   quantity: 2,
-    //   price: 100,
-    // },
-    // {
-    //   id: 7,
-    //   name: 'Food A',
-    //   quantity: 2,
-    //   price: 100,
-    // },
   ],
 };
 
