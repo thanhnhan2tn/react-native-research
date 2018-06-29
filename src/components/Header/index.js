@@ -87,9 +87,7 @@ class CustomHeader extends React.Component {
             transform: [{ translateX: this.movingLeft }],
           }}
         >
-          <TouchableOpacity
-            onPress={this.handlePressRight}
-          >
+          <TouchableOpacity onPress={this.handlePressRight}>
             <Image style={styles.cartIcon} source={iconRight || assets.shoppingCart} />
             {
               titleRight ? <Text>{titleRight}</Text> : null

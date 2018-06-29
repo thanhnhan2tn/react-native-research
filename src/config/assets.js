@@ -6,6 +6,9 @@ const userIcon = require('assets/icons/user.png');
 const starFilled = require('assets/icons/star-filled.png');
 const starUnfilled = require('assets/icons/star-unfilled.png');
 const banner = require('assets/images/banner.jpg');
+const close = require('assets/icons/close.png');
+const plus = require('assets/icons/plus.png');
+const minus = require('assets/icons/minus.png');
 
 export default {
   menu,
@@ -16,4 +19,7 @@ export default {
   banner,
   starFilled,
   starUnfilled,
+  close,
+  plus,
+  minus,
 };

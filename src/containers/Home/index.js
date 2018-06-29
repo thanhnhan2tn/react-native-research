@@ -6,10 +6,17 @@ import { connect } from 'react-redux';
 import { incrementAction } from 'actions';
 import { redirectTo } from 'actions/navigationActions';
 import CustomButton from 'components/CustomButton';
+import Header from 'components/Header';
 import styles from './styles';
 import { selectCount } from './selectors';
 
 class HomeScreen extends React.Component {
+  static navigationOptions = {
+    header: ({ navigation }) => (
+      <Header onPressRight={() => navigation.navigate('Cart')} />
+    ),
+  };
+
   constructor() {
     super();
     this.posLeft = new Animated.Value(-300);
@@ -17,6 +24,10 @@ class HomeScreen extends React.Component {
 
   componentDidMount() {
     this.animateLeft();
+  }
+
+  onPressCart = (navigation) => {
+    navigation.navigate('Cart');
   }
 
   animateLeft = () => {
