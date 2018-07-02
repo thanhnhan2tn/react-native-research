@@ -15,7 +15,7 @@ export default class FeedBack extends React.PureComponent {
       return (
         <Header
           onPressLeft={() => {
-            navigation.dispatch({ type: 'home' });
+            navigation.goBack();
           }}
           iconLeft={assets.backIcon}
           titleLeft={defaultProps.titleLeft}
