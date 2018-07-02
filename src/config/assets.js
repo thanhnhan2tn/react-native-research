@@ -5,7 +5,11 @@ const home = require('assets/icons/home.png');
 const userIcon = require('assets/icons/user.png');
 const starFilled = require('assets/icons/star-filled.png');
 const starUnfilled = require('assets/icons/star-unfilled.png');
+const marker = require('assets/icons/marker.png');
+const alignLeft = require('assets/icons/align-left.png');
+
 const banner = require('assets/images/banner.jpg');
+const item = require('assets/images/item.jpg');
 
 export default {
   menu,
@@ -16,4 +20,7 @@ export default {
   banner,
   starFilled,
   starUnfilled,
+  marker,
+  item,
+  alignLeft,
 };
