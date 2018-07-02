@@ -1,15 +1,17 @@
 import { StyleSheet } from 'react-native';
 
+import colors from 'styles/colors';
+
 export default StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     flexDirection: 'row',
   },
   color: {
-    color: '#c91000',
+    color: colors.red3,
   },
   active: {
     borderBottomWidth: 3,
-    borderBottomColor: '#c91000',
+    borderBottomColor: colors.red3,
   },
 });

@@ -1,10 +1,12 @@
 import { StyleSheet } from 'react-native';
 
+import colors from 'styles/colors';
+
 export default StyleSheet.create({
   products: {
     flexDirection: 'row',
     padding: 15,
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     marginVertical: 3,
   },
   productImg: {
