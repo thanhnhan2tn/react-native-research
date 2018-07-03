@@ -4,14 +4,17 @@ import colors from 'styles/colors';
 
 export default StyleSheet.create({
   container: {
-    backgroundColor: colors.white,
     flexDirection: 'row',
+    backgroundColor: colors.grey2,
+    padding: 10,
+    alignItems: 'center',
   },
-  color: {
-    color: colors.red3,
+  text: {
+    flex: 1,
+    color: colors.white,
+    paddingLeft: 10,
   },
-  active: {
-    borderBottomWidth: 3,
-    borderBottomColor: colors.red3,
+  image: {
+    height: 30,
   },
 });

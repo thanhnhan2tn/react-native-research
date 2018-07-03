@@ -27,6 +27,16 @@ const listItems = [
     icon: assets.home,
     route: 'restaurantInfo',
   },
+  {
+    title: 'Main Screen',
+    icon: assets.home,
+    route: 'mainscreen',
+  },
+  {
+    title: 'FeedBack',
+    icon: assets.home,
+    route: 'feedback',
+  },
 ];
 
 class DrawerItem extends Component {

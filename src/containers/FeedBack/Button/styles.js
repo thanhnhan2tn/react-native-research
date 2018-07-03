@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import colors from 'styles/colors';
+
 export default StyleSheet.create({
   buttonContainer: {
     flex: 1,
@@ -9,7 +11,7 @@ export default StyleSheet.create({
     height: 40,
   },
   buttonText: {
-    color: 'grey',
+    color: colors.grey2,
     fontWeight: 'bold',
   },
   image: {

@@ -8,14 +8,14 @@ import Banner from './Banner';
 import Main from './Main';
 import styles from './styles';
 
-export default class FeedBack extends React.Component {
+export default class FeedBack extends React.PureComponent {
   static navigationOptions = {
     header: ({ navigation }) => {
       const { defaultProps } = FeedBack;
       return (
         <Header
           onPressLeft={() => {
-            navigation.dispatch({ type: 'home' });
+            navigation.goBack();
           }}
           iconLeft={assets.backIcon}
           titleLeft={defaultProps.titleLeft}
@@ -25,20 +25,10 @@ export default class FeedBack extends React.Component {
     },
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      info: {
-        id: 1, img: assets.banner, title: 'FIT FOOD', adress: 'Adressas, Vlinlus', stars: { ratings: 3 },
-      },
-    };
-  }
-
   render() {
-    const { info } = this.state;
     return (
       <View style={styles.container}>
-        <Banner info={info} />
+        <Banner />
         <Main listMainFeedBack={listMainFeedBack} />
       </View>
     );

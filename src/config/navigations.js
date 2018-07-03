@@ -14,7 +14,9 @@ import HomeScreen from 'containers/Home';
 import DetailsScreen from 'containers/Details';
 import TabViewDemo from 'containers/TabViewDemo';
 import RestaurantInfo from 'containers/RestaurantInfo';
+import MainScreen from 'containers/MainScreen';
 import MyCart from 'containers/MyCart';
+// import colors from 'styles/colors';
 
 const middleware = createReactNavigationReduxMiddleware(
   'root',
@@ -22,6 +24,7 @@ const middleware = createReactNavigationReduxMiddleware(
 );
 
 const stackNavigator = createStackNavigator({
+  mainscreen: MainScreen,
   home: HomeScreen,
   details: DetailsScreen,
   feedback: FeedBack,

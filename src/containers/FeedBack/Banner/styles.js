@@ -1,14 +1,16 @@
 import { StyleSheet } from 'react-native';
 
+import { rgba } from 'utils/helpers';
+import colors from 'styles/colors';
+
 export default StyleSheet.create({
   container: {
-    backgroundColor: 'pink',
     alignItems: 'center',
     justifyContent: 'center',
     height: 150,
   },
   content: {
-    backgroundColor: 'rgba(0,0,0,0.4)',
+    backgroundColor: rgba(colors.dark, 0.4),
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
@@ -22,9 +24,9 @@ export default StyleSheet.create({
     fontWeight: 'bold',
   },
   colorRed: {
-    color: '#c91000',
+    color: colors.red3,
   },
   colorDark: {
-    color: '#000',
+    color: colors.dark,
   },
 });
