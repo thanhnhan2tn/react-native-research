@@ -10,6 +10,9 @@ const alignLeft = require('assets/icons/align-left.png');
 
 const banner = require('assets/images/banner.jpg');
 const item = require('assets/images/item.jpg');
+const close = require('assets/icons/close.png');
+const plus = require('assets/icons/plus.png');
+const minus = require('assets/icons/minus.png');
 
 export default {
   menu,
@@ -23,4 +26,7 @@ export default {
   marker,
   item,
   alignLeft,
+  close,
+  plus,
+  minus,
 };

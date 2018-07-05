@@ -7,6 +7,7 @@ import {
 import { connect } from 'react-redux';
 
 import { incrementAction } from 'actions';
+import Header from 'components/Header';
 import FormSearch from './components/FormSearch';
 import ListFoods from './components/ListFoods';
 import styles from './styles';
@@ -20,6 +21,12 @@ import {
 } from './constants';
 
 class HomeScreen extends React.Component {
+  static navigationOptions = {
+    header: ({ navigation }) => (
+      <Header onPressRight={() => navigation.navigate('Cart')} />
+    ),
+  };
+
   constructor() {
     super();
     this.animation = {
@@ -32,6 +39,34 @@ class HomeScreen extends React.Component {
     this.state = {
       showMenu: false,
     };
+  }
+
+  onPressCart = (navigation) => {
+    navigation.navigate('Cart');
+  }
+
+  resetFlexBox = () => {
+    this.setState({
+      showMenu: false,
+    });
+    Animated.parallel([
+      Animated.timing(
+        this.animation.flex.flexForm,
+        {
+          toValue: FLEX_ORIGIN_FORM,
+          duration: TIME_DURATION_FLEX,
+          easing: Easing.linear,
+        },
+      ),
+      Animated.timing(
+        this.animation.flex.flexList,
+        {
+          toValue: FLEX_ORIGIN_LIST,
+          duration: TIME_DURATION_FLEX,
+          easing: Easing.linear,
+        },
+      ),
+    ]).start();
   }
 
   changeFlexBox = () => {
@@ -58,28 +93,15 @@ class HomeScreen extends React.Component {
     ]).start();
   }
 
-  resetFlexBox = () => {
-    this.setState({
-      showMenu: false,
-    });
-    Animated.parallel([
-      Animated.timing(
-        this.animation.flex.flexForm,
-        {
-          toValue: FLEX_ORIGIN_FORM,
-          duration: TIME_DURATION_FLEX,
-          easing: Easing.linear,
-        },
-      ),
-      Animated.timing(
-        this.animation.flex.flexList,
-        {
-          toValue: FLEX_ORIGIN_LIST,
-          duration: TIME_DURATION_FLEX,
-          easing: Easing.linear,
-        },
-      ),
-    ]).start();
+  animateLeft = () => {
+    Animated.timing(
+      this.posLeft,
+      {
+        toValue: 0,
+        duration: 1000,
+        easing: Easing.linear,
+      },
+    ).start();
   }
 
   render() {

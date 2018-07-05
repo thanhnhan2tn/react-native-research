@@ -15,6 +15,7 @@ import DetailsScreen from 'containers/Details';
 import TabViewDemo from 'containers/TabViewDemo';
 import RestaurantInfo from 'containers/RestaurantInfo';
 import MainScreen from 'containers/MainScreen';
+import MyCart from 'containers/MyCart';
 // import colors from 'styles/colors';
 
 const middleware = createReactNavigationReduxMiddleware(
@@ -29,6 +30,7 @@ const stackNavigator = createStackNavigator({
   feedback: FeedBack,
   tabview: TabViewDemo,
   restaurantInfo: RestaurantInfo,
+  Cart: MyCart,
 }, {
   headerMode: 'float',
   navigationOptions: {

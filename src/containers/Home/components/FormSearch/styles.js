@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   containerIconMap: {
     position: 'absolute',
     left: '50%',
-    backgroundColor: colors.red2,
+    backgroundColor: colors.red1,
     zIndex: 10,
     borderRadius: 30,
     overflow: 'hidden',
