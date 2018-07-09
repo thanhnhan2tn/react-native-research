@@ -6,8 +6,8 @@ import {
   Text,
 } from 'react-native';
 
+import Rating from 'components/Rating';
 import assets from 'config/assets';
-import Rating from '../Rating';
 import styles from './styles';
 
 export default class Feed extends React.Component {

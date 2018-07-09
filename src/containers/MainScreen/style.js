@@ -6,6 +6,6 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.grey1,
-    paddingTop: 70,
+    paddingTop: 60,
   },
 });

@@ -23,7 +23,10 @@ import {
 class HomeScreen extends React.Component {
   static navigationOptions = {
     header: ({ navigation }) => (
-      <Header onPressRight={() => navigation.navigate('Cart')} />
+      <Header
+        onPressLeft={() => navigation.openDrawer()}
+        onPressRight={() => navigation.navigate('Cart')}
+      />
     ),
   };
 

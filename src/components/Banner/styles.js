@@ -7,6 +7,9 @@ export default StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
+    position: 'relative',
+  },
+  image: {
     height: 150,
   },
   content: {

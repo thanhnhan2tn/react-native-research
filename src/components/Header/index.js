@@ -75,7 +75,7 @@ class CustomHeader extends React.Component {
           >
             <Image style={styles.menu} source={iconLeft || assets.menu} />
             {
-              titleLeft ? <Text>{titleLeft}</Text> : null
+              titleLeft ? <Text style={styles.titleSmall}>{titleLeft}</Text> : null
             }
           </TouchableOpacity>
         </Animated.View>
@@ -90,7 +90,7 @@ class CustomHeader extends React.Component {
           <TouchableOpacity onPress={this.handlePressRight}>
             <Image style={styles.cartIcon} source={iconRight || assets.shoppingCart} />
             {
-              titleRight ? <Text>{titleRight}</Text> : null
+              titleRight ? <Text style={styles.titleSmall}>{titleRight}</Text> : null
             }
           </TouchableOpacity>
         </Animated.View>

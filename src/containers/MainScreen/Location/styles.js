@@ -17,8 +17,8 @@ export default StyleSheet.create({
     textAlign: 'center',
   },
   image: {
-    width: 40,
-    height: 40,
+    width: 28,
+    height: 28,
   },
   colorRed: {
     color: colors.red,
