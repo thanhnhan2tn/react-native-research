@@ -14,6 +14,7 @@ export default class Banner extends React.PureComponent {
     return (
       <View style={styles.container}>
         <Image
+          style={styles.image}
           source={img}
         />
         <View style={styles.content}>

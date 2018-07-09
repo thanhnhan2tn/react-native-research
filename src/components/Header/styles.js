@@ -18,17 +18,22 @@ export default StyleSheet.create({
     zIndex: 100,
   },
   menu: {
-    width: 40,
-    height: 40,
+    width: 30,
+    height: 30,
   },
   cartIcon: {
-    width: 40,
-    height: 40,
+    width: 30,
+    height: 30,
   },
   title: {
     color: colors.white,
     fontFamily: 'Montserrat',
     fontSize: 20,
+  },
+  titleSmall: {
+    color: colors.white,
+    fontFamily: 'Montserrat',
+    fontSize: 16,
   },
   btnLeft: {
     flexDirection: 'row',
