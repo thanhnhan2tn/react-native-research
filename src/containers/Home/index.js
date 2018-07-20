@@ -1,7 +1,9 @@
 import React from 'react';
 import {
   View,
+  Text,
   Animated,
+  KeyboardAvoidingView,
   Easing,
 } from 'react-native';
 import { connect } from 'react-redux';
@@ -73,27 +75,27 @@ class HomeScreen extends React.Component {
   }
 
   changeFlexBox = () => {
-    this.setState({
-      showMenu: true,
-    });
-    Animated.parallel([
-      Animated.timing(
-        this.animation.flex.flexForm,
-        {
-          toValue: FLEX_TRANSFORM_FORM,
-          duration: TIME_DURATION_FLEX,
-          easing: Easing.linear,
-        },
-      ),
-      Animated.timing(
-        this.animation.flex.flexList,
-        {
-          toValue: FLEX_TRANSFORM_LIST,
-          duration: TIME_DURATION_FLEX,
-          easing: Easing.linear,
-        },
-      ),
-    ]).start();
+    // this.setState({
+    //   showMenu: true,
+    // });
+    // Animated.parallel([
+    //   Animated.timing(
+    //     this.animation.flex.flexForm,
+    //     {
+    //       toValue: FLEX_TRANSFORM_FORM,
+    //       duration: TIME_DURATION_FLEX,
+    //       easing: Easing.linear,
+    //     },
+    //   ),
+    //   Animated.timing(
+    //     this.animation.flex.flexList,
+    //     {
+    //       toValue: FLEX_TRANSFORM_LIST,
+    //       duration: TIME_DURATION_FLEX,
+    //       easing: Easing.linear,
+    //     },
+    //   ),
+    // ]).start();
   }
 
   animateLeft = () => {
@@ -110,12 +112,13 @@ class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+      {/* <KeyboardAvoidingView style={styles.container} keyboardVerticalOffset={100} behavior="padding" enabled={false}> */}
         <FormSearch
           style={{
             flex: this.animation.flex.flexForm,
           }}
           flex={this.animation.flex}
-          changeFlexBox={this.changeFlexBox}
+          // changeFlexBox={this.changeFlexBox}
           resetFlexBox={this.resetFlexBox}
         />
         <ListFoods
@@ -124,7 +127,18 @@ class HomeScreen extends React.Component {
           }}
           showMenu={this.state.showMenu}
         />
+        <View style={{
+          height: 300,
+          backgroundColor: '#fff',
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+        }}>
+          <Text>LOL</Text>
+        </View>
+        {/* </KeyboardAvoidingView> */}
       </View>
+      
     );
   }
 }

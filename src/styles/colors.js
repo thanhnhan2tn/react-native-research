@@ -10,5 +10,6 @@ export default {
   dark: '#000',
   gray2: '#BDBDBD',
   gray3: '#EEEEEE',
+  gray4: '#E9E9EF',
   black: '#000000',
 };

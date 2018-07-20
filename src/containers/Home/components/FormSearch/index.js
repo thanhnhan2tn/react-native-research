@@ -9,6 +9,8 @@ import {
   TouchableHighlight,
   Easing,
   Image,
+  // InputAccessoryView,
+  // Button,
 } from 'react-native';
 import MyBgImage from 'components/MyBgImage';
 import counTry from 'data/homeCountry.js';
@@ -26,13 +28,14 @@ import {
   DELAY_ANMATION_FIRST,
   HEIGHT_WINDOW,
   WIDTH_WINDOW,
+  HEIGHT_HEADER,
 } from './constants.js';
 
-class FormSearch extends Component {
+class FormSearch extends Component<{}, *> {
   constructor(props) {
     super(props);
     const { _value: flexProps } = props.style.flex;
-    this.paddingFrm = ((HEIGHT_WINDOW / 2) * flexProps) - ORIGIN_HEIGHT_FORM;
+    this.paddingFrm = ((HEIGHT_WINDOW / 2) * flexProps) - (ORIGIN_HEIGHT_FORM + HEIGHT_HEADER);
     this.heightScreen = HEIGHT_WINDOW;
     this.animation = {
       topIcon: new Animated.Value(ORIGIN_TOP_ICON),
@@ -216,6 +219,7 @@ class FormSearch extends Component {
   // ======================================== end animation =====================================
 
   render() {
+    const inputAccessoryViewID = 'uniqueID';
     return (
       <Animated.View
         style={[
@@ -231,7 +235,7 @@ class FormSearch extends Component {
         <Animated.View style={[
             styles.containerForm,
             {
-              paddingBottom: this.animation.paddingForm,
+              paddingTop: this.animation.paddingForm,
             },
           ]}
         >
@@ -291,6 +295,7 @@ class FormSearch extends Component {
               onFocus={this.focusTextInput}
               onBlur={this.blurTextInput}
               placeholder="Your address"
+              inputAccessoryViewID={inputAccessoryViewID}
             />
           </Animated.View>
           <Animated.View
@@ -305,6 +310,11 @@ class FormSearch extends Component {
             </TouchableHighlight>
           </Animated.View>
         </Animated.View>
+        {/* <InputAccessoryView nativeID={inputAccessoryViewID}>
+          <View>
+            <Text>ok</Text>
+          </View>
+        </InputAccessoryView> */}
       </Animated.View>
     );
   }

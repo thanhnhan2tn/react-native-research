@@ -8,6 +8,7 @@ import {
   Animated,
   Easing,
   Dimensions,
+  StatusBar,
 } from 'react-native';
 
 import assets from 'config/assets';
@@ -64,6 +65,10 @@ class CustomHeader extends React.Component {
 
     return (
       <View style={styles.wrapper}>
+        <StatusBar
+          backgroundColor="transparent"
+          translucent={true}
+        />
         <Animated.View
           style={{
             transform: [{ translateX: this.movingRight }],
@@ -103,7 +108,7 @@ CustomHeader.propTypes = {
   navigation: PropTypes.object,
   isIconMenu: PropTypes.bool,
   noTitle: PropTypes.bool,
-  iconRight: PropTypes.string,
+  iconRight: PropTypes.any,
   iconLeft: PropTypes.any,
   titleLeft: PropTypes.string,
   titleRight: PropTypes.string,

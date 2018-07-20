@@ -31,7 +31,7 @@ const stackNavigator = createStackNavigator({
   restaurantInfo: RestaurantInfo,
   Cart: MyCart,
 }, {
-  headerMode: 'float',
+  headerMode: 'screen',
   navigationOptions: {
     header: props => <Header {...props} isIconMenu={true} />,
   },
