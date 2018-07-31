@@ -1,5 +1,8 @@
 import os
+import json
 
 env = os.environ
 
-print(env)
+config = json.load(open('../package.json').read())
+
+print(config.version)
