@@ -3,6 +3,10 @@ import json
 
 env = os.environ
 
-config = json.load(open('package.json').read())
+print(env)
+with open("package.json", "r") as jsonFile:
+    data = json.load(jsonFile)
+    data['version'] = env['VERSION_NO'] + '.' + env['BUILD_NO']
 
-print(config.version)
+with open("package.json", "w") as jsonFile:
+    json.dump(data, jsonFile, indent=2, separators=(',', ': '))
