@@ -1,0 +1,1 @@
+echo "Build v$VERSION_NO.$BUILD_NO"
