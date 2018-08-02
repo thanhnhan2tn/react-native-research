@@ -5,10 +5,10 @@ import plistlib
 env = os.environ
 versionStr = env['VERSION_NO'] + '.' + env['BUILD_NO']
 
-pl = plistlib.readPlist("../ios/RNResearch/Info.plist")
+pl = plistlib.readPlist("ios/RNResearch/Info.plist")
 pl['CFBundleShortVersionString'] = versionStr
 pl['CFBundleVersion'] = versionStr
-plistlib.writePlist(pl, "../ios/RNResearch/Info.plist")
+plistlib.writePlist(pl, "ios/RNResearch/Info.plist")
 
 with open("package.json", "r") as jsonFile:
     data = json.load(jsonFile)
