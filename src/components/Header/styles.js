@@ -1,45 +1,58 @@
 import { StyleSheet } from 'react-native';
 
-import colors from 'styles/colors';
-import { rgba } from 'utils/helpers';
-
-export default StyleSheet.create({
-  wrapper: {
-    backgroundColor: rgba(colors.red, 0.85),
+const styles = StyleSheet.create({
+  headerContainer: {
+    display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
-    paddingVertical: 15,
-    paddingHorizontal: 25,
+    alignItems: 'center',
+    backgroundColor: 'rgba(200,0,0,0.8)',
     position: 'absolute',
-    top: 0,
-    left: 0,
+    top: 25,
     right: 0,
-    zIndex: 100,
+    left: 0,
+    height: 40,
   },
-  menu: {
-    width: 30,
-    height: 30,
+
+  iconHeader: {
+    width: 20,
+    height: 20,
+    margin: 10,
   },
-  cartIcon: {
-    width: 30,
-    height: 30,
+
+  iconLogo: {
+    width: 25,
+    height: 25,
   },
+
   title: {
-    color: colors.white,
-    fontFamily: 'Montserrat',
-    fontSize: 20,
-  },
-  titleSmall: {
-    color: colors.white,
-    fontFamily: 'Montserrat',
-    fontSize: 16,
-  },
-  btnLeft: {
+    display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
   },
-  color: {
-    color: '#fff',
+
+  textWhite: {
+    color: 'white',
+  },
+
+  textBig: {
+    fontSize: 18,
+  },
+
+  textLeft: {
+    padding: 10,
+  },
+
+  textRight: {
+    paddingRight: 10,
+  },
+
+  hidden: {
+    display: 'none',
+  },
+
+  blockContainer: {
+    display: 'flex',
   },
 });
+export default styles;

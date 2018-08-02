@@ -1,34 +1,43 @@
 import React from 'react';
-import {
-  View,
-  ScrollView,
-} from 'react-native';
+import { View } from 'react-native';
+import PropTypes from 'prop-types';
+import assets from 'config/assets';
+import data from 'data/listMainScreen';
+import ListItem from './components/ListItem';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
-import listMainScreen from 'data/listMainScreen';
-import Header from 'components/Header';
-import Location from './Location';
-import Main from './Main';
-import Footer from './Footer';
-import styles from './style';
+export default class MainScreen extends React.Component {
+  static propTypes = {
+    navigation: PropTypes.any,
+  };
 
-export default class MainScreen extends React.PureComponent {
-  static navigationOptions = {
-    header: ({ navigation }) => (
-      <Header
-        onPressLeft={() => navigation.openDrawer()}
-        onPressRight={() => navigation.navigate('Cart')}
-      />
-    ),
+  static defaultProps = {
+    navigation: {},
+  };
+  openScreen = (id, store) => {
+    this.props.navigation.navigate('detail', {
+      itemId: id,
+      store,
+    });
   };
 
   render() {
     return (
-      <View style={styles.container}>
-        <ScrollView>
-          <Location />
-          <Main listMainScreen={listMainScreen} />
-        </ScrollView>
-        <Footer />
+      <View style={{
+ flex: 1, display: 'flex', flexDirection: 'column', marginTop: 65,
+}}
+      >
+        <Header />
+        <ListItem
+          handleClickItem={this.openScreen}
+          dataSource={data.list}
+        />
+        <Footer
+          icon={assets.category}
+          title="kitchen"
+          info="Italian, Japanese, Healthy food Italian, Japanese, Healthy food Italian, Japanese, Healthy food"
+        />
       </View>
     );
   }
