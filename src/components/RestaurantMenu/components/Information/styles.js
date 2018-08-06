@@ -2,22 +2,20 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   wrapInfor: {
+    flex: 1,
     marginTop: 10,
-    display: 'flex',
-    height: '100%',
     flexDirection: 'column',
     backgroundColor: 'white',
   },
 
   wrapList: {
     backgroundColor: '#d7ccc8',
-    display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 7,
+    paddingHorizontal: 10,
+    paddingVertical: 7,
     borderBottomWidth: 1,
     borderBottomColor: '#eeeeee',
-    paddingHorizontal: 10,
   },
 
   textLeft: {
@@ -33,7 +31,6 @@ const styles = StyleSheet.create({
 
   wrapDescription: {
     backgroundColor: 'white',
-    display: 'flex',
     alignItems: 'flex-start',
   },
 
@@ -50,7 +47,6 @@ const styles = StyleSheet.create({
   },
 
   infoLeft: {
-    display: 'flex',
     alignItems: 'center',
     flexDirection: 'row',
   },

@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
   productIitle: {
     fontSize: 13,
     fontWeight: '500',
+    color: '#505050',
   },
 
   textSmall: {

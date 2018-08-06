@@ -11,5 +11,9 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderWidth: 1,
   },
+
+  textName: {
+    color: '#505050',
+  },
 });
 export default styles;

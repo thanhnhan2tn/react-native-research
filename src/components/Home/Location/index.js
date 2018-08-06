@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, Picker, TextInput, TouchableHighlight } from 'react-native';
+import { View, Text, Picker, TextInput, TouchableHighlight, Image } from 'react-native';
 import PropTypes from 'prop-types';
-
+import assets from 'config/assets';
 import styles from './styles';
 
 export default class Location extends React.Component {
@@ -43,6 +43,9 @@ export default class Location extends React.Component {
       <View
         style={styles.overlay}
       >
+        <View style={styles.wrapPin}>
+          <Image source={assets.pin} style={styles.pin} />
+        </View>
         <View style={styles.wrappForm}>
           <Picker
             selectedValue={this.state.location}

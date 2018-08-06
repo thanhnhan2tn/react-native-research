@@ -8,25 +8,49 @@ export default class Popup extends Component {
   static propTypes = {
     title: PropTypes.string,
     img: PropTypes.number,
-    imgCart: PropTypes.number,
-    price: PropTypes.number,
     description: PropTypes.any,
     visible: PropTypes.bool,
     hideModal: PropTypes.func,
+    priceReal: PropTypes.any,
   };
 
   static defaultProps = {
     title: '',
     img: null,
-    imgCart: null,
-    price: 0,
     description: '',
     visible: false,
+    priceReal: 0,
     hideModal: () => {},
   };
 
-  state={
+  state = {
     number: 1,
+    price: 0,
+  }
+
+  onDecrease = () => {
+    const { number } = this.state;
+    const { priceReal } = this.props;
+
+    if (number <= 1) {
+      this.setState({ number: 1 });
+      this.setState({ price: priceReal });
+    } else {
+      const newNumber = this.state.number - 1;
+      this.setState({
+        number: newNumber,
+        price: (priceReal * newNumber).toFixed(2),
+      });
+    }
+  }
+
+  onIncrease = () => {
+    const { priceReal } = this.props;
+    const newNumber = this.state.number + 1;
+    this.setState({
+      number: newNumber,
+      price: (priceReal * newNumber).toFixed(2),
+    });
   }
 
   hideModal = () => {
@@ -35,10 +59,11 @@ export default class Popup extends Component {
   }
 
   render() {
+    this.setState({ price: this.props.priceReal });
     const {
-      price, title, img, description, imgCart, visible,
+      title, img, description, visible,
     } = this.props;
-    const { number } = this.state;
+    const { number, price } = this.state;
     return (
       <View style={{ opacity: visible ? 1 : 0 }}>
         <Modal
@@ -70,15 +95,15 @@ export default class Popup extends Component {
               <View style={styles.control}>
                 <TouchableHighlight
                   underlayColor="transparent"
-                  onPress={() => this.setState({ number: number - 1 })}
+                  onPress={this.onDecrease}
                   style={styles.btn}
                 >
                   <Text style={styles.textRed}>-</Text>
                 </TouchableHighlight>
-                <Text>{number}</Text>
+                <Text style={styles.textNumber}>{number}</Text>
                 <TouchableHighlight
                   underlayColor="transparent"
-                  onPress={() => this.setState({ number: number + 1 })}
+                  onPress={this.onIncrease}
                   style={styles.btn}
                 >
                   <Text style={styles.textRed}>+</Text>
@@ -86,8 +111,8 @@ export default class Popup extends Component {
 
               </View>
               <View style={styles.cart}>
-                <Text style={[styles.textRed, styles.textPadding]}>{price}</Text>
-                <Image source={imgCart} style={styles.imgSmall} />
+                <Image source={assets.cart} style={styles.imgCart} />
+                <Text style={[styles.textRed, styles.textPadding]} >{price}</Text>
               </View>
             </View>
           </View>

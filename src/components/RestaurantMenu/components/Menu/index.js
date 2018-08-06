@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 // data
 import data from 'data/listMenu';
+import data1 from 'data/listMenu1';
 import dataItem from 'data/popupItem';
 import assets from 'config/assets';
 // component
@@ -13,11 +14,13 @@ import styles from './styles';
 export default class Menu extends React.Component {
   state = {
     modalVisible: false,
-    price: 0,
+    price: dataItem.price,
     title: '',
     img: assets.item,
     description: '',
+    id: '',
   };
+
   setModalVisible = () => {
     this.setState({
       modalVisible: true,
@@ -25,14 +28,17 @@ export default class Menu extends React.Component {
       title: dataItem.title,
       img: dataItem.img,
       description: dataItem.description,
+      id: dataItem.id,
     });
   }
+
   setModelDisplay = (notVisible) => {
     this.setState({ modalVisible: notVisible });
   }
+
   render() {
     const {
-      price, title, img, description, modalVisible, imgCart,
+      price, title, img, description, modalVisible, id,
     } = this.state;
     return (
       <View style={styles.wrapMenu}>
@@ -44,9 +50,9 @@ export default class Menu extends React.Component {
           />
         </View>
         <View style={styles.container}>
-          <Text style={styles.title}>{data.title}</Text>
+          <Text style={styles.title}>{data1.title}</Text>
           <ListItem
-            dataSource={data.list}
+            dataSource={data1.list}
             handleClickItem={this.setModalVisible}
           />
         </View>
@@ -58,11 +64,11 @@ export default class Menu extends React.Component {
         <Popup
           visible={modalVisible}
           hideModal={this.setModelDisplay}
-          price={price}
+          priceReal={price}
           title={title}
           img={img}
           description={description}
-          imgCart={imgCart}
+          id={id}
         />
       </View>
     );

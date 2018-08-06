@@ -3,9 +3,28 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   overlay: {
     position: 'absolute',
-    top: 150,
-    left: 20,
-    right: 20,
+    top: 120,
+    left: 0,
+    right: 0,
+    paddingVertical: 30,
+    paddingHorizontal: 20,
+  },
+
+  wrapPin: {
+    position: 'absolute',
+    top: 11,
+    left: 0,
+    right: 0,
+    zIndex: 10,
+    display: 'flex',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  pin: {
+    width: 36,
+    height: 36,
   },
 
   wrappForm: {

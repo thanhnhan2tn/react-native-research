@@ -2,34 +2,33 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   wrapFeed: {
+    flex: 1,
     backgroundColor: '#d7ccc8',
-    marginVertical: 10,
     padding: 10,
-    height: '100%',
+    marginTop: 10,
   },
 
   wrapComment: {
-    display: 'flex',
+    flex: 1,
+    backgroundColor: 'white',
     flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'space-between',
     margin: 5,
     borderRadius: 10,
-    backgroundColor: 'white',
-    flex: 1,
-    alignItems: 'center',
     minHeight: 60,
   },
 
   img: {
+    flex: 1,
     width: 20,
     height: 20,
-    flex: 1,
     marginRight: 10,
   },
 
   content: {
-    fontSize: 12,
     flex: 8,
+    fontSize: 12,
     padding: 10,
   },
 });

@@ -6,12 +6,24 @@ import assets from 'config/assets';
 // Data
 import data from 'data/listStoreAtHome';
 // Component
+import Header from 'components/Header';
 import ListFood from './ListFood';
 import Location from './Location';
 // Style
+
 import styles from './styles';
 
 export default class HomeScreen extends React.Component {
+  static navigationOptions = {
+    header: ({ navigation }) =>
+      (<Header
+        isSearch={false}
+        isBack={false}
+        onMenu={() => navigation.navigate('modal')}
+        onToCart={() => navigation.navigate('modal')}
+      />),
+  };
+
   static propTypes = {
     navigation: PropTypes.any,
   };
@@ -19,13 +31,14 @@ export default class HomeScreen extends React.Component {
   static defaultProps = {
     navigation: {},
   };
+
   openScreen = (store) => {
     this.props.navigation.navigate('detail', { store });
   };
+
   openScreenSearch = (location) => {
     this.props.navigation.navigate('search', { location });
   };
-
   render() {
     return (
       <ImageBackground

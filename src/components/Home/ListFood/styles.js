@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
   title: {
     paddingBottom: 10,
     fontSize: 16,
+    color: '#505050',
   },
 });
 export default styles;

@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     padding: 7,
     fontSize: 12,
     paddingLeft: 10,
+    color: '#505050',
   },
   container: {
     flex: 1,

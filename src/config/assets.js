@@ -17,6 +17,8 @@ import clock from 'assets/images/clock.png';
 import cartDetail from 'assets/images/cart-detail.png';
 import bannerDetail from 'assets/images/banner-detail.jpg';
 import info from 'assets/images/info.png';
+import leftIcon from 'assets/images/left.png';
+import pin from 'assets/images/pin.png';
 
 export default {
   menu,
@@ -38,4 +40,6 @@ export default {
   cartDetail,
   bannerDetail,
   info,
+  leftIcon,
+  pin,
 };

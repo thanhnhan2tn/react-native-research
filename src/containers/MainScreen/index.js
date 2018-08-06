@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import PropTypes from 'prop-types';
 import assets from 'config/assets';
 import data from 'data/listMainScreen';
+// component
 import ListItem from './components/ListItem';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -13,20 +14,21 @@ export default class MainScreen extends React.Component {
   };
 
   static defaultProps = {
-    navigation: {},
+    navigation: null,
   };
+
   openScreen = (id, store) => {
-    this.props.navigation.navigate('detail', {
-      itemId: id,
-      store,
-    });
+    this.props.navigation.navigate('detail', { id, store });
   };
 
   render() {
     return (
       <View style={{
- flex: 1, display: 'flex', flexDirection: 'column', marginTop: 65,
-}}
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        marginTop: 65,
+        }}
       >
         <Header />
         <ListItem

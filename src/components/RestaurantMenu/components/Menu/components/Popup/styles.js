@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   banner: {
     width: '100%',
     height: 160,
-    backgroundColor: '#fff3e0',
+    backgroundColor: '#d7ccc8',
   },
   imgBanner: {
     width: '70%',
@@ -80,8 +80,19 @@ const styles = StyleSheet.create({
     width: 20,
   },
 
+  imgCart: {
+    height: 15,
+    width: 15,
+    margin: 5,
+  },
+
   textPadding: {
     paddingRight: 10,
+  },
+
+  textNumber: {
+    color: 'black',
+    fontSize: 13,
   },
 });
 export default styles;

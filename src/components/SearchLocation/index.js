@@ -13,7 +13,7 @@ import styles from './styles';
 
 export default class SearchLocation extends React.Component {
   static navigationOptions = {
-    header: ({ navigation }) => <Header isSearch={true} onBack={() => navigation.goBack(null)} />,
+    header: ({ navigation }) => <Header isSearch={true} isBack={false} onCancel={() => navigation.goBack(null)} />,
   };
 
   static propTypes = {
@@ -21,7 +21,7 @@ export default class SearchLocation extends React.Component {
   };
 
   static defaultProps = {
-    navigation: {},
+    navigation: null,
   };
 
   state = {

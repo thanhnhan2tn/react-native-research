@@ -6,42 +6,44 @@ import {
   TouchableHighlight,
 } from 'react-native';
 import PropTypes from 'prop-types';
+import assets from 'config/assets';
 import styles from './styles';
 
 export default class Item extends Component {
   static propTypes = {
     title: PropTypes.string,
     img: PropTypes.number,
-    imgCart: PropTypes.number,
-    price: PropTypes.number,
+    price: PropTypes.any,
     description: PropTypes.string,
     handleClick: PropTypes.func,
+    id: PropTypes.any,
   };
 
   static defaultProps = {
     title: '',
     img: null,
-    imgCart: null,
-    price: 0,
+    price: null,
     description: '',
     handleClick: () => {},
+    id: null,
   };
 
   handleClick = () => {
     const {
-      handleClick, price, title, img, description, imgCart,
+      handleClick, id,
     } = this.props;
-    handleClick(price, title, img, description, imgCart);
+    handleClick(id);
   };
 
   render() {
     const {
       title,
       img,
-      imgCart,
       price,
       description,
+      id,
     } = this.props;
+
     return (
       <View style={styles.products}>
         <TouchableHighlight
@@ -56,14 +58,14 @@ export default class Item extends Component {
         <View style={styles.productInfor}>
 
           <View style={styles.wrapProductTitle}>
-            <Text style={styles.productIitle}>{title}</Text>
+            <Text style={styles.productIitle}>{title} - {id}</Text>
           </View>
 
           <Text style={styles.textSmall}>{description}</Text>
         </View>
         <View style={styles.addCart}>
           <Text style={[styles.textRed, styles.textPrice]}>{price} $</Text>
-          <Image source={imgCart} style={styles.imgSmall} />
+          <Image source={assets.cart} style={styles.imgSmall} />
         </View>
       </View>
     );

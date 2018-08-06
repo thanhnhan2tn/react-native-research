@@ -25,6 +25,23 @@ const styles = StyleSheet.create({
     height: 25,
   },
 
+  iconBack: {
+    width: 10,
+    height: 20,
+    margin: 10,
+  },
+
+  wrapBack: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+
+  textBack: {
+    paddingLeft: 0,
+    paddingRight: 10,
+    paddingVertical: 10,
+  },
+
   title: {
     display: 'flex',
     flexDirection: 'row',

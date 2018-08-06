@@ -40,7 +40,7 @@ export default class Item extends Component {
           />
         </TouchableHighlight>
         <View>
-          <Text>{storeName}</Text>
+          <Text style={styles.textName}>{storeName}</Text>
         </View>
       </View>
     );
