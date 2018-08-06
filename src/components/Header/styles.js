@@ -14,10 +14,18 @@ const styles = StyleSheet.create({
     height: 40,
   },
 
-  iconHeader: {
+  icon: {
     width: 20,
     height: 20,
-    margin: 10,
+  },
+
+  iconMenu: {
+    marginLeft: 10,
+  },
+
+  iconCart: {
+    marginRight: 10,
+    marginLeft: 5,
   },
 
   iconLogo: {
@@ -34,6 +42,11 @@ const styles = StyleSheet.create({
   wrapBack: {
     display: 'flex',
     flexDirection: 'row',
+  },
+
+  wrapCart: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 
   textBack: {
@@ -62,6 +75,21 @@ const styles = StyleSheet.create({
 
   textRight: {
     paddingRight: 10,
+  },
+
+  wrapNumberCart: {
+    width: 14,
+    height: 14,
+    borderRadius: 7,
+    backgroundColor: 'white',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  textCart: {
+    color: 'red',
+    fontSize: 8,
   },
 
   hidden: {

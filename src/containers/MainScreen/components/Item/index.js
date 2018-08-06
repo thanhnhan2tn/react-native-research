@@ -48,7 +48,10 @@ export default class Item extends Component {
     } = this.props;
     return (
       <View style={styles.products}>
-        <TouchableHighlight onPress={this.handleClick}>
+        <TouchableHighlight
+          onPress={this.handleClick}
+          underlayColor="transparent"
+        >
           <Image
             source={img}
             style={styles.productImg}

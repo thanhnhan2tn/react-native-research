@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { View, Text, ImageBackground, TextInput, TouchableHighlight } from 'react-native';
+import { View, Text, ImageBackground, TextInput, TouchableHighlight, FlatList } from 'react-native';
 import PropTypes from 'prop-types';
 // data
 import data from 'data/listAvailable';
+import dataSource from 'data/listAddress';
 // asset
 import assets from 'config/assets';
 // component
@@ -28,15 +29,15 @@ export default class SearchLocation extends React.Component {
     text: '',
   }
 
-  handleClick = () => {
-    this.props.navigation.navigate('main', {
-      location: this.state.text,
+  handleClick = (location, address) => {
+    const { navigation } = this.props;
+    navigation.navigate('main', {
+      location,
+      address,
     });
   }
 
   render() {
-    // const { navigation } = this.props;
-    // const location = navigation.getParam('location', '');
     return (
       <View style={styles.wrapSearch}>
         <ImageBackground
@@ -49,6 +50,7 @@ export default class SearchLocation extends React.Component {
             placeholder="Your address"
             underlineColorAndroid="transparent"
             onChangeText={text => this.setState({ text })}
+            value={this.state.text}
           />
         </ImageBackground>
 
@@ -56,20 +58,23 @@ export default class SearchLocation extends React.Component {
           <ListItem
             dataSource={data}
           />
-          <TouchableHighlight
-            onPress={this.handleClick}
-            style={styles.item}
-          >
-            <Text>Low Green str.21-45, London</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            onPress={this.handleClick}
-            style={styles.item}
-          >
-            <Text>Manhattan str. 204-10 London</Text>
-          </TouchableHighlight>
+          <FlatList
+            data={dataSource}
+            keyExtractor={item => item.key}
+            renderItem={({ item }) =>
+              (
+                <TouchableHighlight
+                  underlayColor="transparent"
+                  onPress={() => this.handleClick(item.location, item.address)}
+                  style={styles.item}
+                  // key={item.key}
+                >
+                  <Text style={styles.textAddress}>{item.address}, {item.location}</Text>
+                </TouchableHighlight>
+              )
+            }
+          />
         </View>
-
       </View>
     );
   }

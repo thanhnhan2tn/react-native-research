@@ -11,20 +11,18 @@ import styles from './styles';
 export default class Item extends Component {
   static propTypes = {
     handleClick: PropTypes.func,
-    store: PropTypes.string,
     img: PropTypes.number,
     storeName: PropTypes.string,
   };
 
   static defaultProps = {
     handleClick: () => {},
-    store: '',
     img: null,
     storeName: '',
   };
   handleClick = () => {
-    const { handleClick, store } = this.props;
-    handleClick(store);
+    const { handleClick, storeName } = this.props;
+    handleClick(storeName);
   }
   render() {
     const { img, storeName } = this.props;

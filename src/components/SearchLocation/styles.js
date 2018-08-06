@@ -29,9 +29,13 @@ const styles = StyleSheet.create({
   },
 
   item: {
-    paddingVertical: 10,
     borderBottomWidth: 1,
     borderBottomColor: '#eeeeee',
+  },
+
+  textAddress: {
+    fontSize: 12,
+    paddingVertical: 10,
   },
 });
 export default styles;

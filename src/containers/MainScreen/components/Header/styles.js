@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     padding: 20,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'orange',
+    backgroundColor: '#eeeeee',
     height: 50,
   },
 
@@ -18,6 +18,15 @@ const styles = StyleSheet.create({
   textCenter: {
     flexDirection: 'column',
     alignItems: 'center',
+  },
+
+  title: {
+    fontSize: 11,
+    color: 'red',
+  },
+  info: {
+    color: 'black',
+    fontSize: 13,
   },
 });
 export default styles;

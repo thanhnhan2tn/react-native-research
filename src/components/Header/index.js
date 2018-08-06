@@ -10,8 +10,9 @@ export default class Header extends Component {
     isBack: PropTypes.bool,
     onBack: PropTypes.func,
     onCancel: PropTypes.func,
-    onToCart: PropTypes.func,
-    onMenu: PropTypes.func,
+    navigation: PropTypes.any,
+    // onToCart: PropTypes.func,
+    // onMenu: PropTypes.func,
   };
 
   static defaultProps = {
@@ -19,15 +20,20 @@ export default class Header extends Component {
     isBack: false,
     onBack: () => {},
     onCancel: () => {},
-    onMenu: () => {},
-    onToCart: () => {},
+    navigation: null,
+    // onMenu: () => {},
+    // onToCart: () => {},
   };
+
+  state={
+    numberCart: 0,
+  }
 
   onPressLeft = () => {
     const { isSearch, isBack } = this.props;
     if (!isSearch && !isBack) {
-      const { onMenu } = this.props;
-      onMenu();
+      const { navigation } = this.props;
+      navigation.navigate('modal');
     } else if (isSearch && !isBack) {
       const { onCancel } = this.props;
       onCancel();
@@ -37,12 +43,13 @@ export default class Header extends Component {
     }
   }
   onPressRight = () => {
-    const { onToCart } = this.props;
-    onToCart();
+    const { navigation } = this.props;
+    navigation.navigate('modal');
   }
 
   render() {
     const { isSearch, isBack } = this.props;
+    const { numberCart } = this.state;
     return (
       <View style={styles.headerContainer}>
         {/* Home */}
@@ -54,7 +61,7 @@ export default class Header extends Component {
             {/* Home */}
             <Image
               source={assets.menu}
-              style={[styles.iconHeader, (!isSearch && !isBack) ? styles.blockContainer : styles.hidden]}
+              style={[styles.icon, styles.iconMenu, (!isSearch && !isBack) ? styles.blockContainer : styles.hidden]}
             />
             {/* Search */}
             <Text style={[styles.textWhite, styles.textLeft, (isSearch && !isBack) ? styles.blockContainer : styles.hidden]}>Cancel</Text>
@@ -81,18 +88,18 @@ export default class Header extends Component {
           onPress={this.onPressRight}
         >
           <View>
-            {/* Home */}
-            <Image
-              source={assets.shoppingCart}
-              style={[styles.iconHeader, (!isSearch && !isBack) ? styles.blockContainer : styles.hidden]}
-            />
             {/* Search */}
             <Text style={[styles.textWhite, styles.textRight, (isSearch && !isBack) ? styles.blockContainer : styles.hidden]}>Done</Text>
-            {/* Detail */}
-            <Image
-              source={assets.shoppingCart}
-              style={[styles.iconHeader, (!isSearch && isBack) ? styles.blockContainer : styles.hidden]}
-            />
+            {/* Detail, Home */}
+            <View style={[styles.wrapCart, (!isSearch && isBack) || (!isSearch && !isBack) ? styles.blockContainer : styles.hidden]}>
+              <View style={[styles.wrapNumberCart, (numberCart > 0) ? styles.blockContainer : styles.hidden]}>
+                <Text style={styles.textCart}>{numberCart}</Text>
+              </View>
+              <Image
+                source={assets.shoppingCart}
+                style={[styles.icon, styles.iconCart]}
+              />
+            </View>
           </View>
         </TouchableHighlight>
       </View>

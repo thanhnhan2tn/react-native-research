@@ -22,6 +22,9 @@ export default class MainScreen extends React.Component {
   };
 
   render() {
+    const { navigation } = this.props;
+    const location = navigation.getParam('location', '');
+    const address = navigation.getParam('address', '');
     return (
       <View style={{
         flex: 1,
@@ -30,7 +33,10 @@ export default class MainScreen extends React.Component {
         marginTop: 65,
         }}
       >
-        <Header />
+        <Header
+          location={location}
+          address={address}
+        />
         <ListItem
           handleClickItem={this.openScreen}
           dataSource={data.list}

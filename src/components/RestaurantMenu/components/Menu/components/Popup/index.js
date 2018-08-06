@@ -25,7 +25,7 @@ export default class Popup extends Component {
 
   state = {
     number: 1,
-    price: 0,
+    price: this.props.priceReal,
   }
 
   onDecrease = () => {
@@ -59,7 +59,6 @@ export default class Popup extends Component {
   }
 
   render() {
-    this.setState({ price: this.props.priceReal });
     const {
       title, img, description, visible,
     } = this.props;

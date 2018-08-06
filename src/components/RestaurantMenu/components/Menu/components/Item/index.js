@@ -58,7 +58,7 @@ export default class Item extends Component {
         <View style={styles.productInfor}>
 
           <View style={styles.wrapProductTitle}>
-            <Text style={styles.productIitle}>{title} - {id}</Text>
+            <Text style={styles.productIitle} id={id}>{title}</Text>
           </View>
 
           <Text style={styles.textSmall}>{description}</Text>
