@@ -1,43 +1,53 @@
 import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
+export default StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
   },
 
-  tabsContainer: {
+  tabView: {
     flexDirection: 'row',
     width: '94%',
-    borderColor: 'rgba(200,0,0,1)',
-    borderWidth: 1,
     alignSelf: 'center',
+    borderWidth: 1,
+    borderColor: 'red',
+    borderRadius: 8,
   },
 
   tabContainer: {
     flex: 1,
-    alignSelf: 'center',
-    borderWidth: 1,
-    borderColor: 'rgba(200,0,0,1)',
+  },
+
+  tabBorderRight: {
+    borderRightWidth: 1,
+    borderRightColor: 'red',
+  },
+
+  tabRadiusLeft: {
+    borderBottomLeftRadius: 5,
+    borderTopLeftRadius: 5,
+  },
+
+  tabRadiusRight: {
+    borderTopRightRadius: 5,
+    borderBottomRightRadius: 5,
   },
 
   tabActive: {
-    backgroundColor: 'rgba(200,0,0,1)',
+    backgroundColor: 'red',
+  },
+
+  text: {
+    color: 'red',
+    paddingVertical: 10,
+    textAlign: 'center',
   },
 
   textActive: {
     color: 'white',
   },
 
-  tabText: {
-    color: 'red',
-    textAlign: 'center',
-    padding: 10,
-    fontSize: 13,
-  },
-
-  contentContainer: {
+  content: {
     flex: 1,
   },
 });
-export default styles;

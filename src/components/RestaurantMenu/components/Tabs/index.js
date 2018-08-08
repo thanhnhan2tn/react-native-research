@@ -1,40 +1,53 @@
-import React, { Component } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import React from 'react';
+import {
+  View,
+  TouchableHighlight,
+  Text,
+} from 'react-native';
+import PropTypes from 'prop-types';
 import styles from './styles';
 
-export default class Tabs extends Component {
-  state = {
+export default class Tabs extends React.Component {
+  static propTypes = {
+    children: PropTypes.array,
+  };
+
+  static defaultProps = {
+    children: {},
+  };
+  state={
     activeTab: 0,
   }
-
-  render({ children } = this.props) {
+  render() {
+    const { children } = this.props;
+    const { activeTab } = this.state;
     return (
       <View style={styles.container}>
-        <View style={styles.tabsContainer}>
-          {children.map(({ props: { title } }, index) =>
+        <View style={styles.tabView}>
+          { children.map((items, index) =>
             (
-              <TouchableOpacity
+              <TouchableHighlight
+                key={items.props.title}
+                onPress={() => this.setState({ activeTab: index })}
                 style={[
                   styles.tabContainer,
-                  index === this.state.activeTab ? styles.tabActive : [],
+                  index === activeTab ? styles.tabActive : [],
+                  index !== 2 ? styles.tabBorderRight : [],
+                  (index === 0 && activeTab === 0) ? styles.tabRadiusLeft : [],
+                  (index === 2 && activeTab === 2) ? styles.tabRadiusRight : [],
                 ]}
-                // key={index}
-                onPress={() => this.setState({ activeTab: index })}
               >
-                <Text
-                  style={[
-                    styles.tabText,
-                    index === this.state.activeTab ? styles.textActive : [],
+                <Text style={[
+                    styles.text,
+                    index === activeTab ? styles.textActive : [],
                   ]}
                 >
-                  {title}
+                  {items.props.title}
                 </Text>
-              </TouchableOpacity>
+              </TouchableHighlight>
             ))}
         </View>
-        <View style={styles.contentContainer}>
-          {children[this.state.activeTab]}
-        </View>
+        <View style={styles.content}>{children[this.state.activeTab]}</View>
       </View>
     );
   }

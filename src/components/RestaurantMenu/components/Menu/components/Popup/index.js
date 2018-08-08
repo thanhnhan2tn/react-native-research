@@ -11,7 +11,7 @@ export default class Popup extends Component {
     description: PropTypes.any,
     visible: PropTypes.bool,
     hideModal: PropTypes.func,
-    priceReal: PropTypes.any,
+    priceInital: PropTypes.any,
   };
 
   static defaultProps = {
@@ -19,42 +19,43 @@ export default class Popup extends Component {
     img: null,
     description: '',
     visible: false,
-    priceReal: 0,
+    priceInital: 0,
     hideModal: () => {},
   };
 
   state = {
     number: 1,
-    price: this.props.priceReal,
+    price: this.props.priceInital,
   }
 
   onDecrease = () => {
     const { number } = this.state;
-    const { priceReal } = this.props;
+    const { priceInital } = this.props;
 
     if (number <= 1) {
       this.setState({ number: 1 });
-      this.setState({ price: priceReal });
+      this.setState({ price: priceInital });
     } else {
       const newNumber = this.state.number - 1;
       this.setState({
         number: newNumber,
-        price: (priceReal * newNumber).toFixed(2),
+        price: (priceInital * newNumber).toFixed(2),
       });
     }
   }
 
   onIncrease = () => {
-    const { priceReal } = this.props;
+    const { priceInital } = this.props;
     const newNumber = this.state.number + 1;
     this.setState({
       number: newNumber,
-      price: (priceReal * newNumber).toFixed(2),
+      price: (priceInital * newNumber).toFixed(2),
     });
   }
 
   hideModal = () => {
-    const { hideModal, visible } = this.props;
+    const { hideModal, visible, priceInital } = this.props;
+    this.setState({ price: priceInital, number: 1 });
     hideModal(!visible);
   }
 

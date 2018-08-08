@@ -28,14 +28,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
 
-  item: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#eeeeee',
-  },
+  // item: {
+  //   borderBottomWidth: 1,
+  //   borderBottomColor: '#eeeeee',
+  // },
 
-  textAddress: {
-    fontSize: 12,
-    paddingVertical: 10,
-  },
+  // textAddress: {
+  //   fontSize: 12,
+  //   paddingVertical: 10,
+  // },
 });
 export default styles;

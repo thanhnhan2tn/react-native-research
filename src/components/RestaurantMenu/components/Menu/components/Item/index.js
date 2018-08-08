@@ -7,43 +7,48 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import assets from 'config/assets';
+import Popup from '../Popup';
 import styles from './styles';
 
 export default class Item extends Component {
   static propTypes = {
     title: PropTypes.string,
     img: PropTypes.number,
-    price: PropTypes.any,
+    priceInital: PropTypes.any,
     description: PropTypes.string,
-    handleClick: PropTypes.func,
     id: PropTypes.any,
   };
 
   static defaultProps = {
     title: '',
     img: null,
-    price: null,
+    priceInital: null,
     description: '',
-    handleClick: () => {},
     id: null,
   };
 
+  state = {
+    modalVisible: false,
+  };
+
+  setModelDisplay = (notVisible) => {
+    this.setState({ modalVisible: notVisible });
+  }
+
   handleClick = () => {
-    const {
-      handleClick, id,
-    } = this.props;
-    handleClick(id);
+    this.setState({ modalVisible: true });
   };
 
   render() {
     const {
       title,
       img,
-      price,
+      priceInital,
       description,
       id,
     } = this.props;
 
+    const { modalVisible } = this.state;
     return (
       <View style={styles.products}>
         <TouchableHighlight
@@ -64,10 +69,20 @@ export default class Item extends Component {
           <Text style={styles.textSmall}>{description}</Text>
         </View>
         <View style={styles.addCart}>
-          <Text style={[styles.textRed, styles.textPrice]}>{price} $</Text>
+          <Text style={[styles.textRed, styles.textPrice]}>{priceInital} $</Text>
           <Image source={assets.cart} style={styles.imgSmall} />
         </View>
+        <Popup
+          visible={modalVisible}
+          hideModal={this.setModelDisplay}
+          title={title}
+          img={img}
+          description={description}
+          id={id}
+          priceInital={priceInital}
+        />
       </View>
     );
   }
 }
+

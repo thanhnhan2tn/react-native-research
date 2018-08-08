@@ -20,6 +20,11 @@ import info from 'assets/images/info.png';
 import leftIcon from 'assets/images/left.png';
 import pin from 'assets/images/pin.png';
 
+import strawberry from 'assets/images/strawberry.jpg';
+import pineapplejuice from 'assets/images/pineapplejuice.jpg';
+import cupcake from 'assets/images/cupcake.jpg';
+import hotdog from 'assets/images/hot-dog.jpg';
+
 export default {
   menu,
   shoppingCart,
@@ -42,4 +47,8 @@ export default {
   info,
   leftIcon,
   pin,
+  strawberry,
+  pineapplejuice,
+  cupcake,
+  hotdog,
 };

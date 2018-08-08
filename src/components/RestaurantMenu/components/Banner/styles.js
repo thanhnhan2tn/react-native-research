@@ -8,11 +8,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingTop: 60,
     paddingBottom: 10,
+    paddingHorizontal: 10,
   },
 
   white: {
     color: 'white',
-    padding: 10,
   },
   textBig: {
     fontSize: 22,

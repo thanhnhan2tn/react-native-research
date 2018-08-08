@@ -21,7 +21,7 @@ export default class ListItem extends PureComponent {
         keyExtractor={item => item.id}
         renderItem={({ item }) =>
           (<Item
-            idItem={item.id}
+            id={item.id}
             store={item.location}
             handleClick={handleClickItem}
             location={item.location}

@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
   products: {
     flex: 1,
     flexDirection: 'row',
-    padding: 8,
+    padding: 10,
     borderBottomWidth: 1,
     borderBottomColor: '#eeeeee',
   },
@@ -12,8 +12,6 @@ const styles = StyleSheet.create({
   productImg: {
     width: 50,
     height: 50,
-    borderWidth: 1,
-    borderColor: 'grey',
   },
 
   productInfor: {

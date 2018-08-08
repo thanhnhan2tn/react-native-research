@@ -27,7 +27,7 @@ export default class ListItem extends PureComponent {
               description={item.description}
               img={item.img}
               imgCart={item.imgCart}
-              price={item.price}
+              priceInital={item.price}
               handleClick={handleClickItem}
               id={item.id}
             />)

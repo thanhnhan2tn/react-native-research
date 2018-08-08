@@ -10,9 +10,8 @@ export default class Header extends Component {
     isBack: PropTypes.bool,
     onBack: PropTypes.func,
     onCancel: PropTypes.func,
-    navigation: PropTypes.any,
-    // onToCart: PropTypes.func,
-    // onMenu: PropTypes.func,
+    onToCart: PropTypes.func,
+    onMenu: PropTypes.func,
   };
 
   static defaultProps = {
@@ -20,9 +19,8 @@ export default class Header extends Component {
     isBack: false,
     onBack: () => {},
     onCancel: () => {},
-    navigation: null,
-    // onMenu: () => {},
-    // onToCart: () => {},
+    onMenu: () => {},
+    onToCart: () => {},
   };
 
   state={
@@ -32,8 +30,8 @@ export default class Header extends Component {
   onPressLeft = () => {
     const { isSearch, isBack } = this.props;
     if (!isSearch && !isBack) {
-      const { navigation } = this.props;
-      navigation.navigate('modal');
+      const { onMenu } = this.props;
+      onMenu();
     } else if (isSearch && !isBack) {
       const { onCancel } = this.props;
       onCancel();
@@ -43,8 +41,8 @@ export default class Header extends Component {
     }
   }
   onPressRight = () => {
-    const { navigation } = this.props;
-    navigation.navigate('modal');
+    const { onToCart } = this.props;
+    onToCart();
   }
 
   render() {

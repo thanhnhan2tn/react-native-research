@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
+export default StyleSheet.create({
   header_location: {
     justifyContent: 'space-between',
     padding: 20,
@@ -29,4 +29,3 @@ const styles = StyleSheet.create({
     fontSize: 13,
   },
 });
-export default styles;

@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import assets from 'config/assets';
 import styles from './styles';
 
-export default class Header extends PureComponent {
+export default class HeaderMain extends PureComponent {
   static propTypes = {
     location: PropTypes.string,
     address: PropTypes.string,

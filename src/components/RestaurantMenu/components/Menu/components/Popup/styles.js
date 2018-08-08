@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   banner: {
     width: '100%',
     height: 160,
-    backgroundColor: '#d7ccc8',
+    backgroundColor: '#f2f2f2',
   },
   imgBanner: {
     width: '70%',

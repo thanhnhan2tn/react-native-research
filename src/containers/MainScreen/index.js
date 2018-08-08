@@ -4,11 +4,19 @@ import PropTypes from 'prop-types';
 import assets from 'config/assets';
 import data from 'data/listMainScreen';
 // component
+import Header from 'components/Header';
 import ListItem from './components/ListItem';
-import Header from './components/Header';
+import HeaderMain from './components/HeaderMain';
 import Footer from './components/Footer';
 
 export default class MainScreen extends React.Component {
+  static navigationOptions = {
+    header: ({ navigation }) =>
+      (<Header
+        onMenu={() => navigation.navigate('modal')}
+        onToCart={() => navigation.navigate('modal')}
+      />),
+  };
   static propTypes = {
     navigation: PropTypes.any,
   };
@@ -33,7 +41,7 @@ export default class MainScreen extends React.Component {
         marginTop: 65,
         }}
       >
-        <Header
+        <HeaderMain
           location={location}
           address={address}
         />

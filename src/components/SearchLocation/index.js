@@ -1,20 +1,32 @@
 import * as React from 'react';
-import { View, Text, ImageBackground, TextInput, TouchableHighlight, FlatList } from 'react-native';
+import {
+  View,
+  ImageBackground,
+  TextInput,
+  FlatList,
+} from 'react-native';
+
 import PropTypes from 'prop-types';
 // data
 import data from 'data/listAvailable';
-import dataSource from 'data/listAddress';
+import dataLocation from 'data/listAddress';
 // asset
 import assets from 'config/assets';
 // component
 import Header from 'components/Header';
 import ListItem from './components/ListItem';
+import AddressItem from './components/AddressItem';
 // styles
 import styles from './styles';
 
 export default class SearchLocation extends React.Component {
   static navigationOptions = {
-    header: ({ navigation }) => <Header isSearch={true} isBack={false} onCancel={() => navigation.goBack(null)} />,
+    header: ({ navigation }) =>
+      (<Header
+        isSearch={true}
+        isBack={false}
+        onCancel={() => navigation.goBack(null)}
+      />),
   };
 
   static propTypes = {
@@ -29,13 +41,9 @@ export default class SearchLocation extends React.Component {
     text: '',
   }
 
-  handleClick = (location, address) => {
-    const { navigation } = this.props;
-    navigation.navigate('main', {
-      location,
-      address,
-    });
-  }
+  openScreen = (address, location) => {
+    this.props.navigation.navigate('main', { address, location });
+  };
 
   render() {
     return (
@@ -46,7 +54,6 @@ export default class SearchLocation extends React.Component {
         >
           <TextInput
             style={styles.wrapInput}
-            autoFocus={true}
             placeholder="Your address"
             underlineColorAndroid="transparent"
             onChangeText={text => this.setState({ text })}
@@ -59,19 +66,14 @@ export default class SearchLocation extends React.Component {
             dataSource={data}
           />
           <FlatList
-            data={dataSource}
+            data={dataLocation}
             keyExtractor={item => item.key}
             renderItem={({ item }) =>
-              (
-                <TouchableHighlight
-                  underlayColor="transparent"
-                  onPress={() => this.handleClick(item.location, item.address)}
-                  style={styles.item}
-                  // key={item.key}
-                >
-                  <Text style={styles.textAddress}>{item.address}, {item.location}</Text>
-                </TouchableHighlight>
-              )
+              (<AddressItem
+                handleClick={this.openScreen}
+                address={item.address}
+                location={item.location}
+              />)
             }
           />
         </View>
