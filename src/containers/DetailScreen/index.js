@@ -25,11 +25,11 @@ export default class DetailsScreen extends PureComponent {
 
   render() {
     const { navigation } = this.props;
-    const store = navigation.getParam('store', '');
+    const name = navigation.getParam('name', '');
     return (
       <View style={{ flex: 1 }}>
         <RestaurantMenu
-          store={store}
+          name={name}
           description="Healthy food"
         />
       </View>

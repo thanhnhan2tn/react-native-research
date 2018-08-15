@@ -62,9 +62,13 @@ export default class Item extends Component {
         </TouchableHighlight>
         <View style={styles.productInfor}>
 
-          <View style={styles.wrapProductTitle}>
+          <TouchableHighlight
+            style={styles.wrapProductTitle}
+            underlayColor="transparent"
+            onPress={this.handleClick}
+          >
             <Text style={styles.productIitle} id={id}>{title}</Text>
-          </View>
+          </TouchableHighlight>
 
           <Text style={styles.textSmall}>{description}</Text>
         </View>

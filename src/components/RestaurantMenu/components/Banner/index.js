@@ -5,19 +5,19 @@ import styles from './styles';
 
 export default class Banner extends PureComponent {
   static propTypes = {
-    store: PropTypes.string,
+    name: PropTypes.string,
     description: PropTypes.string,
   };
 
   static defaultProps = {
-    store: '',
+    name: '',
     description: '',
   };
   render() {
-    const { store, description } = this.props;
+    const { name, description } = this.props;
     return (
       <View style={styles.wrapBanner}>
-        <Text style={[styles.white, styles.textBig]}>{`${store}`.toUpperCase()}</Text>
+        <Text style={[styles.white, styles.textBig]}>{`${name}`.toUpperCase()}</Text>
         <Text style={styles.white}>{description}</Text>
       </View>
     );

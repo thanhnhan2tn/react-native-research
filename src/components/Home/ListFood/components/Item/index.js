@@ -12,20 +12,20 @@ export default class Item extends Component {
   static propTypes = {
     handleClick: PropTypes.func,
     img: PropTypes.number,
-    storeName: PropTypes.string,
+    name: PropTypes.string,
   };
 
   static defaultProps = {
     handleClick: () => {},
     img: null,
-    storeName: '',
+    name: '',
   };
   handleClick = () => {
-    const { handleClick, storeName } = this.props;
-    handleClick(storeName);
+    const { handleClick, name } = this.props;
+    handleClick(name);
   }
   render() {
-    const { img, storeName } = this.props;
+    const { img, name } = this.props;
     return (
       <View style={styles.wrapperItem}>
         <TouchableHighlight
@@ -37,9 +37,12 @@ export default class Item extends Component {
             style={styles.imgRecomend}
           />
         </TouchableHighlight>
-        <View>
-          <Text style={styles.textName}>{storeName}</Text>
-        </View>
+        <TouchableHighlight
+          underlayColor="transparent"
+          onPress={this.handleClick}
+        >
+          <Text style={styles.textName}>{name}</Text>
+        </TouchableHighlight>
       </View>
     );
   }

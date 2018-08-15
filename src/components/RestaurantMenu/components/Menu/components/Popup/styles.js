@@ -23,12 +23,12 @@ const styles = StyleSheet.create({
 
   banner: {
     width: '100%',
-    height: 160,
+    height: 200,
     backgroundColor: '#f2f2f2',
   },
   imgBanner: {
     width: '70%',
-    height: 160,
+    height: 200,
     alignSelf: 'center',
   },
 

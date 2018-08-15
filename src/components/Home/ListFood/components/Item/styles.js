@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   imgRecomend: {
     width: 90,
     height: 90,
-    borderColor: 'black',
+    borderColor: '#bfbfbf',
     borderWidth: 1,
   },
 

@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   wrapFeed: {
     flex: 1,
-    backgroundColor: '#d7ccc8',
+    backgroundColor: '#eeeeee',
     padding: 10,
     marginTop: 10,
   },

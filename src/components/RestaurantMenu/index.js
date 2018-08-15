@@ -16,16 +16,16 @@ import Tabs from './components/Tabs';
 
 export default class RestaurantMenu extends PureComponent {
   static propTypes = {
-    store: PropTypes.string,
+    name: PropTypes.string,
     description: PropTypes.string,
   };
 
   static defaultProps = {
-    store: '',
+    name: '',
     description: '',
   };
   render() {
-    const { store, description } = this.props;
+    const { name, description } = this.props;
     return (
       <ImageBackground
         source={assets.bannerDetail}
@@ -35,7 +35,7 @@ export default class RestaurantMenu extends PureComponent {
         <View style={styles.wrapOverlay}>
           <Banner
             style={styles.wrapBanner}
-            store={store}
+            name={name}
             description={description}
           />
           <View style={styles.wrapTabView}>

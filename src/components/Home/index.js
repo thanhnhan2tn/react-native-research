@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // image
 import assets from 'config/assets';
 // Data
-import data from 'data/listStoreAtHome';
+import data from 'data/listMainScreen';
 // Component
 import Header from 'components/Header';
 import ListFood from './ListFood';
@@ -32,8 +32,8 @@ export default class HomeScreen extends React.Component {
     navigation: {},
   };
 
-  openScreen = (store) => {
-    this.props.navigation.navigate('detail', { store });
+  openScreen = (name) => {
+    this.props.navigation.navigate('detail', { name });
   };
 
   openScreenSearch = (location) => {

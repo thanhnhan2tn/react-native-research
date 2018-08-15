@@ -9,13 +9,13 @@ const styles = StyleSheet.create({
   },
 
   wrapList: {
-    backgroundColor: '#d7ccc8',
+    backgroundColor: '#eeeeee',
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 10,
     paddingVertical: 7,
     borderBottomWidth: 1,
-    borderBottomColor: '#eeeeee',
+    borderBottomColor: '#e6e6e6',
   },
 
   textLeft: {

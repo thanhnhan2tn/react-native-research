@@ -11,7 +11,7 @@ import styles from './styles';
 
 export default class Item extends Component {
   static propTypes = {
-    location: PropTypes.string,
+    name: PropTypes.string,
     img: PropTypes.number,
     time: PropTypes.string,
     price: PropTypes.number,
@@ -19,11 +19,10 @@ export default class Item extends Component {
     transpot: PropTypes.string,
     handleClick: PropTypes.func,
     id: PropTypes.string,
-    store: PropTypes.string,
   };
 
   static defaultProps = {
-    location: '',
+    name: '',
     img: null,
     time: '',
     price: 0,
@@ -31,15 +30,14 @@ export default class Item extends Component {
     transpot: '',
     handleClick: () => {},
     id: '',
-    store: '',
   };
   handleClick = () => {
-    const { handleClick, id, store } = this.props;
-    handleClick(id, store);
+    const { handleClick, id, name } = this.props;
+    handleClick(id, name);
   }
   render() {
     const {
-      location,
+      name,
       img,
       time,
       price,
@@ -59,9 +57,13 @@ export default class Item extends Component {
         </TouchableHighlight>
         <View style={styles.productInfor}>
 
-          <View style={styles.wrapProductTitle}>
-            <Text style={styles.productTitle}>{location}</Text>
-          </View>
+          <TouchableHighlight
+            style={styles.wrapProductTitle}
+            onPress={this.handleClick}
+            underlayColor="transparent"
+          >
+            <Text style={styles.productTitle}>{name}</Text>
+          </TouchableHighlight>
 
           <Text style={styles.provider}>{providers}</Text>
 

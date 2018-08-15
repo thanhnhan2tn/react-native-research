@@ -22,9 +22,8 @@ export default class ListItem extends PureComponent {
         renderItem={({ item }) =>
           (<Item
             id={item.id}
-            store={item.location}
             handleClick={handleClickItem}
-            location={item.location}
+            name={item.name}
             img={item.img}
             time={item.time}
             price={item.price}

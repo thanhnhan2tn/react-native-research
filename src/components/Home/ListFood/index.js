@@ -34,8 +34,7 @@ export default class ListFood extends PureComponent {
               renderItem={({ item }) =>
                 (<Item
                   id={item.id}
-                  store={item.store}
-                  storeName={item.store}
+                  name={item.name}
                   handleClick={handleClickItem}
                   img={item.img}
                 />)

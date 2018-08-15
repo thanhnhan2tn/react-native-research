@@ -25,8 +25,8 @@ export default class MainScreen extends React.Component {
     navigation: null,
   };
 
-  openScreen = (id, store) => {
-    this.props.navigation.navigate('detail', { id, store });
+  openScreen = (id, name) => {
+    this.props.navigation.navigate('detail', { id, name });
   };
 
   render() {
