@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import colors from '../../styles/colors'
 export default StyleSheet.create({
   container: {
@@ -14,37 +14,45 @@ export default StyleSheet.create({
     marginBottom: 0,
   },
   locationContainer: {
-    margin:20,
+    margin: 20,
     marginTop: 150,
     backgroundColor: 'transparent',
     justifyContent: 'center',
   },
   pickerContainer: {
     flexDirection: 'row',
-    alignItems:'center'
+    alignItems: 'center'
   },
   picker: {
     width: 100,
-    backgroundColor:colors.white,
+    backgroundColor: colors.white,
   },
   icon: {
-    marginLeft: -30
+    ...Platform.select({
+      ios: {
+        
+      },
+      android: {
+        marginLeft: -30
+      }
+    })
+    
   },
   locationIcon: {
     alignSelf: 'center',
-    width:40,
+    width: 40,
     height: 40,
-    position:'absolute'
+    position: 'absolute'
   },
   iconContainer: {
-    backgroundColor:'transparent',
+    backgroundColor: 'transparent',
     height: 40
   },
   halfIconContainer1: {
     height: 20, backgroundColor: 'transparent'
   },
   halfIconContainer2: {
-    height: 20, backgroundColor: '#ffffff' 
+    height: 20, backgroundColor: '#ffffff'
   },
   textRecommend: {
     fontSize: 17,
@@ -52,7 +60,7 @@ export default StyleSheet.create({
   },
   buttonContainer: {
     marginTop: 10,
-    backgroundColor:'#FBBE00',
+    backgroundColor: '#FBBE00',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -63,5 +71,15 @@ export default StyleSheet.create({
   },
   list: {
     marginTop: 20
+  },
+  text: { 
+    marginLeft: 10, 
+    color: colors.gray, 
+    backgroundColor: '#ffffff' 
+  },
+  pickerIOS: {
+    margin: 10,
+    flexDirection: 'row',
+    alignItems: 'center'
   }
 });
