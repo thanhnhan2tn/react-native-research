@@ -1,38 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  View, Text, ImageBackground, Picker, TextInput, TouchableOpacity,
-  Image, FlatList, Animated, Easing, ScrollView, Platform
+  View, Text, ImageBackground, Picker, TouchableOpacity,
+  Image, FlatList, Animated, Easing, ScrollView, Platform,
 } from 'react-native';
 import { connect } from 'react-redux';
+import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 import { incrementAction } from '../../actions';
-import Line from '../../components/line'
+import Line from '../../components/line';
 import ImageItem from '../../components/ImageItem';
 import styles from './styles';
 import { selectCount } from './selectors';
 import assets from '../../config/assets';
-import { MOCKUP_LIST_RECOMMEND } from '../../utils/constants'
+import { MOCKUP_LIST_RECOMMEND } from '../../utils/constants';
 import Header from '../../components/Header';
-import Icon from 'react-native-vector-icons/dist/MaterialIcons';
-import colors from '../../styles/colors'
-import PickerIOS from '../../components/PickerIOS'
+import colors from '../../styles/colors';
+import PickerIOS from '../../components/PickerIOS';
+
 const marginRightValue = {
   inputRange: [0, 1],
-  outputRange: [-300, 0]
-}
+  outputRange: [-300, 0],
+};
 const marginLeftValue = {
   inputRange: [0, 1],
-  outputRange: [300, 0]
-}
+  outputRange: [300, 0],
+};
 const animTiming = {
   toValue: 1,
   duration: 400,
   easing: Easing.linear,
-}
+};
 class HomeScreen extends React.Component {
   static navigationOptions = {
     title: 'Home Screen',
-    header: ({ navigation }) => (
+    header: () => (
       <Header
         onPressLeft={() => { }}
         iconLeft={assets.menu}
@@ -47,91 +48,127 @@ class HomeScreen extends React.Component {
     animLocationContainer: new Animated.Value(0),
     animButtonContainer: new Animated.Value(0),
     animRecommendContainer: new Animated.Value(0),
-    modalVisible: true,
-    pickerData : [
+    pickerData: [
       {
         label: 'Paris',
-        value: 'paris'
+        value: 'paris',
       },
       {
         label: 'London',
-        value: 'london'
-      }
-    ]
+        value: 'london',
+      },
+    ],
   }
   componentDidMount = () => {
-    console.log('Component did mount')
     Animated.stagger(100, [
       Animated.timing(this.state.animLocationContainer, animTiming),
       Animated.timing(this.state.animButtonContainer, animTiming),
-      Animated.timing(this.state.animRecommendContainer, animTiming)
-    ]).start()
+      Animated.timing(this.state.animRecommendContainer, animTiming),
+    ]).start();
   };
 
   render() {
     const { navigation } = this.props;
-    const marginRightLocationContainer = this.state.animLocationContainer.interpolate(marginRightValue)
-    const marginLeftLocationContainer = this.state.animLocationContainer.interpolate(marginLeftValue)
-    const marginRightButtonContainer = this.state.animButtonContainer.interpolate(marginRightValue)
-    const marginLeftButtonContainer = this.state.animButtonContainer.interpolate(marginLeftValue)
-    const marginRightRecommendContainer = this.state.animRecommendContainer.interpolate(marginRightValue)
-    const marginLeftRecommendContainer = this.state.animRecommendContainer.interpolate(marginLeftValue)
+    const marginRightLocationContainer = this.state.animLocationContainer;
+    marginRightLocationContainer.interpolate(marginRightValue);
+    const marginLeftLocationContainer = this.state.animLocationContainer;
+    marginLeftLocationContainer.interpolate(marginLeftValue);
+    const marginRightButtonContainer = this.state.animButtonContainer.interpolate(marginRightValue);
+    const marginLeftButtonContainer = this.state.animButtonContainer.interpolate(marginLeftValue);
+    const marginRightRecommendContainer = this.state.animRecommendContainer;
+    marginRightRecommendContainer.interpolate(marginRightValue);
+    const marginLeftRecommendContainer = this.state.animRecommendContainer;
+    marginLeftRecommendContainer.interpolate(marginLeftValue);
     return (
 
       <ScrollView style={styles.container}>
-        <PickerIOS ref = {picker => {this.picker = picker}} style={{ flex: 1 }} pickerData = {this.state.pickerData}/>
+        <PickerIOS
+          ref={(picker) => { this.picker = picker; }}
+          style={{ flex: 1 }}
+          pickerData={this.state.pickerData}
+        />
         <ImageBackground
           style={styles.imageBackground}
-          source={assets.foodImage}>
-
+          source={assets.foodImage}
+        >
           <View style={styles.locationContainer}>
-            <Animated.View style={[styles.iconContainer, { marginLeft: marginLeftLocationContainer, marginRight: marginRightLocationContainer }]}>
+            <Animated.View
+              style={[styles.iconContainer, {
+                marginLeft: marginLeftLocationContainer,
+                marginRight: marginRightLocationContainer,
+              }]}
+            >
               <View style={styles.halfIconContainer1} />
               <View style={styles.halfIconContainer2} />
               <Image
                 style={styles.locationIcon}
-                source={assets.locationIcon} />
+                source={assets.locationIcon}
+              />
             </Animated.View>
-            <Animated.View style={{ marginLeft: marginLeftLocationContainer, marginRight: marginRightLocationContainer, backgroundColor: '#ffffff', paddingBottom: 40 }}>
+            <Animated.View style={{
+              marginLeft: marginLeftLocationContainer,
+              marginRight: marginRightLocationContainer,
+              backgroundColor: '#ffffff',
+              paddingBottom: 40,
+            }}
+            >
               {
-              Platform.OS === 'android' ?
-              <View style={styles.pickerContainer}>
-                  <Picker
-                    style={styles.picker}
-                    selectedValue={this.state.city}
-                    onValueChange={(itemValue, itemIndex) => this.setState({ city: itemValue })}>
-                    <Picker.Item label={this.state.pickerData[0].label} value={this.state.pickerData[0].value} />
-                    <Picker.Item label={this.state.pickerData[1].label} value={this.state.pickerData[1].value} />
-                  </Picker>
-                  <Icon name="expand-more" size={30} color={colors.black} style={styles.icon} />
-              </View> :
-              <View>
-                <TouchableOpacity style= {styles.pickerIOS} onPress = {() => {this.picker.toggleModal(true)}}>
-                  <Text>{this.state.pickerData[0].label}</Text>
-                  <Icon name="expand-more" size={30} color={colors.black} style={styles.icon} />
-                </TouchableOpacity>
-              </View>
+                Platform.OS === 'android' ?
+                  <View style={styles.pickerContainer}>
+                    <Picker
+                      style={styles.picker}
+                      selectedValue={this.state.city}
+                      onValueChange={itemValue => this.setState({ city: itemValue })}
+                    >
+                      <Picker.Item
+                        label={this.state.pickerData[0].label}
+                        value={this.state.pickerData[0].value}
+                      />
+                      <Picker.Item
+                        label={this.state.pickerData[1].label}
+                        value={this.state.pickerData[1].value}
+                      />
+                    </Picker>
+                    <Icon name="expand-more" size={30} color={colors.black} style={styles.icon} />
+                  </View> :
+                  <View>
+                    <TouchableOpacity
+                      style={styles.pickerIOS}
+                      onPress={() => { this.picker.toggleModal(true); }}
+                    >
+                      <Text>{this.state.pickerData[0].label}</Text>
+                      <Icon name="expand-more" size={30} color={colors.black} style={styles.icon} />
+                    </TouchableOpacity>
+                  </View>
               }
               <Line />
               <TouchableOpacity
                 onPress={() => {
-                  navigation.dispatch({ type: 'detail', text: 'Hello from Home' })
-                  console.log('Pressed')
-                }}>
-                <Text
-                  style={styles.text}>Your address
-                  </Text>
+                  navigation.dispatch({ type: 'detail', text: 'Hello from Home' });
+                }}
+              >
+                <Text style={styles.text}>Your address</Text>
               </TouchableOpacity>
 
             </Animated.View>
-            <Animated.View style={[{ marginLeft: marginLeftButtonContainer, marginRight: marginRightButtonContainer }, styles.buttonContainer]}>
+            <Animated.View style={[
+              {
+                marginLeft: marginLeftButtonContainer,
+                marginRight: marginRightButtonContainer,
+              }, styles.buttonContainer]}
+            >
               <TouchableOpacity>
                 <Text style={styles.buttonText}>Search food</Text>
               </TouchableOpacity>
             </Animated.View>
           </View>
         </ImageBackground>
-        <Animated.View style={[styles.recommendContainer, { marginLeft: marginLeftRecommendContainer, marginRight: marginRightRecommendContainer }]}>
+        <Animated.View
+          style={[styles.recommendContainer, {
+          marginLeft: marginLeftRecommendContainer,
+          marginRight: marginRightRecommendContainer,
+        }]}
+        >
           <Text style={styles.textRecommend}>We recommended</Text>
           <FlatList
             style={styles.list}
@@ -142,11 +179,10 @@ class HomeScreen extends React.Component {
             renderItem={({ item }) => (
               <ImageItem
                 source={item.image}
-                text={item.text} />
+                text={item.text}
+              />
             )}
-
           />
-
         </Animated.View>
       </ScrollView>
     );
@@ -155,18 +191,12 @@ class HomeScreen extends React.Component {
 
 HomeScreen.propTypes = {
   navigation: PropTypes.object,
-  incrementCounter: PropTypes.func,
-  count: PropTypes.number,
-  city: PropTypes.string
 };
 
 HomeScreen.defaultProps = {
   navigation: {
-    title: 'Test'
+    title: 'Test',
   },
-  incrementCounter: () => { },
-  count: 0,
-  city: 'London'
 };
 
 const mapStateToProps = state => ({

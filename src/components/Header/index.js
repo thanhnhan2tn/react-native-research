@@ -6,36 +6,33 @@ import {
   Image,
   TouchableOpacity,
   Animated,
-  Easing
+  Easing,
 } from 'react-native';
-
-import assets from '../../config/assets';
 import styles from './styles';
+
 const animTiming = {
   toValue: 1,
   duration: 500,
-  esing: Easing.linear
-}
+  esing: Easing.linear,
+};
 class CustomHeader extends React.Component {
-  handlePressLeft = () => {
-    const { onPressLeft } = this.props;
-
-    if (typeof onPressLeft === 'function') {
-      onPressLeft();
-    } else {
-      console.log('open drawer');
-    }
-  }
   state = {
     animButtonLeft: new Animated.Value(0),
-    animButtonRight: new Animated.Value(0)
+    animButtonRight: new Animated.Value(0),
   }
   componentDidMount = () => {
     Animated.parallel([
       Animated.timing(this.state.animButtonLeft, animTiming),
       Animated.timing(this.state.animButtonRight, animTiming),
-    ]).start()
+    ]).start();
   };
+  handlePressLeft = () => {
+    const { onPressLeft } = this.props;
+
+    if (typeof onPressLeft === 'function') {
+      onPressLeft();
+    }
+  }
   handlePressRight = () => {
     const { onPressRight } = this.props;
 
@@ -47,16 +44,17 @@ class CustomHeader extends React.Component {
   render() {
     const marginRightValue = {
       inputRange: [0, 1],
-      outputRange: [-300, 0]
-    }
+      outputRange: [-300, 0],
+    };
     const marginLeftValue = {
       inputRange: [0, 1],
-      outputRange: [300, 0]
-    }
-    const marginLeftButtonRight = this.state.animButtonRight.interpolate(marginLeftValue)
-    const marginRightButtonRight = this.state.animButtonRight.interpolate(marginRightValue)
-    const marginLeftButtonLeft = this.state.animButtonLeft.interpolate(marginRightValue)
-    const marginRightButtonLeft = this.state.animButtonLeft.interpolate(marginLeftValue)
+      outputRange: [300, 0],
+    };
+    const marginLeftButtonRight = this.state.animButtonRight;
+    marginLeftButtonRight.interpolate(marginLeftValue);
+    const marginRightButtonRight = this.state.animButtonRight.interpolate(marginRightValue);
+    const marginLeftButtonLeft = this.state.animButtonLeft.interpolate(marginRightValue);
+    const marginRightButtonLeft = this.state.animButtonLeft.interpolate(marginLeftValue);
     const {
       noTitle,
       iconLeft,
@@ -66,8 +64,12 @@ class CustomHeader extends React.Component {
     } = this.props;
     return (
       <View style={styles.wrapper}>
-        <Animated.View style={{marginLeft: marginLeftButtonLeft, marginRight: marginRightButtonLeft}}>
-          <TouchableOpacity 
+        <Animated.View style={{
+          marginLeft: marginLeftButtonLeft,
+          marginRight: marginRightButtonLeft,
+        }}
+        >
+          <TouchableOpacity
             onPress={this.handlePressLeft}
             style={styles.btnLeft}
           >
@@ -80,7 +82,12 @@ class CustomHeader extends React.Component {
         {
           !noTitle ? <Text style={styles.title}>FoodApp</Text> : null
         }
-        <Animated.View style={{ marginLeft: marginLeftButtonRight, marginRight: marginRightButtonRight }}>
+        <Animated.View
+          style={{
+            marginLeft: marginLeftButtonRight,
+            marginRight: marginRightButtonRight,
+          }}
+        >
           <TouchableOpacity
             onPress={this.handlePressRight}
             style={styles.btnRight}
@@ -102,12 +109,17 @@ CustomHeader.propTypes = {
   titleRight: PropTypes.string,
   onPressLeft: PropTypes.func,
   onPressRight: PropTypes.func,
+  iconLeft: PropTypes.any,
+  iconRight: PropTypes.any,
+
 };
 
 CustomHeader.defaultProps = {
   noTitle: false,
   titleLeft: '',
   titleRight: '',
+  iconLeft: null,
+  iconRight: null,
   onPressLeft: () => { },
   onPressRight: () => { },
 };
