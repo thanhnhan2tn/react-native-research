@@ -1,5 +1,5 @@
 import { fromJS } from 'immutable';
-import { incrementCounter, decrementCounter } from 'actions/actionTypes';
+import { incrementCounter, decrementCounter } from '../actions/actionTypes';
 
 const initialState = fromJS({
   counter: 0,

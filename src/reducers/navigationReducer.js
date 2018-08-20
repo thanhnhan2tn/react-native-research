@@ -1,5 +1,5 @@
 import { NavigationActions } from 'react-navigation';
-import { RootNavigator } from 'config/navigations';
+import { RootNavigator } from '../config/navigations';
 
 const firstAction = RootNavigator.router.getActionForPathAndParams('home');
 const tempNavState = RootNavigator.router.getStateForAction(firstAction);

@@ -7,9 +7,9 @@ import {
 import { Animated, Easing } from 'react-native';
 import { connect } from 'react-redux';
 
-import HomeScreen from 'containers/Home';
-import DetailsScreen from 'containers/Details';
-import Header from 'components/Header';
+import HomeScreen from '../containers/Home';
+import DetailsScreen from '../containers/Details';
+import Header from '../components/Header';
 
 const middleware = createReactNavigationReduxMiddleware(
   'root',
@@ -21,10 +21,18 @@ const RootNavigator = createStackNavigator({
   details: DetailsScreen,
 }, {
   initialRouteName: 'home',
-  headerMode: 'float',
+  // headerMode: 'float',
   navigationOptions: {
     header: props => <Header {...props} />,
   },
+  // transitionConfig : () => ({
+  //   transitionSpec: {
+  //     duration: 0,
+  //     timing: Animated.timing,
+  //     easing: Easing.step0,
+  //   },
+  // }),
+
   transitionConfig: () => ({
     transitionSpec: {
       duration: 500,

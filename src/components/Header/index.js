@@ -5,11 +5,17 @@ import {
   Text,
   Image,
   TouchableOpacity,
+  Animated,
+  Easing
 } from 'react-native';
 
-import assets from 'config/assets';
+import assets from '../../config/assets';
 import styles from './styles';
-
+const animTiming = {
+  toValue: 1,
+  duration: 500,
+  esing: Easing.linear
+}
 class CustomHeader extends React.Component {
   handlePressLeft = () => {
     const { onPressLeft } = this.props;
@@ -20,7 +26,16 @@ class CustomHeader extends React.Component {
       console.log('open drawer');
     }
   }
-
+  state = {
+    animButtonLeft: new Animated.Value(0),
+    animButtonRight: new Animated.Value(0)
+  }
+  componentDidMount = () => {
+    Animated.parallel([
+      Animated.timing(this.state.animButtonLeft, animTiming),
+      Animated.timing(this.state.animButtonRight, animTiming),
+    ]).start()
+  };
   handlePressRight = () => {
     const { onPressRight } = this.props;
 
@@ -30,6 +45,18 @@ class CustomHeader extends React.Component {
   }
 
   render() {
+    const marginRightValue = {
+      inputRange: [0, 1],
+      outputRange: [-300, 0]
+    }
+    const marginLeftValue = {
+      inputRange: [0, 1],
+      outputRange: [300, 0]
+    }
+    const marginLeftButtonRight = this.state.animButtonRight.interpolate(marginLeftValue)
+    const marginRightButtonRight = this.state.animButtonRight.interpolate(marginRightValue)
+    const marginLeftButtonLeft = this.state.animButtonLeft.interpolate(marginRightValue)
+    const marginRightButtonLeft = this.state.animButtonLeft.interpolate(marginLeftValue)
     const {
       noTitle,
       iconLeft,
@@ -39,26 +66,31 @@ class CustomHeader extends React.Component {
     } = this.props;
     return (
       <View style={styles.wrapper}>
-        <TouchableOpacity
-          onPress={this.handlePressLeft}
-          style={styles.btnLeft}
-        >
-          <Image style={styles.menu} source={iconLeft || assets.menu} />
-          {
-            titleLeft ? <Text>{titleLeft}</Text> : null
-          }
-        </TouchableOpacity>
+        <Animated.View style={{marginLeft: marginLeftButtonLeft, marginRight: marginRightButtonLeft}}>
+          <TouchableOpacity 
+            onPress={this.handlePressLeft}
+            style={styles.btnLeft}
+          >
+            <Image style={styles.menu} source={iconLeft} />
+            {
+              titleLeft ? <Text style={styles.titleLeftRight}>{titleLeft}</Text> : null
+            }
+          </TouchableOpacity>
+        </Animated.View>
         {
           !noTitle ? <Text style={styles.title}>FoodApp</Text> : null
         }
-        <TouchableOpacity
-          onPress={this.handlePressRight}
-        >
-          <Image style={styles.cartIcon} source={iconRight || assets.shoppingCart} />
-          {
-            titleRight ? <Text>{titleRight}</Text> : null
-          }
-        </TouchableOpacity>
+        <Animated.View style={{ marginLeft: marginLeftButtonRight, marginRight: marginRightButtonRight }}>
+          <TouchableOpacity
+            onPress={this.handlePressRight}
+            style={styles.btnRight}
+          >
+            <Image style={styles.cartIcon} source={iconRight} />
+            {
+              titleRight ? <Text style={styles.titleLeftRight}>{titleRight}</Text> : null
+            }
+          </TouchableOpacity>
+        </Animated.View>
       </View>
     );
   }
@@ -66,8 +98,6 @@ class CustomHeader extends React.Component {
 
 CustomHeader.propTypes = {
   noTitle: PropTypes.bool,
-  iconRight: PropTypes.string,
-  iconLeft: PropTypes.string,
   titleLeft: PropTypes.string,
   titleRight: PropTypes.string,
   onPressLeft: PropTypes.func,
@@ -76,12 +106,10 @@ CustomHeader.propTypes = {
 
 CustomHeader.defaultProps = {
   noTitle: false,
-  iconRight: '',
-  iconLeft: '',
   titleLeft: '',
   titleRight: '',
-  onPressLeft: () => {},
-  onPressRight: () => {},
+  onPressLeft: () => { },
+  onPressRight: () => { },
 };
 
 export default CustomHeader;
