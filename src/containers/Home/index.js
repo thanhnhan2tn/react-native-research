@@ -154,21 +154,21 @@ class HomeScreen extends React.Component {
               </TouchableOpacity>
 
             </Animated.View>
-            <Animated.View style={[
-              {
-                marginLeft: marginLeftButtonContainer,
-                marginRight: marginRightButtonContainer,
-              }, styles.buttonContainer]}
+            <TouchableOpacity
+              onPress={() => {
+                this.props.fetchListRestaurant();
+                navigation.dispatch({ type: 'restaurants' });
+              }}
             >
-              <TouchableOpacity
-                onPress={() => {
-                  this.props.fetchListRestaurant();
-                  navigation.dispatch({ type: 'restaurants' });
-                }}
+              <Animated.View style={[
+                {
+                  marginLeft: marginLeftButtonContainer,
+                  marginRight: marginRightButtonContainer,
+                }, styles.buttonContainer]}
               >
                 <Text style={styles.buttonText}>Search food</Text>
-              </TouchableOpacity>
-            </Animated.View>
+              </Animated.View>
+            </TouchableOpacity>
           </View>
         </ImageBackground>
         <Animated.View

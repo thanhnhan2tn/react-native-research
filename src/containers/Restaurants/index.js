@@ -9,6 +9,7 @@ import AddressBar from '../../components/AddressBar';
 import RestaurantItem from '../../components/RestaurantItem';
 import { selectRestaurants } from './selectors';
 import colors from '../../styles/colors';
+import assets from '../../config/assets';
 
 class Restaurants extends Component {
   static navigationOptions = {
@@ -18,7 +19,7 @@ class Restaurants extends Component {
           navigation.dispatch({ type: 'home' });
         }}
         titleLeft="Cancel"
-        titleRight="Done"
+        iconRight={assets.shoppingCart}
         noTitle={false}
       />
     ),
