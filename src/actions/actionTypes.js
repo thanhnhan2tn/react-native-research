@@ -1,2 +1,5 @@
 export const incrementCounter = 'INCREMENT_COUNTER';
 export const decrementCounter = 'DECREMENT_COUNTER';
+export const GET_LIST_RESTAURANT = 'GET_LIST_RESTAURANT';
+export const GET_LIST_RESTAURANT_SUCCESS = 'GET_LIST_RESTAURANT_SUCCESS';
+export const GET_LIST_RESTAURANT_ERROR = 'GET_LIST_RESTAURANT_ERROR';

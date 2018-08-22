@@ -2,9 +2,14 @@ import { View } from 'react-native';
 import React from 'react';
 import styles from './style';
 
-const Line = () => (
-  <View style={styles.container}>
-    <View style={styles.line} />
+export const HorizontalLine = () => (
+  <View style={styles.horizontalContainer}>
+    <View style={styles.horizontalLine} />
   </View>
 );
-export default Line;
+export const VerticalLine = () => (
+  <View style={styles.verticalContainer}>
+    <View style={styles.verticalLine} />
+  </View>
+);
+

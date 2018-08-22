@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { Provider } from 'react-redux';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, StatusBar } from 'react-native';
 import store from './store';
 import AppNavigator from './config/navigations';
 
@@ -18,6 +18,11 @@ const styles = StyleSheet.create({
 const App = () => (
   <Provider store={store}>
     <View style={styles.container}>
+      <StatusBar
+        barStyle="light-content"
+        translucent={true}
+        backgroundColor="transparent"
+      />
       <AppNavigator />
     </View>
   </Provider>

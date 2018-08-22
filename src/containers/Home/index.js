@@ -7,7 +7,8 @@ import {
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 import { incrementAction } from '../../actions';
-import Line from '../../components/line';
+import { GET_LIST_RESTAURANT } from '../../actions/actionTypes';
+import { HorizontalLine } from '../../components/line';
 import ImageItem from '../../components/ImageItem';
 import styles from './styles';
 import { selectCount } from './selectors';
@@ -59,12 +60,15 @@ class HomeScreen extends React.Component {
       },
     ],
   }
-  componentDidMount = () => {
-    Animated.stagger(100, [
-      Animated.timing(this.state.animLocationContainer, animTiming),
-      Animated.timing(this.state.animButtonContainer, animTiming),
-      Animated.timing(this.state.animRecommendContainer, animTiming),
-    ]).start();
+  componentDidMount = async () => {
+    Animated.stagger(
+      100,
+      [
+        Animated.timing(this.state.animLocationContainer, animTiming),
+        Animated.timing(this.state.animButtonContainer, animTiming),
+        Animated.timing(this.state.animRecommendContainer, animTiming),
+      ],
+    ).start();
   };
 
   render() {
@@ -80,7 +84,6 @@ class HomeScreen extends React.Component {
     const marginLeftRecommendContainer = this.state.animRecommendContainer;
     marginLeftRecommendContainer.interpolate(marginLeftValue);
     return (
-
       <ScrollView style={styles.container}>
         <PickerIOS
           ref={(picker) => { this.picker = picker; }}
@@ -141,7 +144,7 @@ class HomeScreen extends React.Component {
                     </TouchableOpacity>
                   </View>
               }
-              <Line />
+              <HorizontalLine />
               <TouchableOpacity
                 onPress={() => {
                   navigation.dispatch({ type: 'detail', text: 'Hello from Home' });
@@ -157,7 +160,12 @@ class HomeScreen extends React.Component {
                 marginRight: marginRightButtonContainer,
               }, styles.buttonContainer]}
             >
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  this.props.fetchListRestaurant();
+                  navigation.dispatch({ type: 'restaurants' });
+                }}
+              >
                 <Text style={styles.buttonText}>Search food</Text>
               </TouchableOpacity>
             </Animated.View>
@@ -165,9 +173,9 @@ class HomeScreen extends React.Component {
         </ImageBackground>
         <Animated.View
           style={[styles.recommendContainer, {
-          marginLeft: marginLeftRecommendContainer,
-          marginRight: marginRightRecommendContainer,
-        }]}
+            marginLeft: marginLeftRecommendContainer,
+            marginRight: marginRightRecommendContainer,
+          }]}
         >
           <Text style={styles.textRecommend}>We recommended</Text>
           <FlatList
@@ -191,12 +199,12 @@ class HomeScreen extends React.Component {
 
 HomeScreen.propTypes = {
   navigation: PropTypes.object,
+  fetchListRestaurant: PropTypes.func,
 };
 
 HomeScreen.defaultProps = {
-  navigation: {
-    title: 'Test',
-  },
+  navigation: {},
+  fetchListRestaurant: () => { },
 };
 
 const mapStateToProps = state => ({
@@ -205,6 +213,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   incrementCounter: () => dispatch(incrementAction()),
+  fetchListRestaurant: () => dispatch({ type: GET_LIST_RESTAURANT }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
