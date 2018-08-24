@@ -15,4 +15,4 @@ with open("package.json", "r") as jsonFile:
     data['version'] = versionStr
 
 with open("package.json", "w") as jsonFile:
-   json.dump(data, jsonFile, indent=2, separators=(',', ': '))
+    json.dump(data, jsonFile, indent=2, separators=(',', ': '))
