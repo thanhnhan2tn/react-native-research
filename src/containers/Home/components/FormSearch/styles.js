@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   btnSearch: {
-    backgroundColor: colors.yellow,
+    backgroundColor: colors.black,
     marginTop: 10,
     height: 40,
     lineHeight: 40,
