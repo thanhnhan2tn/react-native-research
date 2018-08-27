@@ -1,12 +1,12 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import assets from 'config/assets';
 import Header from 'components/Header';
 import Banner from 'components/Banner';
 import RNTabView from 'components/TabView';
+import styles from './styles';
+import assets from 'config/assets';
 
-// const TabViewDemo = () => (
 export default class TabViewDemo extends React.PureComponent {
   static navigationOptions = {
     header: ({ navigation }) => {
@@ -24,11 +24,15 @@ export default class TabViewDemo extends React.PureComponent {
       );
     },
   }
+
   render() {
+    const { navigation } = this.props;
+    const restaurant = navigation.getParam('restaurant', '');
+
     return (
-      <View style={{ flex: 1, paddingTop: 60 }}>
+      <View style={styles.container}>
         <Banner />
-        <RNTabView />
+        <RNTabView restaurant={restaurant} />
       </View>
     );
   }

@@ -4,42 +4,50 @@ import {
   Text,
   View,
   Image,
+  TouchableOpacity,
 } from 'react-native';
 
 import Rating from 'components/Rating';
 import styles from './styles';
 
-const Item = ({ item }) => {
+const Item = (props) => {
   const {
-    img,
-    key,
-    stars,
-    providers,
-    price,
-    min,
-  } = item;
+    thumb,
+    name,
+    ratting,
+    location,
+    sale,
+    views,
+  } = props.item;
+
   return (
     <View style={styles.products}>
-      <Image
-        style={styles.productImg}
-        source={img}
-      />
+      <TouchableOpacity onPress={props.onPress}>
+        <Image
+          style={styles.productImg}
+          source={{ uri: thumb }}
+        />
+      </TouchableOpacity>
+
       <View style={styles.productInfo}>
         <View style={styles.wrapTitle}>
-          <Text style={styles.productTitle}>{key}</Text>
-          <Rating style={styles.rating} stars={stars} />
+          <Text style={styles.productTitle}>{name}</Text>
+          <Rating style={styles.rating} stars={Number(ratting)} />
         </View>
+
         <View>
-          <Text>{providers}</Text>
+          <Text>{location.city}</Text>
         </View>
+
         <View style={styles.productTransport}>
           <View style={styles.itemTranspot}>
             <Text>Price discount: </Text>
-            <Text style={styles.textBold}>{price} LT</Text>
+            <Text style={styles.textBold}>{sale} LT</Text>
           </View>
+
           <View style={styles.itemTranspot}>
-            <Text>Min: </Text>
-            <Text style={styles.textBold}>{min} LT</Text>
+            <Text>Views: </Text>
+            <Text style={styles.textBold}>{views}</Text>
           </View>
         </View>
       </View>

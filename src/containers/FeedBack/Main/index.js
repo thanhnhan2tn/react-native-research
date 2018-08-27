@@ -10,19 +10,21 @@ import styles from './styles';
 
 export default class Main extends React.PureComponent {
   render() {
-    const { list } = this.props.listMainFeedBack;
+    const { feedbackList } = this.props;
+
     return (
       <View style={styles.container}>
         <ScrollView style={styles.listFeed}>
-          { list.map(({
-             id, name, body, stars,
-            }) =>
-            (<Feed
-              key={id}
-              name={name}
-              body={body}
-              stars={stars}
-            />))
+          {
+            feedbackList.map(({ _id, username, review_text, ratting }) =>
+            (
+              <Feed
+                key={_id}
+                name={username}
+                body={review_text}
+                stars={ratting}
+              />
+            ))
           }
         </ScrollView>
       </View>

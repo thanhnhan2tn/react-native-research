@@ -12,10 +12,11 @@ export default class Rating extends React.Component {
   genStar = (stars) => {
     const arrStars = [1, 2, 3, 4, 5];
     return arrStars.map((ele) => {
-      const url = (ele > stars.ratings) ? assets.starUnfilled : assets.starFilled;
+      const url = (ele > stars) ? assets.starUnfilled : assets.starFilled;
       return <Image key={ele} style={styles.image} source={url} />;
     });
   }
+
   render() {
     const { stars, style } = this.props;
     return (
@@ -27,11 +28,11 @@ export default class Rating extends React.Component {
 }
 
 Rating.propTypes = {
-  stars: PropTypes.object,
+  stars: PropTypes.any,
   style: PropTypes.any,
 };
 
 Rating.defaultProps = {
-  stars: {},
+  stars: '',
   style: '',
 };

@@ -4,14 +4,20 @@ import {
   ScrollView,
 } from 'react-native';
 
+import { connect } from 'react-redux';
 import listMainScreen from 'data/listMainScreen';
 import Header from 'components/Header';
 import Location from './Location';
 import Main from './Main';
 import Footer from './Footer';
 import styles from './style';
+import getMain, { selectRestaurant } from './selectors';
 
-export default class MainScreen extends React.PureComponent {
+class MainScreen extends React.PureComponent {
+  componentDidMount() {
+    this.props.fetchRestaurants();
+  }
+
   static navigationOptions = {
     header: ({ navigation }) => (
       <Header
@@ -21,15 +27,39 @@ export default class MainScreen extends React.PureComponent {
     ),
   };
 
+  goToDetailScreen = (res) => {
+    const { navigation } = this.props;
+
+    navigation.navigate('tabview', {
+      restaurant: res
+    })
+  }
+
   render() {
+    const { restaurants } = this.props;
+
     return (
       <View style={styles.container}>
         <ScrollView>
           <Location />
-          <Main listMainScreen={listMainScreen} />
+          <Main
+            restaurants={restaurants}
+            onPress={this.goToDetailScreen}
+          />
         </ScrollView>
         <Footer />
       </View>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  mainScreenState: getMain(state),
+  restaurants: selectRestaurant(state)
+})
+
+const mapDispatchToProps = dispatch => ({
+  fetchRestaurants: () => dispatch({ type: 'FETCH_RESTAURANTS' })
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainScreen)

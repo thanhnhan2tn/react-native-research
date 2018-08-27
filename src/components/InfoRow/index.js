@@ -30,7 +30,7 @@ const InfoRow = (props) => {
 InfoRow.propTypes = {
   infoAttr: PropTypes.string,
   infoVal: PropTypes.string,
-  uri: PropTypes.string,
+  uri: PropTypes.any,
 };
 
 InfoRow.defaultProps = {

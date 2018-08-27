@@ -9,8 +9,12 @@ import styles from './styles';
 export default class Banner extends React.PureComponent {
   render() {
     const {
-      img, title, address, stars,
+      img,
+      title,
+      address,
+      stars,
     } = this.props.bannerInfo;
+
     return (
       <View style={styles.container}>
         <Image
