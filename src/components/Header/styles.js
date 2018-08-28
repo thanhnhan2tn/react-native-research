@@ -29,7 +29,6 @@ export default StyleSheet.create({
   title: {
     color: colors.white,
     fontSize: 20,
-    alignSelf: 'center',
     marginTop: 5,
   },
   titleLeftRight: {

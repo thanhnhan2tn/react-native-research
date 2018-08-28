@@ -5,6 +5,7 @@ const locationIcon = require('../assets/icons/icon-location.png');
 const pizzaImage = require('../assets/images/pizza-image.png');
 const cropFoodImage = require('../assets/images/crop-food-image.jpg');
 const foodImage = require('../assets/images/food-image.jpg');
+const food2 = require('../assets/images/food-2.jpg');
 
 export default {
   menu,
@@ -14,4 +15,5 @@ export default {
   pizzaImage,
   foodImage,
   cropFoodImage,
+  food2,
 };

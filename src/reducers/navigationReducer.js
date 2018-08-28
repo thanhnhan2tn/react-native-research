@@ -20,9 +20,33 @@ function navigationReducer(state = initialNavState, action) {
         state,
       );
       break;
+    case 'back':
+      nextState = RootNavigator.router.getStateForAction(
+        NavigationActions.back(),
+        state,
+      );
+      break;
     case 'restaurants':
       nextState = RootNavigator.router.getStateForAction(
         NavigationActions.navigate({ routeName: 'restaurants' }),
+        state,
+      );
+      break;
+    case 'restaurantMenu':
+      nextState = RootNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'restaurantMenu', params: { index: action.index } }),
+        state,
+      );
+      break;
+    case 'main':
+      nextState = RootNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'main', params: { currentData: action.currentData } }),
+        state,
+      );
+      break;
+    case 'test':
+      nextState = RootNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'test' }),
         state,
       );
       break;

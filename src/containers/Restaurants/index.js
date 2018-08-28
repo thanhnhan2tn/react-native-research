@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, FlatList, Text, Animated, Easing } from 'react-native';
+import { View, FlatList, Text, Animated, Easing, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import PropTypes from 'prop-types';
@@ -20,6 +20,7 @@ class Restaurants extends Component {
         }}
         titleLeft="Cancel"
         iconRight={assets.shoppingCart}
+        titleRight=""
         noTitle={false}
       />
     ),
@@ -66,12 +67,17 @@ class Restaurants extends Component {
               });
             }
             return (
-              <Animated.View
-                style={{ transform: [{ rotateX }] }}
+              <TouchableOpacity
+                onPress={() => { this.props.navigation.dispatch({ type: 'main', currentData: this.props.listRestaurant[index] }); }}
               >
-                <RestaurantItem dataItem={item} />
-              </Animated.View>);
+                <Animated.View
+                  style={{ transform: [{ rotateX }] }}
+                >
+                  <RestaurantItem dataItem={item} />
+                </Animated.View>
+              </TouchableOpacity>);
           }}
+
           ListFooterComponent={() => (
             <View style={{ height: 50 }} />
           )}

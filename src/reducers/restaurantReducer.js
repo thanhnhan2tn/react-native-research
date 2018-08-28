@@ -2,7 +2,7 @@ import { Map } from 'immutable';
 import { GET_LIST_RESTAURANT_SUCCESS, GET_LIST_RESTAURANT_ERROR } from '../actions/actionTypes';
 
 const initialState = Map({
-  // listRestaurant: List(),
+  // listRestaurant: fromJS,
 });
 const restaurantReducer = (state = initialState, action) => {
   switch (action.type) {

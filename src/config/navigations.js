@@ -1,15 +1,16 @@
 import React from 'react';
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator, createMaterialTopTabNavigator } from 'react-navigation';
 import {
   reduxifyNavigator,
   createReactNavigationReduxMiddleware,
 } from 'react-navigation-redux-helpers';
 import { Animated, Easing } from 'react-native';
 import { connect } from 'react-redux';
-
 import HomeScreen from '../containers/Home';
 import DetailsScreen from '../containers/Details';
 import RestaurantsScreen from '../containers/Restaurants';
+import MainScreen from '../containers/Main';
+import TestComponent from '../containers/TestComponent';
 import Header from '../components/Header';
 
 const middleware = createReactNavigationReduxMiddleware(
@@ -21,46 +22,52 @@ const RootNavigator = createStackNavigator({
   home: HomeScreen,
   details: DetailsScreen,
   restaurants: RestaurantsScreen,
+  main: MainScreen,
+  test: TestComponent,
+  // main: createMaterialTopTabNavigator({
+  //   restaurantMenu: RestaurantMenuScreen,
+  //   feedBack: FeedBackScreen,
+  //   information: InformationScreen,
+  // },
+  //   {
+  //     navigationOptions: {
+  //       header: props => <Header {...props} />,
+  //     },    
+  //   }
+  // ),
 }, {
-  initialRouteName: 'home',
-  // headerMode: 'float',
-  navigationOptions: {
-    header: props => <Header {...props} />,
-  },
-  // transitionConfig : () => ({
-  //   transitionSpec: {
-  //     duration: 0,
-  //     timing: Animated.timing,
-  //     easing: Easing.step0,
-  //   },
-  // }),
+    initialRouteName: 'home',
 
-  transitionConfig: () => ({
-    transitionSpec: {
-      duration: 500,
-      easing: Easing.out(Easing.poly(4)),
-      timing: Animated.timing,
-      useNativeDriver: true,
+    navigationOptions: {
+      header: props => <Header {...props} />,
     },
-    screenInterpolator: (sceneProps) => {
-      const { layout, position, scene } = sceneProps;
-      const { index } = scene;
+    // headerMode: 'float',
+    transitionConfig: () => ({
+      transitionSpec: {
+        duration: 500,
+        easing: Easing.out(Easing.poly(4)),
+        timing: Animated.timing,
+        useNativeDriver: true,
+      },
+      screenInterpolator: (sceneProps) => {
+        const { layout, position, scene } = sceneProps;
+        const { index } = scene;
 
-      const width = layout.initWidth;
-      const translateX = position.interpolate({
-        inputRange: [index - 1, index, index + 1],
-        outputRange: [width, 0, 0],
-      });
+        const width = layout.initWidth;
+        const translateX = position.interpolate({
+          inputRange: [index - 1, index, index + 1],
+          outputRange: [width, 0, 0],
+        });
 
-      const opacity = position.interpolate({
-        inputRange: [index - 1, index],
-        outputRange: [0, 1],
-      });
+        const opacity = position.interpolate({
+          inputRange: [index - 1, index],
+          outputRange: [0, 1],
+        });
 
-      return { opacity, transform: [{ translateX }] };
-    },
-  }),
-});
+        return { opacity, transform: [{ translateX }] };
+      },
+    }),
+  });
 
 const AppWithNavigationState = reduxifyNavigator(RootNavigator, 'root');
 

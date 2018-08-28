@@ -17,3 +17,12 @@ export const getOneRestaurant = async (id) => {
     throw error;
   }
 };
+
+export const getDish = async(id) => {
+  try {
+    const dish = await getData(`dishes/${id}`);
+    return dish.body
+  } catch (error) {
+    throw error;
+  }
+}

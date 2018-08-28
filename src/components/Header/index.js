@@ -50,8 +50,7 @@ class CustomHeader extends React.Component {
       inputRange: [0, 1],
       outputRange: [300, 0],
     };
-    const marginLeftButtonRight = this.state.animButtonRight;
-    marginLeftButtonRight.interpolate(marginLeftValue);
+    const marginLeftButtonRight = this.state.animButtonRight.interpolate(marginLeftValue);
     const marginRightButtonRight = this.state.animButtonRight.interpolate(marginRightValue);
     const marginLeftButtonLeft = this.state.animButtonLeft.interpolate(marginRightValue);
     const marginRightButtonLeft = this.state.animButtonLeft.interpolate(marginLeftValue);

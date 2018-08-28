@@ -40,6 +40,8 @@ class HomeScreen extends React.Component {
         iconLeft={assets.menu}
         iconRight={assets.shoppingCart}
         noTitle={false}
+        titleLeft=''
+        titleRight=''
       />
     ),
   };
@@ -72,17 +74,16 @@ class HomeScreen extends React.Component {
   };
 
   render() {
+    /*eslint-disable*/
     const { navigation } = this.props;
-    const marginRightLocationContainer = this.state.animLocationContainer;
-    marginRightLocationContainer.interpolate(marginRightValue);
-    const marginLeftLocationContainer = this.state.animLocationContainer;
-    marginLeftLocationContainer.interpolate(marginLeftValue);
+    //// eslint-disable-next-line no-use-before-define
+    const marginRightLocationContainer = this.state.animLocationContainer.interpolate(marginRightValue);
+    const marginLeftLocationContainer = this.state.animLocationContainer.interpolate(marginLeftValue);
     const marginRightButtonContainer = this.state.animButtonContainer.interpolate(marginRightValue);
     const marginLeftButtonContainer = this.state.animButtonContainer.interpolate(marginLeftValue);
-    const marginRightRecommendContainer = this.state.animRecommendContainer;
-    marginRightRecommendContainer.interpolate(marginRightValue);
-    const marginLeftRecommendContainer = this.state.animRecommendContainer;
-    marginLeftRecommendContainer.interpolate(marginLeftValue);
+    const marginRightRecommendContainer = this.state.animRecommendContainer.interpolate(marginRightValue);
+    const marginLeftRecommendContainer = this.state.animRecommendContainer.interpolate(marginLeftValue);
+    /* eslint-enable */
     return (
       <ScrollView style={styles.container}>
         <PickerIOS
@@ -103,10 +104,13 @@ class HomeScreen extends React.Component {
             >
               <View style={styles.halfIconContainer1} />
               <View style={styles.halfIconContainer2} />
-              <Image
-                style={styles.locationIcon}
-                source={assets.locationIcon}
-              />
+              <TouchableOpacity style={styles.locationIcon}
+                onPress={() => { navigation.dispatch({ type: 'test' }) }}>
+                <Image
+                  style={styles.locationIcon}
+                  source={assets.locationIcon}
+                />
+              </TouchableOpacity>
             </Animated.View>
             <Animated.View style={{
               marginLeft: marginLeftLocationContainer,
@@ -154,21 +158,23 @@ class HomeScreen extends React.Component {
               </TouchableOpacity>
 
             </Animated.View>
-            <TouchableOpacity
-              onPress={() => {
-                this.props.fetchListRestaurant();
-                navigation.dispatch({ type: 'restaurants' });
-              }}
+
+            <Animated.View style={[
+              {
+                marginLeft: marginLeftButtonContainer,
+                marginRight: marginRightButtonContainer,
+              }, styles.buttonContainer]}
             >
-              <Animated.View style={[
-                {
-                  marginLeft: marginLeftButtonContainer,
-                  marginRight: marginRightButtonContainer,
-                }, styles.buttonContainer]}
+              <TouchableOpacity
+                onPress={() => {
+                  this.props.fetchListRestaurant();
+                  navigation.dispatch({ type: 'restaurants' });
+                }}
               >
                 <Text style={styles.buttonText}>Search food</Text>
-              </Animated.View>
-            </TouchableOpacity>
+              </TouchableOpacity>
+            </Animated.View>
+
           </View>
         </ImageBackground>
         <Animated.View
