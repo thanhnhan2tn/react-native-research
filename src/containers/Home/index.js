@@ -5,30 +5,39 @@ import { connect } from 'react-redux';
 
 import { incrementAction } from 'actions';
 import CustomButton from 'components/CustomButton';
+import StyledButton from 'components/StyledButton';
+import Header from 'components/Header';
+import NumberIncrement from './NumberIncrement';
+
+import { goingTo } from 'utils/navigations';
 import styles from './styles';
 import { selectCount } from './selectors';
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
     title: 'Home Screen',
+    header: ({ navigation }) => (
+      <Header
+        onPressLeft={() => navigation.openDrawer()}
+        onPressRight={() => navigation.navigate('Cart')}
+      />
+    ),
   };
 
   render() {
     const { navigation, incrementCounter, count } = this.props;
     return (
       <View style={styles.container}>
-        <Text>Home Screen</Text>
-        <CustomButton
-          onPress={() => navigation.dispatch({ type: 'detail', text: 'Hello from Home' })}
-        >
-          <Text>Go to Details</Text>
-        </CustomButton>
-        <CustomButton
-          onPress={() => incrementCounter()}
-        >
-          <Text>Increase counter</Text>
-        </CustomButton>
-        <Text>{count}</Text>
+        <Text>Home</Text>
+        <StyledButton
+          onPress={() => goingTo({ navigation, routeName: 'auth'})}
+          text='Auth Screen'
+        />
+        <StyledButton
+          onPress={() => goingTo({ navigation, routeName: 'detail', text: 'Hello from Home' })}
+          text='Detail page'
+        />
+        <NumberIncrement incrementCounter={incrementCounter} number={count} />
       </View>
     );
   }

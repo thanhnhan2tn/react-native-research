@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 
 import HomeScreen from 'containers/Home';
 import DetailsScreen from 'containers/Details';
+import AuthScreen from 'containers/AuthScreen';
 import Header from 'components/Header';
 
 const middleware = createReactNavigationReduxMiddleware(
@@ -19,6 +20,7 @@ const middleware = createReactNavigationReduxMiddleware(
 const RootNavigator = createStackNavigator({
   home: HomeScreen,
   details: DetailsScreen,
+  auth: AuthScreen,
 }, {
   initialRouteName: 'home',
   headerMode: 'float',

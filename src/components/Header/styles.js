@@ -4,20 +4,20 @@ import colors from 'styles/colors';
 
 export default StyleSheet.create({
   wrapper: {
-    flex: 0.1,
+    flex: 1,
     backgroundColor: colors.red,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 15,
+    padding: 10,
   },
   menu: {
-    width: 40,
-    height: 40,
+    width: 30,
+    height: 30,
   },
   cartIcon: {
-    width: 40,
-    height: 40,
+    width: 30,
+    height: 30,
   },
   title: {
     color: colors.white,
@@ -26,4 +26,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  textLeft: {
+    color: '#fff',
+  }
 });

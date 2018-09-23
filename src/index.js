@@ -5,15 +5,26 @@
  */
 
 import React from 'react';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import { Provider } from 'react-redux';
 
 import store from './store';
-import AppNavigator from './config/navigations';
+import AppNavigator from './navigations';
 
 const App = () => (
   <Provider store={store}>
-    <AppNavigator />
+    {/* Enable support iPhone X */}
+    <SafeAreaView style={styles.safeArea}>
+      <AppNavigator />
+    </SafeAreaView>
   </Provider>
 );
+
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#fff'
+  }
+});
 
 export default App;

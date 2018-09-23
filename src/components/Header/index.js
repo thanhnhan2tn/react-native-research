@@ -17,7 +17,8 @@ class CustomHeader extends React.Component {
     if (typeof onPressLeft === 'function') {
       onPressLeft();
     } else {
-      console.log('open drawer');
+      console.log("open");
+      this.props.navigation.navigate("DrawerOpen");
     }
   }
 
@@ -31,7 +32,7 @@ class CustomHeader extends React.Component {
 
   render() {
     const {
-      noTitle,
+      title,
       iconLeft,
       iconRight,
       titleLeft,
@@ -45,11 +46,11 @@ class CustomHeader extends React.Component {
         >
           <Image style={styles.menu} source={iconLeft || assets.menu} />
           {
-            titleLeft ? <Text>{titleLeft}</Text> : null
+            titleLeft ? <Text style={styles.textLeft}>{titleLeft}</Text> : null
           }
         </TouchableOpacity>
         {
-          !noTitle ? <Text style={styles.title}>FoodApp</Text> : null
+          title ? <Text style={styles.title}>{title}</Text> : null
         }
         <TouchableOpacity
           onPress={this.handlePressRight}
@@ -66,8 +67,14 @@ class CustomHeader extends React.Component {
 
 CustomHeader.propTypes = {
   noTitle: PropTypes.bool,
-  iconRight: PropTypes.string,
-  iconLeft: PropTypes.string,
+  iconRight: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+  ]),
+  iconLeft: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+  ]),
   titleLeft: PropTypes.string,
   titleRight: PropTypes.string,
   onPressLeft: PropTypes.func,
@@ -75,12 +82,12 @@ CustomHeader.propTypes = {
 };
 
 CustomHeader.defaultProps = {
-  noTitle: false,
-  iconRight: '',
-  iconLeft: '',
+  title: undefined,
+  iconRight: false,
+  iconLeft: false,
   titleLeft: '',
   titleRight: '',
-  onPressLeft: () => {},
+  onPressLeft: undefined,
   onPressRight: () => {},
 };
 
