@@ -30,6 +30,9 @@
     "react/forbid-prop-types": "off", // allow use Proptype.object, Proptype.array, Proptype.any
     "react/no-multi-comp": ["off", { "ignoreStateless": true }], // allow 2 or more components in 1 file
     "import/extensions": "off",
-    "max-len": ["error", { "code": 150 }]
+    "max-len": ["error", { "code": 150 }],
+    "react/require-default-props": 1,
+    "no-use-before-define": 0,
+    "import/first": 0
   }
 }

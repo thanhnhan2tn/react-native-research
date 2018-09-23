@@ -14,19 +14,19 @@ const CustomButton = ({
   wrapperStyle,
   buttonStyle,
   textStyle,
-  ...otherProps,
+  ...otherProps
 }) => {
-  const onButtonPress = isEnabled && !isLoading ? onPress : () => null
+  const onButtonPress = isEnabled && !isLoading ? onPress : () => null;
 
   return (
     <View {...otherProps} style={[styles.main, wrapperStyle]}>
       <TouchableView onPress={onButtonPress} style={[styles.button, buttonStyle]}>
-        {(isLoading) && <ActivityIndicator style={styles.spinner} color={'grey'} />}
+        {(isLoading) && <ActivityIndicator style={styles.spinner} color="grey" />}
         {(!isLoading) && <Text style={[styles.text, textStyle]}>{text}</Text>}
       </TouchableView>
     </View>
-  )
-}
+  );
+};
 
 CustomButton.propTypes = {
   onPress: PropTypes.func,
@@ -36,13 +36,13 @@ CustomButton.propTypes = {
   buttonStyle: PropTypes.any,
   textStyle: PropTypes.any,
   wrapperStyle: PropTypes.any,
-}
+};
 
 CustomButton.defaultProps = {
   onPress: () => null,
   isEnabled: true,
-  isLoading: false
-}
+  isLoading: false,
+};
 
 const styles = StyleSheet.create({
   main: {
@@ -58,13 +58,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
   },
   spinner: {
-    height: 26
+    height: 26,
   },
   text: {
     textAlign: 'center',
     fontWeight: '400',
-    color: 'white'
-  }
-})
+    color: 'white',
+  },
+});
 
 export default CustomButton;
