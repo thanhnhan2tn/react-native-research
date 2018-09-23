@@ -14,7 +14,6 @@ export default class Details extends React.Component {
         }}
         iconLeft={assets.backIcon}
         titleLeft="Back"
-        noTitle={true}
       />
     ),
   }

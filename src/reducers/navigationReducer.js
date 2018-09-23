@@ -1,6 +1,6 @@
 import { NavigationActions } from 'react-navigation';
 
-import { RootNavigator } from 'config/navigations';
+import { RootNavigator } from '../navigations';
 import { REDIRECT } from 'actions/actionTypes';
 
 const firstAction = RootNavigator.router.getActionForPathAndParams('home');

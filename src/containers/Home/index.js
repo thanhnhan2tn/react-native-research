@@ -4,14 +4,12 @@ import {
   Animated,
   Easing,
 } from 'react-native';
-import { connect } from 'react-redux';
-
-import { incrementAction } from 'actions';
 import Header from 'components/Header';
 import FormSearch from './components/FormSearch';
 import ListFoods from './components/ListFoods';
+
 import styles from './styles';
-import { selectCount } from './selectors';
+
 import {
   FLEX_ORIGIN_FORM,
   FLEX_ORIGIN_LIST,
@@ -129,12 +127,4 @@ class HomeScreen extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  count: selectCount(state),
-});
-
-const mapDispatchToProps = dispatch => ({
-  incrementCounter: () => dispatch(incrementAction()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
+export default HomeScreen;

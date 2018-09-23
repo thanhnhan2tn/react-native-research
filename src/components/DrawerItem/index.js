@@ -18,14 +18,14 @@ const listItems = [
     route: 'home',
   },
   {
+    title: 'Login',
+    icon: assets.home,
+    route: 'auth',
+  },
+  {
     title: 'TabView Demo',
     icon: assets.home,
     route: 'tabview',
-  },
-  {
-    title: 'Restaurant Info',
-    icon: assets.home,
-    route: 'restaurantInfo',
   },
   {
     title: 'Main Screen',

@@ -55,7 +55,7 @@ class CustomHeader extends React.Component {
 
   render() {
     const {
-      noTitle,
+      title,
       iconLeft,
       iconRight,
       titleLeft,
@@ -79,9 +79,6 @@ class CustomHeader extends React.Component {
             }
           </TouchableOpacity>
         </Animated.View>
-        {
-          !noTitle ? <Text style={styles.title}>foodapp</Text> : null
-        }
         <Animated.View
           style={{
             transform: [{ translateX: this.movingLeft }],
@@ -102,9 +99,14 @@ class CustomHeader extends React.Component {
 CustomHeader.propTypes = {
   navigation: PropTypes.object,
   isIconMenu: PropTypes.bool,
-  noTitle: PropTypes.bool,
-  iconRight: PropTypes.string,
-  iconLeft: PropTypes.any,
+  iconRight: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+  ]),
+  iconLeft: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+  ]),
   titleLeft: PropTypes.string,
   titleRight: PropTypes.string,
   onPressLeft: PropTypes.func,
@@ -113,13 +115,13 @@ CustomHeader.propTypes = {
 
 CustomHeader.defaultProps = {
   navigation: {},
-  noTitle: false,
   isIconMenu: false,
   iconRight: assets.shoppingCart,
   iconLeft: assets.menu,
+  title: undefined,
   titleLeft: '',
   titleRight: '',
-  onPressLeft: () => {},
+  onPressLeft: undefined,
   onPressRight: () => {},
 };
 
